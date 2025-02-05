@@ -6,17 +6,20 @@ public class NPCBehavior : MonoBehaviour
 {
     public bool xHigher;
     public bool yHigher;
+    public GameObject[] chairs;
+    int index = 0;
+
     // Start is called before the first frame update
     void Start()
     {
-        // QualitySettings.vSyncCount = 0;
-        // Application.targetFrameRate = 60;
+        index = Random.Range(0, chairs.Length);
     }
 
     // Update is called once per frame
     void Update()
-    {
-        Vector2 pointPos = GameObject.Find("NpcPoint2").transform.position; //Finds a designated GameObject. Will be changed later, since we need to find multiple objects
+    {    
+        GameObject chairChoose = chairs[index];
+        Vector2 pointPos = chairChoose.transform.position; //Finds a designated GameObject. Will be changed later, since we need to find multiple objects
         Vector2 position = transform.position; // NPC's position
         if (Mathf.Round(position.x) != Mathf.Round(pointPos.x) && yHigher == false){
             xHigher = true;
