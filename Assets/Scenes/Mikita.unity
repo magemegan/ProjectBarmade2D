@@ -486,6 +486,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerBartender
       objectReference: {fileID: 0}
+    - target: {fileID: 2517165572418356126, guid: 36e03f4f73e1aa742981f8760d671d1f, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 4059699815235199484, guid: 36e03f4f73e1aa742981f8760d671d1f, type: 3}
       propertyPath: DrinkStationUI
       value: 
@@ -494,6 +498,10 @@ PrefabInstance:
       propertyPath: accessStationText
       value: 
       objectReference: {fileID: 114243271}
+    - target: {fileID: 7050554847071207232, guid: 36e03f4f73e1aa742981f8760d671d1f, type: 3}
+      propertyPath: movementEnabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
