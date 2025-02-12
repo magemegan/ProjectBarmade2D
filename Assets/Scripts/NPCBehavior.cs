@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class NPCBehavior : MonoBehaviour
 {
-    public bool xHigher;
-    public bool yHigher;
+    bool xHigher;
+    bool yHigher;
     public GameObject[] chairs;
     int index = 0;
 
