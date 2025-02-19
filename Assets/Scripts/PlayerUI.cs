@@ -18,15 +18,17 @@ public class PlayerUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.E) && CanAccessDrinkStation && !DrinkStationOn) {
+        if(Input.GetKeyDown(KeyCode.E) && CanAccessDrinkStation && !DrinkStationOn) {
             DrinkStationUI.SetActive(true);
             gameObject.GetComponent<PlayerMovement>().movementEnabled = false;
             DrinkStationOn = true;
-        } /*else if(Input.GetKey(KeyCode.E) && CanAccessDrinkStation && DrinkStationOn){
+            accessStationText.SetActive(false);
+        } else if(Input.GetKeyDown(KeyCode.E) && CanAccessDrinkStation && DrinkStationOn){
             DrinkStationUI.SetActive(false);
             gameObject.GetComponent<PlayerMovement>().movementEnabled = true;
             DrinkStationOn = false;
-        }*/
+            accessStationText.SetActive(true);
+        }
     }
 
     void OnCollisionEnter2D(Collision2D other) {
