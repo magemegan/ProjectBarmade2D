@@ -18,6 +18,7 @@ public class PlayerUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Access Drink Mixing Station
         if(Input.GetKeyDown(KeyCode.E) && CanAccessDrinkStation && !DrinkStationOn) {
             DrinkStationUI.SetActive(true);
             gameObject.GetComponent<PlayerMovement>().movementEnabled = false;
