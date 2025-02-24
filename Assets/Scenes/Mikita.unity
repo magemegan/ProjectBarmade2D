@@ -264,6 +264,11 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!1 &857034176 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 410082014338740013, guid: c7af7dedb5c5f0c409fafc89adf3bb1e, type: 3}
+  m_PrefabInstance: {fileID: 1773649610461148689}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1453400876 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7380880310058284656, guid: c7af7dedb5c5f0c409fafc89adf3bb1e, type: 3}
@@ -425,13 +430,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5038613105394557470, guid: c7af7dedb5c5f0c409fafc89adf3bb1e, type: 3}
+      propertyPath: SodaBottles.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5038613105394557470, guid: c7af7dedb5c5f0c409fafc89adf3bb1e, type: 3}
+      propertyPath: SodaBottles.Array.data[1]
+      value: 
+      objectReference: {fileID: 857034176}
     - target: {fileID: 5413993258948048003, guid: c7af7dedb5c5f0c409fafc89adf3bb1e, type: 3}
       propertyPath: m_Name
       value: PlayerHUD
-      objectReference: {fileID: 0}
-    - target: {fileID: 7380880310058284656, guid: c7af7dedb5c5f0c409fafc89adf3bb1e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
