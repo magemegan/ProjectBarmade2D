@@ -39,7 +39,7 @@ public class NPCObjects : MonoBehaviour
 
         startTime = startTime + Random.Range(changeInterval1, changeInterval2);
         }
-        Debug.Log("Current in-game time: " + Mathf.Round(Time.time)); 
+        //Debug.Log("Current in-game time: " + Mathf.Round(Time.time)); 
         
     }
 }
