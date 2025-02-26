@@ -370,26 +370,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 438059576436737998, guid: c7af7dedb5c5f0c409fafc89adf3bb1e, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: e2a5ffd183f906841a38e316cf73fe3a, type: 3}
-    - target: {fileID: 1995819182739511827, guid: c7af7dedb5c5f0c409fafc89adf3bb1e, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1995819182739511827, guid: c7af7dedb5c5f0c409fafc89adf3bb1e, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4743672158224830102, guid: c7af7dedb5c5f0c409fafc89adf3bb1e, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -460
-      objectReference: {fileID: 0}
-    - target: {fileID: 4743672158224830102, guid: c7af7dedb5c5f0c409fafc89adf3bb1e, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -228
-      objectReference: {fileID: 0}
     - target: {fileID: 5025362656659435885, guid: c7af7dedb5c5f0c409fafc89adf3bb1e, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -470,49 +450,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5038613105394557470, guid: c7af7dedb5c5f0c409fafc89adf3bb1e, type: 3}
-      propertyPath: SodaBottles.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5038613105394557470, guid: c7af7dedb5c5f0c409fafc89adf3bb1e, type: 3}
-      propertyPath: SodaBottles.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5038613105394557470, guid: c7af7dedb5c5f0c409fafc89adf3bb1e, type: 3}
-      propertyPath: AlcoholBottles.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5413993258948048003, guid: c7af7dedb5c5f0c409fafc89adf3bb1e, type: 3}
       propertyPath: m_Name
       value: PlayerHUD
-      objectReference: {fileID: 0}
-    - target: {fileID: 6014498409832135926, guid: c7af7dedb5c5f0c409fafc89adf3bb1e, type: 3}
-      propertyPath: m_fontSize
-      value: 32
-      objectReference: {fileID: 0}
-    - target: {fileID: 6014498409832135926, guid: c7af7dedb5c5f0c409fafc89adf3bb1e, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 32
-      objectReference: {fileID: 0}
-    - target: {fileID: 7380880310058284656, guid: c7af7dedb5c5f0c409fafc89adf3bb1e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8763228612855907691, guid: c7af7dedb5c5f0c409fafc89adf3bb1e, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8763228612855907691, guid: c7af7dedb5c5f0c409fafc89adf3bb1e, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8763228612855907691, guid: c7af7dedb5c5f0c409fafc89adf3bb1e, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -64
-      objectReference: {fileID: 0}
-    - target: {fileID: 8763228612855907691, guid: c7af7dedb5c5f0c409fafc89adf3bb1e, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -115
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
