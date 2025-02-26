@@ -139,6 +139,7 @@ GameObject:
   - component: {fileID: 567525737}
   - component: {fileID: 567525736}
   - component: {fileID: 567525739}
+  - component: {fileID: 567525740}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -264,6 +265,30 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &567525740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 567525735}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c88f5cead0c0b2a4eb05b5900433f8d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ComponentVersion: 1
+  m_AssetsPPU: 32
+  m_RefResolutionX: 320
+  m_RefResolutionY: 180
+  m_CropFrame: 0
+  m_GridSnapping: 0
+  m_FilterMode: 0
+  m_UpscaleRT: 0
+  m_PixelSnapping: 0
+  m_CropFrameX: 0
+  m_CropFrameY: 0
+  m_StretchFill: 0
 --- !u!1 &1453400876 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7380880310058284656, guid: c7af7dedb5c5f0c409fafc89adf3bb1e, type: 3}
@@ -345,22 +370,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 438059576436737998, guid: c7af7dedb5c5f0c409fafc89adf3bb1e, type: 3}
-      propertyPath: m_Color.b
-      value: 0.6754716
-      objectReference: {fileID: 0}
-    - target: {fileID: 438059576436737998, guid: c7af7dedb5c5f0c409fafc89adf3bb1e, type: 3}
-      propertyPath: m_Color.g
-      value: 0.6754716
-      objectReference: {fileID: 0}
-    - target: {fileID: 438059576436737998, guid: c7af7dedb5c5f0c409fafc89adf3bb1e, type: 3}
-      propertyPath: m_Color.r
-      value: 0.6754716
-      objectReference: {fileID: 0}
-    - target: {fileID: 4610439295365008537, guid: c7af7dedb5c5f0c409fafc89adf3bb1e, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.31
-      objectReference: {fileID: 0}
     - target: {fileID: 5025362656659435885, guid: c7af7dedb5c5f0c409fafc89adf3bb1e, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -503,6 +512,10 @@ PrefabInstance:
       value: PlayerBartender
       objectReference: {fileID: 0}
     - target: {fileID: 2517165572418356126, guid: 36e03f4f73e1aa742981f8760d671d1f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2517165572418356126, guid: 36e03f4f73e1aa742981f8760d671d1f, type: 3}
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
@@ -514,6 +527,18 @@ PrefabInstance:
       propertyPath: accessStationText
       value: 
       objectReference: {fileID: 114243271}
+    - target: {fileID: 4253083848219362292, guid: 36e03f4f73e1aa742981f8760d671d1f, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4253083848219362292, guid: 36e03f4f73e1aa742981f8760d671d1f, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4253083848219362292, guid: 36e03f4f73e1aa742981f8760d671d1f, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 563327101
+      objectReference: {fileID: 0}
     - target: {fileID: 7050554847071207232, guid: 36e03f4f73e1aa742981f8760d671d1f, type: 3}
       propertyPath: movementEnabled
       value: 1
