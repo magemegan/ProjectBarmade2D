@@ -18,6 +18,9 @@ public class BottleClass : MonoBehaviour, IPointerClickHandler
     private DrinkType previousDrinkType = (DrinkType)(-1);
     public float alcoholVolume = 0f;
 
+    private bool holdingDrink;
+
+    Camera camera;
 
     private void OnValidate()
     {
@@ -41,16 +44,24 @@ public class BottleClass : MonoBehaviour, IPointerClickHandler
     {
         Debug.Log(sodaType);
         Debug.Log(alcoholType);
+        camera = Camera.main;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(holdingDrink) {
+
+            Vector3 cameraPos = camera.ScreenToWorldPoint(Input.mousePosition);
+            Debug.Log(cameraPos);
+            //gameObject.transform.position = cameraPos;
+        }
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
         Debug.Log("UI Image clicked: " + gameObject.name);
+
+        holdingDrink = true;
     }
 }

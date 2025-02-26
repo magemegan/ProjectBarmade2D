@@ -24,6 +24,6 @@ public class DrinkMixing : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        //Debug.Log("UI Image clicked: " + gameObject.name);
+        Debug.Log("UI Image clicked: " + gameObject.name);
     }
 }
