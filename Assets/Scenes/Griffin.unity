@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NpcPoint5
       objectReference: {fileID: 0}
+    - target: {fileID: 2414656353783252186, guid: 02fc2df84c7bbe14d857ca6ebc7bc083, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 6350222026626566295, guid: 02fc2df84c7bbe14d857ca6ebc7bc083, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -208,6 +212,24 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2742802337770066503, guid: 2d77b80048122c34883190d861aaed9d, type: 3}
   m_PrefabInstance: {fileID: 8677033775793951473}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &479467348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 479467345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0ecc19d66ea61f459fe4a0c8c65b0df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NPC: {fileID: 0}
+  startTime: 0
+  changeInterval1: 0
+  changeInterval2: 0
+  occupied: 0
+  mainPoint: 0
 --- !u!1 &497204764 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2414656353783252186, guid: 02fc2df84c7bbe14d857ca6ebc7bc083, type: 3}
@@ -229,6 +251,8 @@ MonoBehaviour:
   startTime: 0
   changeInterval1: 0
   changeInterval2: 0
+  occupied: 0
+  mainPoint: 0
 --- !u!1001 &774651691
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -281,6 +305,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NpcPoint3
       objectReference: {fileID: 0}
+    - target: {fileID: 2742802337770066503, guid: 2d77b80048122c34883190d861aaed9d, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 3051085493169924720, guid: 2d77b80048122c34883190d861aaed9d, type: 3}
       propertyPath: m_Color.b
       value: 0
@@ -296,7 +324,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2742802337770066503, guid: 2d77b80048122c34883190d861aaed9d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1379405799}
   m_SourcePrefab: {fileID: 100100000, guid: 2d77b80048122c34883190d861aaed9d, type: 3}
 --- !u!1001 &1109527584
 PrefabInstance:
@@ -309,6 +340,10 @@ PrefabInstance:
     - target: {fileID: 2414656353783252186, guid: 02fc2df84c7bbe14d857ca6ebc7bc083, type: 3}
       propertyPath: m_Name
       value: NpcPoint4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2414656353783252186, guid: 02fc2df84c7bbe14d857ca6ebc7bc083, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 6350222026626566295, guid: 02fc2df84c7bbe14d857ca6ebc7bc083, type: 3}
       propertyPath: m_LocalScale.x
@@ -392,6 +427,24 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2742802337770066503, guid: 2d77b80048122c34883190d861aaed9d, type: 3}
   m_PrefabInstance: {fileID: 774651691}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1379405799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1379405796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0ecc19d66ea61f459fe4a0c8c65b0df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NPC: {fileID: 0}
+  startTime: 0
+  changeInterval1: 0
+  changeInterval2: 0
+  occupied: 0
+  mainPoint: 0
 --- !u!1 &1654436491 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8597878170031751825, guid: 5c5d79ad3a47e69448588a3bcbf877e6, type: 3}
@@ -626,6 +679,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NpcPoint1
       objectReference: {fileID: 0}
+    - target: {fileID: 2414656353783252186, guid: 02fc2df84c7bbe14d857ca6ebc7bc083, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 6350222026626566295, guid: 02fc2df84c7bbe14d857ca6ebc7bc083, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7
@@ -670,6 +727,10 @@ PrefabInstance:
       propertyPath: NPC
       value: 
       objectReference: {fileID: 1654436491}
+    - target: {fileID: 7721950709423623554, guid: 02fc2df84c7bbe14d857ca6ebc7bc083, type: 3}
+      propertyPath: mainPoint
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7721950709423623554, guid: 02fc2df84c7bbe14d857ca6ebc7bc083, type: 3}
       propertyPath: startTime
       value: 5
@@ -876,10 +937,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: NpcPoint2
       objectReference: {fileID: 0}
+    - target: {fileID: 2742802337770066503, guid: 2d77b80048122c34883190d861aaed9d, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2742802337770066503, guid: 2d77b80048122c34883190d861aaed9d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 479467348}
   m_SourcePrefab: {fileID: 100100000, guid: 2d77b80048122c34883190d861aaed9d, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
