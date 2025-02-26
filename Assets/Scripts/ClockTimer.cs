@@ -17,10 +17,19 @@ public class ClockTimer : MonoBehaviour
         Time.timeScale = timeMultiplier;
         elapsedTime += Time.timeScale;
 
-        int min = Mathf.FloorToInt(elapsedTime / 60);
-        int sec = Mathf.FloorToInt(elapsedTime % 60);
+        int hours = Mathf.FloorToInt(elapsedTime % 3600) / 60; // Convert elapsed time to hours and loop around after 24 hours
+        //int min = Mathf.FloorToInt((elapsedTime % 3600) / 60); // Get remaining minutes after the hours
+        int sec = Mathf.FloorToInt(elapsedTime % 60); // Get the remaining seconds after minutes
 
-        timerText.text = string.Format("{0:00}:{1:00} PM", min, sec);
+        // Determine AM or PM
+        string period = hours >= 12 ? "AM" : "PM";
+
+        // Convert to 12-hour format
+        int displayHour = hours % 12;
+        if (displayHour == 0) displayHour = 12; // Display 12 instead of 0 for 12-hour clock format
+
+
+        timerText.text = string.Format("{00:00}:{1:00} {2}",displayHour, sec, period);
     }
 
     /*
