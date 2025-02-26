@@ -13,7 +13,8 @@ public class NPCObjects : MonoBehaviour
     public int startTime;
     public int changeInterval1;
     public int changeInterval2;
-    bool occupied = false;
+    public bool occupied = false;
+    public bool mainPoint;
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +25,7 @@ public class NPCObjects : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Mathf.Round(Time.time) == startTime && spawnNPC == true && occupied == false){
+        if (Mathf.Round(Time.time) == startTime && spawnNPC == true && mainPoint == true){
         
         // Generate a random position on the screen
 
@@ -38,7 +39,7 @@ public class NPCObjects : MonoBehaviour
 
         startTime = startTime + Random.Range(changeInterval1, changeInterval2);
         }
-        Debug.Log("Current in-game time: " + Mathf.Round(Time.time)); 
+        //Debug.Log("Current in-game time: " + Mathf.Round(Time.time)); 
         
     }
 }
