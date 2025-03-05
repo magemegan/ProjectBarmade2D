@@ -3,17 +3,22 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Ice Machine
+  - Ice Tray
+  - A Drink
+  - DrinkStation
+  - Bottle
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Objects
+  - NPC
+  - FloorTiles
   - 
   - 
   - 
@@ -40,4 +45,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 613540361
+    locked: 0
+  - name: Object
+    uniqueID: 1484465501
     locked: 0
