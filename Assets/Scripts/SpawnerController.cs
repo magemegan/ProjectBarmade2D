@@ -2,44 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-//READ THIS: MOST, IF NOT ALL OF THE PUBLIC VARIABLES ARE BEING ASSIGNED TO THE GREEN CIRCLE NPCPOINT!
-
-
-public class NPCObjects : MonoBehaviour
+public class SpawnerController : MonoBehaviour
 {
-    public GameObject NPC;
     private bool spawnNPC;
-    public int startTime;
+    int startTime;
     public int changeInterval1;
     public int changeInterval2;
-    public bool occupied = false;
-    public bool mainPoint;
-
+    public GameObject NPC;
     // Start is called before the first frame update
     void Start()
     {
         spawnNPC = true;
+        startTime = startTime + Random.Range(changeInterval1, changeInterval2);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Mathf.Round(Time.time) == startTime && spawnNPC == true && mainPoint == true){
+        if (Mathf.Round(Time.time) == startTime && spawnNPC == true){
         
-        // Generate a random position on the screen
 
-        Vector2 spawnPosition = new Vector2(0, 4);
+        Vector2 spawnPosition = new Vector2(0, 3);
 
-
-
-        // Instantiate the enemy at the spawn position
 
         Instantiate(NPC, spawnPosition, Quaternion.identity);
 
         startTime = startTime + Random.Range(changeInterval1, changeInterval2);
         }
+<<<<<<< Updated upstream:Assets/Scripts/NPCPoint.cs
         //Debug.Log("Current in-game time: " + Mathf.Round(Time.time)); 
         
+=======
+        Debug.Log("Current in-game time: " + Mathf.Round(Time.time)); 
+>>>>>>> Stashed changes:Assets/Scripts/SpawnerController.cs
     }
 }
