@@ -122,6 +122,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &65202794 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6850894631726771810, guid: 9f09d979829b69b4fb1e2b4f9691b194, type: 3}
+  m_PrefabInstance: {fileID: 1634601483}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &114243271 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4492187325994562938, guid: c7af7dedb5c5f0c409fafc89adf3bb1e, type: 3}
@@ -1459,6 +1464,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!224 &775582294 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2587280457647634386, guid: c7af7dedb5c5f0c409fafc89adf3bb1e, type: 3}
+  m_PrefabInstance: {fileID: 1773649610461148689}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &838289743
 GameObject:
   m_ObjectHideFlags: 0
@@ -1979,6 +1989,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &979891877 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5886516896920566922, guid: 3f9378a72bff95d4190f07d7d928e8eb, type: 3}
+  m_PrefabInstance: {fileID: 1438783412}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1006194070
 GameObject:
   m_ObjectHideFlags: 0
@@ -2629,6 +2644,72 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1394385656 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9090105694034551776, guid: c7af7dedb5c5f0c409fafc89adf3bb1e, type: 3}
+  m_PrefabInstance: {fileID: 1773649610461148689}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1438783412
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3988388173933247666, guid: 3f9378a72bff95d4190f07d7d928e8eb, type: 3}
+      propertyPath: iceTrayVolume
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5886516896920566922, guid: 3f9378a72bff95d4190f07d7d928e8eb, type: 3}
+      propertyPath: m_Name
+      value: Ice Tray
+      objectReference: {fileID: 0}
+    - target: {fileID: 7434223025350762022, guid: 3f9378a72bff95d4190f07d7d928e8eb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.607028
+      objectReference: {fileID: 0}
+    - target: {fileID: 7434223025350762022, guid: 3f9378a72bff95d4190f07d7d928e8eb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.0439315
+      objectReference: {fileID: 0}
+    - target: {fileID: 7434223025350762022, guid: 3f9378a72bff95d4190f07d7d928e8eb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7434223025350762022, guid: 3f9378a72bff95d4190f07d7d928e8eb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7434223025350762022, guid: 3f9378a72bff95d4190f07d7d928e8eb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7434223025350762022, guid: 3f9378a72bff95d4190f07d7d928e8eb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7434223025350762022, guid: 3f9378a72bff95d4190f07d7d928e8eb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7434223025350762022, guid: 3f9378a72bff95d4190f07d7d928e8eb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7434223025350762022, guid: 3f9378a72bff95d4190f07d7d928e8eb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7434223025350762022, guid: 3f9378a72bff95d4190f07d7d928e8eb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3f9378a72bff95d4190f07d7d928e8eb, type: 3}
 --- !u!1 &1448397313
 GameObject:
   m_ObjectHideFlags: 0
@@ -3282,6 +3363,83 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1597028329 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2517165572418356126, guid: 36e03f4f73e1aa742981f8760d671d1f, type: 3}
+  m_PrefabInstance: {fileID: 7070914691193959678}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1597028330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597028329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76a2d9d90f6f76843996a5fb1ba9926e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  withIce: 0
+  Icetray: {fileID: 979891877}
+  IceMachine: {fileID: 65202794}
+--- !u!1001 &1634601483
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4866397746486930480, guid: 9f09d979829b69b4fb1e2b4f9691b194, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.2768004
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866397746486930480, guid: 9f09d979829b69b4fb1e2b4f9691b194, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.260138
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866397746486930480, guid: 9f09d979829b69b4fb1e2b4f9691b194, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866397746486930480, guid: 9f09d979829b69b4fb1e2b4f9691b194, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866397746486930480, guid: 9f09d979829b69b4fb1e2b4f9691b194, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866397746486930480, guid: 9f09d979829b69b4fb1e2b4f9691b194, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866397746486930480, guid: 9f09d979829b69b4fb1e2b4f9691b194, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866397746486930480, guid: 9f09d979829b69b4fb1e2b4f9691b194, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866397746486930480, guid: 9f09d979829b69b4fb1e2b4f9691b194, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866397746486930480, guid: 9f09d979829b69b4fb1e2b4f9691b194, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850894631726771810, guid: 9f09d979829b69b4fb1e2b4f9691b194, type: 3}
+      propertyPath: m_Name
+      value: Ice Machine
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9f09d979829b69b4fb1e2b4f9691b194, type: 3}
 --- !u!1 &1751136134
 GameObject:
   m_ObjectHideFlags: 0
@@ -4280,9 +4438,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5038613105394557470, guid: c7af7dedb5c5f0c409fafc89adf3bb1e, type: 3}
+      propertyPath: iceTray
+      value: 
+      objectReference: {fileID: 979891877}
+    - target: {fileID: 5038613105394557470, guid: c7af7dedb5c5f0c409fafc89adf3bb1e, type: 3}
+      propertyPath: iceSprite
+      value: 
+      objectReference: {fileID: 1394385656}
+    - target: {fileID: 5038613105394557470, guid: c7af7dedb5c5f0c409fafc89adf3bb1e, type: 3}
+      propertyPath: iceTrayUI
+      value: 
+      objectReference: {fileID: 775582294}
     - target: {fileID: 5413993258948048003, guid: c7af7dedb5c5f0c409fafc89adf3bb1e, type: 3}
       propertyPath: m_Name
       value: PlayerHUD
+      objectReference: {fileID: 0}
+    - target: {fileID: 7380880310058284656, guid: c7af7dedb5c5f0c409fafc89adf3bb1e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4359,7 +4533,7 @@ PrefabInstance:
       objectReference: {fileID: 114243271}
     - target: {fileID: 4253083848219362292, guid: 36e03f4f73e1aa742981f8760d671d1f, type: 3}
       propertyPath: m_SortingLayer
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4253083848219362292, guid: 36e03f4f73e1aa742981f8760d671d1f, type: 3}
       propertyPath: m_SortingOrder
@@ -4376,7 +4550,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2517165572418356126, guid: 36e03f4f73e1aa742981f8760d671d1f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1597028330}
   m_SourcePrefab: {fileID: 100100000, guid: 36e03f4f73e1aa742981f8760d671d1f, type: 3}
 --- !u!1001 &7445558565303466513
 PrefabInstance:
@@ -4445,3 +4622,5 @@ SceneRoots:
   - {fileID: 1773649610461148689}
   - {fileID: 1590147869}
   - {fileID: 1500638496}
+  - {fileID: 1438783412}
+  - {fileID: 1634601483}

@@ -10,10 +10,23 @@ public class DrinkMixing : MonoBehaviour, IPointerClickHandler
     public GameObject[] AlcoholBottles;
     public GameObject[] SodaBottles;
 
-    // Start is called before the first frame update
-    void Awake()
-    {
+    [Header("Ice Values")]
+    [SerializeField]
+    private GameObject iceTray;
+    private float iceVolume;
+    [SerializeField]
+    private GameObject iceSprite;
+    [SerializeField]
+    private Transform iceTrayUI;
 
+    // Start is called before the first frame update
+    void Start()
+    {
+        iceVolume = iceTray.GetComponent<IceTray>().iceTrayVolume;
+        Debug.Log(iceVolume);
+        for(int i = 0;i < iceVolume; i+=5) {
+            Instantiate(iceSprite, iceSprite.transform.position, iceSprite.transform.rotation, iceTrayUI);
+        }
     }
 
     // Update is called once per frame
