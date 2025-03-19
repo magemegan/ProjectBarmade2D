@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7721950709423623554}
   m_Layer: 0
   m_Name: NpcPoint
-  m_TagString: Untagged
+  m_TagString: Seat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0ecc19d66ea61f459fe4a0c8c65b0df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NPC: {fileID: 0}
+  occupied: 0
 --- !u!114 &7721950709423623554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,4 +111,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0ecc19d66ea61f459fe4a0c8c65b0df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NPC: {fileID: 0}
+  occupied: 0
