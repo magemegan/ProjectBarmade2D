@@ -6,7 +6,7 @@ public class NPCBehavior : MonoBehaviour
 {
     bool xHigher;
     bool yHigher;
-    public GameObject[] chairs;
+    GameObject[] chairs;
     int index = 0;
     bool foundChair;
     public GameObject leavePoint;
@@ -20,8 +20,18 @@ public class NPCBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        chairs = GameObject.FindGameObjectsWithTag("Seat");
         index = Random.Range(0, chairs.Length);
     }
+    
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "LeavePt")
+        {
+            Destroy(gameObject);
+        }
+    }
+
     //chairs[index].GetComponent<NPCObjects>().occupied = true; <- Code for future me to use to set a position as occupied
     // Update is called once per frame
     void Update()
@@ -90,4 +100,6 @@ public class NPCBehavior : MonoBehaviour
 
         transform.position = position;
     }
+
+    
 }
