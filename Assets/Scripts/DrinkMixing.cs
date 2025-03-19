@@ -45,18 +45,19 @@ public class DrinkMixing : MonoBehaviour, IPointerClickHandler
         float containerHeight = iceTrayUI.GetComponent<RectTransform>().rect.height;
         float xCounter = 0f;
         float yCounter = 0f;
-        Vector3 cubePosition;
         Debug.Log(iceVolume);
-        for(int i = 0;i < iceVolume; i+=5) {
-            cubePosition = iceSprite.transform.position;
+        Vector3 cubePosition = iceSprite.transform.position;
+        Vector3 ogPosition = cubePosition;
+        for(float i = 0f;i < iceVolume; i+=2.5f) {
             if(xCounter < containerWidth) {
-                cubePosition.x += xCounter;
                 GameObject iceCube = Instantiate(iceSprite, cubePosition ,iceSprite.transform.rotation, iceTrayUI);
+                cubePosition.x += iceCubePositionOffset;
                 iceCube.SetActive(true);
                 xCounter += iceCubePositionOffset;
             } else if(yCounter < containerHeight) {
                 yCounter += iceCubePositionOffset;
-                cubePosition.y += yCounter;
+                cubePosition.y += iceCubePositionOffset;
+                cubePosition.x = ogPosition.x;
                 xCounter = 0f;
             }
         }

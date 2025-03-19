@@ -2659,7 +2659,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3988388173933247666, guid: 3f9378a72bff95d4190f07d7d928e8eb, type: 3}
       propertyPath: iceTrayVolume
-      value: 50
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5886516896920566922, guid: 3f9378a72bff95d4190f07d7d928e8eb, type: 3}
       propertyPath: m_Name
