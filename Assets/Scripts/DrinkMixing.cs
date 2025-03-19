@@ -18,15 +18,14 @@ public class DrinkMixing : MonoBehaviour, IPointerClickHandler
     private GameObject iceSprite;
     [SerializeField]
     private Transform iceTrayUI;
+    [SerializeField]
+    private float iceCubePositionOffset = 30f;
 
     // Start is called before the first frame update
     void Start()
     {
-        iceVolume = iceTray.GetComponent<IceTray>().iceTrayVolume;
-        Debug.Log(iceVolume);
-        for(int i = 0;i < iceVolume; i+=5) {
-            Instantiate(iceSprite, iceSprite.transform.position, iceSprite.transform.rotation, iceTrayUI);
-        }
+        //Spawn ice cubes in the tray based on the ice tray volume
+        populateIceTray();
     }
 
     // Update is called once per frame
@@ -38,5 +37,28 @@ public class DrinkMixing : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         Debug.Log("UI Image clicked: " + gameObject.name);
+    }
+
+    private void populateIceTray() {
+        iceVolume = iceTray.GetComponent<IceTray>().iceTrayVolume;
+        float containerWidth = iceTrayUI.GetComponent<RectTransform>().rect.width;
+        float containerHeight = iceTrayUI.GetComponent<RectTransform>().rect.height;
+        float xCounter = 0f;
+        float yCounter = 0f;
+        Vector3 cubePosition;
+        Debug.Log(iceVolume);
+        for(int i = 0;i < iceVolume; i+=5) {
+            cubePosition = iceSprite.transform.position;
+            if(xCounter < containerWidth) {
+                cubePosition.x += xCounter;
+                GameObject iceCube = Instantiate(iceSprite, cubePosition ,iceSprite.transform.rotation, iceTrayUI);
+                iceCube.SetActive(true);
+                xCounter += iceCubePositionOffset;
+            } else if(yCounter < containerHeight) {
+                yCounter += iceCubePositionOffset;
+                cubePosition.y += yCounter;
+                xCounter = 0f;
+            }
+        }
     }
 }

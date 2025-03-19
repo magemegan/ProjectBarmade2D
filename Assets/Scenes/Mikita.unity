@@ -4358,6 +4358,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 160815560325179476, guid: c7af7dedb5c5f0c409fafc89adf3bb1e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -47
+      objectReference: {fileID: 0}
+    - target: {fileID: 160815560325179476, guid: c7af7dedb5c5f0c409fafc89adf3bb1e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -90.3
+      objectReference: {fileID: 0}
     - target: {fileID: 5025362656659435885, guid: c7af7dedb5c5f0c409fafc89adf3bb1e, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -4455,6 +4463,10 @@ PrefabInstance:
       value: PlayerHUD
       objectReference: {fileID: 0}
     - target: {fileID: 7380880310058284656, guid: c7af7dedb5c5f0c409fafc89adf3bb1e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9090105694034551776, guid: c7af7dedb5c5f0c409fafc89adf3bb1e, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
