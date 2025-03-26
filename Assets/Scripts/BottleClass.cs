@@ -53,7 +53,7 @@ public class BottleClass : MonoBehaviour, IPointerClickHandler
         if(holdingDrink) {
 
             Vector3 cameraPos = camera.ScreenToWorldPoint(Input.mousePosition);
-            Debug.Log(cameraPos);
+            //Debug.Log(cameraPos);
             //gameObject.transform.position = cameraPos;
         }
     }
