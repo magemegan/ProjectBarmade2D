@@ -9,6 +9,8 @@ TagManager:
   - A Drink
   - DrinkStation
   - Bottle
+  - Glass
+  - Dishwasher
   layers:
   - Default
   - TransparentFX
@@ -19,7 +21,6 @@ TagManager:
   - Objects
   - NPC
   - FloorTiles
-  - 
   - 
   - 
   - 

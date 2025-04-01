@@ -27,7 +27,8 @@ public class PickUp : MonoBehaviour
                 }
                 else
                 {
-                    DropItem();
+                    //needs to be commented out for the glass to be a child of the dishwasher gameobject.
+                    //DropItem();
                 }
                 
             }
@@ -43,7 +44,7 @@ public class PickUp : MonoBehaviour
                 {
                     rb.isKinematic = true;
                     rb.velocity = Vector2.zero;
-                    rb.angularVelocity = 0f;
+                    rb.angularVelocity = 0f; 
                 }
             }
 
