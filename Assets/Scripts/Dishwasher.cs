@@ -8,6 +8,7 @@ public class Dishwasher : MonoBehaviour
 
     private bool CollidingWithPlayer = false;
     private int ItemsHeld = 0;
+    private bool washingDishes = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +27,7 @@ public class Dishwasher : MonoBehaviour
                 // check if glass is dirty
                 if (Itemholder.transform.GetChild(0).GetComponent<Glass>().dirtyGlass)
                 {
+                    washingDishes = true;
                     Debug.Log("Glass is dirty");
                     //use coroutine to simulate an actual dishwasher similar to threads
                     StartCoroutine(WashDishes());
@@ -42,7 +44,7 @@ public class Dishwasher : MonoBehaviour
                 //transfer glass from player to dishwasher
                 Itemholder.transform.GetChild(0).SetParent(gameObject.transform);
             }
-            else
+            else if(ItemsHeld == 0 && !washingDishes)
             {
                 Debug.Log("Player not holding anything");
                 if(gameObject.transform.childCount > 0)
@@ -64,6 +66,7 @@ public class Dishwasher : MonoBehaviour
         Debug.Log("Washing dishes...");
         yield return new WaitForSeconds(5);//simialr to .Next(5000) which means 5 secs
         Debug.Log("Dishes are clean");
+        washingDishes = false;
     }
 
     void OnCollisionEnter2D(Collision2D other)

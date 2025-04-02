@@ -11,8 +11,14 @@ public class PickUp : MonoBehaviour
     public Vector3 Direction { get; set; }
     private GameObject itemHolding;
     public bool touchingDrink = false;
+    private GameObject Player;
+    private PlayerMovement playerMovement;
     int toxicMeter = 0;
-  
+    void Start()
+    {
+        Player = GameObject.FindWithTag("Player");
+        playerMovement = Player.GetComponent<PlayerMovement>();
+    }
 
     void Update()
     {
@@ -25,10 +31,10 @@ public class PickUp : MonoBehaviour
                 {
                     HandleCollisionWithNpc();
                 }
-                else
+                else if(playerMovement.collidingWithDishwasher == false)
                 {
                     //needs to be commented out for the glass to be a child of the dishwasher gameobject.
-                    //DropItem();
+                    DropItem();
                 }
                 
             }
@@ -79,9 +85,10 @@ public class PickUp : MonoBehaviour
         if (rb != null)
         {
             rb.isKinematic = false;
+            rb.bodyType = RigidbodyType2D.Static;
         }
         itemHolding = null;
-        Destroy(rb);
+        //Destroy(rb);
     }
     void HandleCollisionWithNpc()
     {
