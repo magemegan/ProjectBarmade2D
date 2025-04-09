@@ -6,6 +6,11 @@ using UnityEngine.EventSystems;
 
 public class ExpandableRecipe : MonoBehaviour, IPointerClickHandler
 {
+    private bool expanded;
+    [SerializeField]
+    private GameObject collapsedRecipePanel;
+    [SerializeField]
+    private GameObject expandedRecipePanel;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,5 +26,12 @@ public class ExpandableRecipe : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         Debug.Log("UI Image clicked: " + gameObject.name);
+        if(expanded) {
+            collapsedRecipePanel.SetActive(false);
+            expandedRecipePanel.SetActive(true);
+        } else {
+            collapsedRecipePanel.SetActive(true);
+            expandedRecipePanel.SetActive(false);
+        }
     }
 }
