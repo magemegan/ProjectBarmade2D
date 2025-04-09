@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 982127939460802061}
   - component: {fileID: 630817515936646195}
   - component: {fileID: 5159880581320638140}
-  - component: {fileID: 7864928377063639355}
+  - component: {fileID: 3988868961394601385}
   m_Layer: 6
   m_Name: Drink
   m_TagString: A Drink
@@ -159,7 +159,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &7864928377063639355
+--- !u!114 &3988868961394601385
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -168,7 +168,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3126480557258067061}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c39c7d045c9e7d94ba107af11aefe34e, type: 3}
+  m_Script: {fileID: 11500000, guid: 181d0f8043672334aada14a01a2da144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   holdSpot: {fileID: 0}
