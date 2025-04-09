@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -12,7 +13,16 @@ public class PickUp : MonoBehaviour
     private GameObject itemHolding;
     public bool touchingDrink = false;
     int toxicMeter = 0;
-  
+    //public NPCIteract toxicBar;
+    //public GameObject NPC;
+
+
+
+    private void Start()
+    {
+        GameObject player = GameObject.FindWithTag("Player");
+        holdSpot = player.transform.Find("boxHolder");
+    }
 
     void Update()
     {
@@ -88,17 +98,25 @@ public class PickUp : MonoBehaviour
         Collider2D npcCollider = Physics2D.OverlapCircle(transform.position + Direction, 1f, npcMask);
         if (npcCollider != null)
         {
-            GiveItemToNpc(npcCollider.gameObject);
+          
+            GiveItemToNpc(npcCollider);
         }
     }
 
-    void GiveItemToNpc(GameObject npc)
+    void GiveItemToNpc(Collider2D npc)
     {
+        //toxicBar.AddDrink(10);
         Debug.Log("Giving item to NPC.");
-        Destroy(itemHolding);
-        itemHolding = null;
-        toxicMeter++;
+        //Destroy(itemHolding);
         
+        itemHolding.transform.position = new Vector3(1000, 1000, 0);
+        Destroy(itemHolding);
+        //itemHolding.SetActive(false);
+        itemHolding = null;
+
+        npc.GetComponent<NPCIteract>().AddDrink(10);
+
+
     }
 
     
