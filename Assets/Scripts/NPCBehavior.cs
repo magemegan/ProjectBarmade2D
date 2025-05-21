@@ -12,6 +12,9 @@ public class NPCBehavior : MonoBehaviour
     public GameObject leavePoint;
     bool finished;
 
+    [SerializeField] private Animator animator;
+    private SpriteRenderer spriteRenderer;
+
     void Awake(){
         foundChair = false;
         finished = false;
@@ -22,6 +25,8 @@ public class NPCBehavior : MonoBehaviour
     {
         chairs = GameObject.FindGameObjectsWithTag("Seat");
         index = Random.Range(0, chairs.Length);
+        leavePoint = GameObject.Find("LeavePoint");
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
     
     void OnCollisionEnter2D(Collision2D collision)
@@ -61,19 +66,28 @@ public class NPCBehavior : MonoBehaviour
             }
 
             if (xHigher == true){
+                animator.SetBool("isDown", false);
+                animator.SetBool("isUp", false);
                 if (position.x > pointPos.x){
                     position.x = position.x - 0.01f;
+                    spriteRenderer.flipX = false;
+                    animator.SetBool("isHorizontal", true);
                 }
                 else{
                     position.x = position.x + 0.01f;
+                    spriteRenderer.flipX = true;
+                    animator.SetBool("isHorizontal", true);
                 }
             }
             if (yHigher == true){
+                animator.SetBool("isHorizontal", false);
                 if (position.y > pointPos.y){
                     position.y = position.y - 0.01f;
+                    animator.SetBool("isDown", true);
                 }
                 else{
                     position.y = position.y + 0.01f;
+                    animator.SetBool("isUp", true);
                 }      
             }
         }
@@ -86,6 +100,9 @@ public class NPCBehavior : MonoBehaviour
         if (chairs[index].GetComponent<NPCObjects>().occupied == false && Mathf.Round(position.x) == Mathf.Round(pointPos.x) && Mathf.Round(pointPos.y) == Mathf.Round(position.y)){
                 chairs[index].GetComponent<NPCObjects>().occupied = true;
                 foundChair = true;
+                animator.SetBool("isHorizontal", false);
+                animator.SetBool("isDown", false);
+                animator.SetBool("isUp", false);
             }
         else{
                 chairs[index].GetComponent<NPCObjects>().occupied = false;
@@ -100,6 +117,5 @@ public class NPCBehavior : MonoBehaviour
 
         transform.position = position;
     }
-
     
 }
