@@ -9,6 +9,8 @@ TagManager:
   - A Drink
   - DrinkStation
   - Bottle
+  - Seat
+  - LeavePt
   layers:
   - Default
   - TransparentFX
