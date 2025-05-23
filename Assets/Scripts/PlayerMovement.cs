@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rb;
     private Vector2 movement;
     public bool movementEnabled;
+    public bool collidingWithDishwasher = false;
 
     // Start is called before the first frame update
     void Start()
@@ -32,12 +33,26 @@ public class PlayerMovement : MonoBehaviour
         }
 
         movement = movement.normalized;// Normalize movement to prevent faster diagonal movement
-
-        
-
     }
 
-    
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Dishwasher"))
+        {
+            Debug.Log("touching dishwasher");
+            collidingWithDishwasher = true;
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Dishwasher"))
+        {
+            collidingWithDishwasher = false;
+
+        }
+    }
+
 
     void FixedUpdate()
     {

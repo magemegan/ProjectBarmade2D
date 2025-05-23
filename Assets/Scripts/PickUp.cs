@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -11,8 +12,18 @@ public class PickUp : MonoBehaviour
     public Vector3 Direction { get; set; }
     private GameObject itemHolding;
     public bool touchingDrink = false;
+    private GameObject Player;
+    private PlayerMovement playerMovement;
     int toxicMeter = 0;
-  
+    
+    private void Start()
+    {
+        Player = GameObject.FindWithTag("Player");
+        playerMovement = Player.GetComponent<PlayerMovement>();
+        holdSpot = Player.transform.Find("boxHolder");
+    //public NPCIteract toxicBar;
+    //public GameObject NPC;
+    }
 
     void Update()
     {
@@ -25,8 +36,9 @@ public class PickUp : MonoBehaviour
                 {
                     HandleCollisionWithNpc();
                 }
-                else
+                else if(playerMovement.collidingWithDishwasher == false)
                 {
+                    //needs to be commented out for the glass to be a child of the dishwasher gameobject.
                     DropItem();
                 }
                 
@@ -43,7 +55,7 @@ public class PickUp : MonoBehaviour
                 {
                     rb.isKinematic = true;
                     rb.velocity = Vector2.zero;
-                    rb.angularVelocity = 0f;
+                    rb.angularVelocity = 0f; 
                 }
             }
 
@@ -78,9 +90,10 @@ public class PickUp : MonoBehaviour
         if (rb != null)
         {
             rb.isKinematic = false;
+            rb.bodyType = RigidbodyType2D.Static;
         }
         itemHolding = null;
-        Destroy(rb);
+        //Destroy(rb);
     }
     void HandleCollisionWithNpc()
     {
@@ -88,17 +101,25 @@ public class PickUp : MonoBehaviour
         Collider2D npcCollider = Physics2D.OverlapCircle(transform.position + Direction, 1f, npcMask);
         if (npcCollider != null)
         {
-            GiveItemToNpc(npcCollider.gameObject);
+          
+            GiveItemToNpc(npcCollider);
         }
     }
 
-    void GiveItemToNpc(GameObject npc)
+    void GiveItemToNpc(Collider2D npc)
     {
+        //toxicBar.AddDrink(10);
         Debug.Log("Giving item to NPC.");
-        Destroy(itemHolding);
-        itemHolding = null;
-        toxicMeter++;
+        //Destroy(itemHolding);
         
+        itemHolding.transform.position = new Vector3(1000, 1000, 0);
+        Destroy(itemHolding);
+        //itemHolding.SetActive(false);
+        itemHolding = null;
+
+        npc.GetComponent<NPCIteract>().AddDrink(10);
+
+
     }
 
     
