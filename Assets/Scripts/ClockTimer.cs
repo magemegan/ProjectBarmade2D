@@ -1,26 +1,22 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
+using System.Collections.Generic;
 
 public class ClockTimer : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI timerText;
     float elapsedTime;
-    public float timeMultiplier = 0.001f;
+    public float timeMultiplier = 60f; // This will make time pass 60x faster than real time
 
-    // Update is called once per frame
     void Update()
-    {
-        //normal time
-        //elapsedTime += Time.deltaTime;
+    {   
+        // Accumulate time at accelerated rate
+        elapsedTime += Time.deltaTime * timeMultiplier;
 
-        //stardew valley time
-        Time.timeScale = timeMultiplier;
-        elapsedTime += Time.timeScale;
-
-        int hours = Mathf.FloorToInt(elapsedTime % 3600) / 60; // Convert elapsed time to hours and loop around after 24 hours
-        //int min = Mathf.FloorToInt((elapsedTime % 3600) / 60); // Get remaining minutes after the hours
-        int sec = Mathf.FloorToInt(elapsedTime % 60); // Get the remaining seconds after minutes
-
+        int hours = Mathf.FloorToInt(elapsedTime / 3600) % 24; // Convert to hours (0-23)
+        int minutes = Mathf.FloorToInt((elapsedTime % 3600) / 60); // Get minutes (0-59)
+        
         // Determine AM or PM
         string period = hours >= 12 ? "AM" : "PM";
 
@@ -28,51 +24,6 @@ public class ClockTimer : MonoBehaviour
         int displayHour = hours % 12;
         if (displayHour == 0) displayHour = 12; // Display 12 instead of 0 for 12-hour clock format
 
-
-        timerText.text = string.Format("{00:00}:{1:00} {2}",displayHour, sec, period);
+        timerText.text = string.Format("{0:00}:{1:00} {2}", displayHour, minutes, period);
     }
-
-    /*
-     * public float timeIncrement = 10; // Time in seconds between each minute increment
-
-    private float currentTime = 0; // Current time in minutes
-
-
-
-    void Update()
-
-    {
-
-        currentTime += Time.deltaTime;
-
-
-
-        if (currentTime >= timeIncrement)
-
-        {
-
-            currentTime -= timeIncrement; // Reset the counter
-
-            currentTime += 1; // Add one minute
-
-            UpdateDisplay(); // Update the displayed time
-
-        }
-
-    }
-
-
-
-    void UpdateDisplay()
-
-    {
-
-        int minutes = Mathf.FloorToInt(currentTime);
-
-        int seconds = Mathf.FloorToInt((currentTime - minutes) * 60); 
-
-        timeDisplay.text = string.Format("{0:00}:{1:00}", minutes, seconds); 
-
-    }
-    */
 }
