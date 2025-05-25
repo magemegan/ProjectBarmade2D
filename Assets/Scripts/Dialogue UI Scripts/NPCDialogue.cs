@@ -4,43 +4,66 @@ using UnityEngine;
 
 public class NPCDialogue : MonoBehaviour
 {
+    public DialogueData dialogueData; // Reference to the DialogueData scriptable object
     public PlayerUI playerUI; // Reference to the PlayerUI script
+    public string npcName; // Name of the NPC
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    private int currentNode = 0; // Current node in the dialogue tree
 
     void StartConversation()
     {
-        playerUI.ShowDialogue("Hello, traveler!");
+        currentNode = 0;
+        ShowCurrentNode();
+    }
 
-        string[] choices = { "Hi!", "Who are you?", "Goodbye." };
-        playerUI.ShowChoices(choices, OnPlayerChoice);
+    void ShowCurrentNode()
+    {
+        if (currentNode < dialogueData.dialogueNodes.Length)
+        {
+            var node = dialogueData.dialogueNodes[currentNode];
+            playerUI.ShowDialogue(dialogueData.npcName, node.npcText);
+            playerUI.ShowChoices(node.playerChoices, OnPlayerChoice);
+        }
+        else
+        {
+            EndConversation();
+        }
     }
 
     void OnPlayerChoice(int index)
     {
-        Debug.Log("Player chose option: " + index);
+        var node = dialogueData.dialogueNodes[currentNode];
 
-        if (index == 0)
+        if (node.nextNodeLeads != null && index < node.nextNodeLeads.Length)
         {
-            playerUI.ShowDialogue("Nice to meet you!");
+            int nextNode = node.nextNodeLeads[index];
+            if (nextNode >= 0 && nextNode < dialogueData.dialogueNodes.Length)
+            {
+                currentNode = nextNode;
+                ShowCurrentNode();
+            }
+            else
+            {
+                EndConversation();
+            }
         }
-        else if (index == 1)
+        else
         {
-            playerUI.ShowDialogue("I am the village elder.");
+            EndConversation();
         }
-        else if (index == 2)
+    }
+
+    void EndConversation()
+    {
+        playerUI.HideDialogue();
+        Debug.Log($"{gameObject.name}: Conversation ended");
+    }
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("Player") && Input.GetKeyDown(KeyCode.E))
         {
-            playerUI.ShowDialogue("Farewell!");
+            StartConversation();
         }
     }
 }

@@ -9,6 +9,7 @@ public class PlayerUI : MonoBehaviour
     public GameObject accessStationText;
     public GameObject DrinkStationUI;
     public GameObject DialogueUI;
+    public TextMeshProUGUI npcNameText;
     public TextMeshProUGUI dialogueText;
     public GameObject choicesPanel;
     public Button[] choiceButtons;
@@ -57,11 +58,19 @@ public class PlayerUI : MonoBehaviour
     }
 
     //This function is called to show the dialogue text without choices
-    public void ShowDialogue(string message)
+    public void ShowDialogue(string npcName, string message)
     {
         DialogueUI.SetActive(true);
+        npcNameText.text = npcName;
         dialogueText.text = message;
         choicesPanel.SetActive(false);
+    }
+
+    public void HideDialogue()
+    {
+        DialogueUI.SetActive(false);  // Hides the whole dialogue panel
+        choicesPanel.SetActive(false);   // Hides the choices if they’re visible
+        gameObject.GetComponent<PlayerMovement>().movementEnabled = true; // Re-enable player movement
     }
 
     //This function is called when the player chooses a dialogue option with choices
