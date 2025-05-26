@@ -13,20 +13,10 @@ public class NPCDialogue : MonoBehaviour
 
     void Update()
     {
-        if (playerInRange)
-        {
-            Debug.Log("Player is in range of NPC");
-        }
-
         if (playerInRange && Input.GetKeyDown(KeyCode.E))
         {
-            Debug.Log("Player pressed E while in range");
             StartConversation();
         }
-        //if (playerInRange && Input.GetKeyDown(KeyCode.E))
-        //{
-        //    StartConversation();
-        //}
     }
 
     public void StartConversation()
@@ -44,7 +34,6 @@ public class NPCDialogue : MonoBehaviour
 
             playerUI.ShowDialogue(dialogueData.npcName, node.npcText);
             playerUI.ShowChoices(node.playerChoices, OnPlayerChoice);
-            Debug.Log("ShowCurrentNode called");
         }
         else
         {
@@ -78,7 +67,6 @@ public class NPCDialogue : MonoBehaviour
     void EndConversation()
     {
         playerUI.HideDialogue();
-        Debug.Log($"{gameObject.name}: Conversation ended");
     }
 
     void OnTriggerEnter2D(Collider2D other)

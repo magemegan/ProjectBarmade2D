@@ -7,8 +7,6 @@ using UnityEngine;
 public class DialogueNode
 {
     [TextArea]
-    public string npcName;//Name of the NPC
-    [TextArea]
     public string npcText;
     public string[] playerChoices;
     public int[] nextNodeLeads;//branch paths

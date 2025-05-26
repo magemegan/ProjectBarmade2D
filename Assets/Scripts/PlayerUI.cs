@@ -60,8 +60,6 @@ public class PlayerUI : MonoBehaviour
     //This function is called to show the dialogue text without choices
     public void ShowDialogue(string npcName, string message)
     {
-        Debug.Log($"ShowDialogue called: NPC Name = {npcName}, Message = {message}");
-
         DialogueUI.SetActive(true);
         npcNameText.text = npcName;
         dialogueText.text = message;
@@ -78,8 +76,6 @@ public class PlayerUI : MonoBehaviour
     //This function is called when the player chooses a dialogue option with choices
     public void ShowChoices(string[] choices, System.Action<int> onChoiceSelected)
     {
-        Debug.Log($"ShowChoices called with {choices.Length} choices");
-
         choicesPanel.SetActive(true);
         currentChoiceCallback = onChoiceSelected;
 
@@ -87,8 +83,6 @@ public class PlayerUI : MonoBehaviour
         {
             if (i < choices.Length)
             {
-                Debug.Log($"Setting Choice Button {i}: {choices[i]}");
-
                 choiceButtons[i].gameObject.SetActive(true);
                 choiceButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = choices[i];
                 int index = i;
@@ -105,8 +99,6 @@ public class PlayerUI : MonoBehaviour
     //This function is called when the player selects a choice from the dialogue options
     private void OnChoiceSelected(int index)
     {
-        Debug.Log($"Button clicked: Choice Index = {index}");
-
         choicesPanel.SetActive(false);
         currentChoiceCallback?.Invoke(index);
     }
