@@ -1,16 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NPCDialogue : MonoBehaviour
 {
     public DialogueData dialogueData; // Reference to the DialogueData scriptable object
     public PlayerUI playerUI; // Reference to the PlayerUI script
     public string npcName; // Name of the NPC
-
+    private bool playerInRange = false;
     private int currentNode = 0; // Current node in the dialogue tree
 
-    void StartConversation()
+    void Update()
+    {
+        if (playerInRange)
+        {
+            Debug.Log("Player is in range of NPC");
+        }
+
+        if (playerInRange && Input.GetKeyDown(KeyCode.E))
+        {
+            Debug.Log("Player pressed E while in range");
+            StartConversation();
+        }
+        //if (playerInRange && Input.GetKeyDown(KeyCode.E))
+        //{
+        //    StartConversation();
+        //}
+    }
+
+    public void StartConversation()
     {
         currentNode = 0;
         ShowCurrentNode();
@@ -18,11 +37,14 @@ public class NPCDialogue : MonoBehaviour
 
     void ShowCurrentNode()
     {
+
         if (currentNode < dialogueData.dialogueNodes.Length)
         {
             var node = dialogueData.dialogueNodes[currentNode];
+
             playerUI.ShowDialogue(dialogueData.npcName, node.npcText);
             playerUI.ShowChoices(node.playerChoices, OnPlayerChoice);
+            Debug.Log("ShowCurrentNode called");
         }
         else
         {
@@ -59,11 +81,19 @@ public class NPCDialogue : MonoBehaviour
         Debug.Log($"{gameObject.name}: Conversation ended");
     }
 
-    void OnTriggerStay2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && Input.GetKeyDown(KeyCode.E))
+        if (other.CompareTag("Player"))
         {
-            StartConversation();
+            playerInRange = true;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = false;
         }
     }
 }

@@ -268,7 +268,7 @@ GameObject:
   - component: {fileID: 250384188}
   - component: {fileID: 250384190}
   - component: {fileID: 250384191}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TalkingNPC
   m_TagString: NPC
   m_Icon: {fileID: 0}
@@ -371,7 +371,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1477,6 +1477,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1999667677574172935, guid: 36e03f4f73e1aa742981f8760d671d1f, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2517165572418356126, guid: 36e03f4f73e1aa742981f8760d671d1f, type: 3}
       propertyPath: m_Name
       value: PlayerBartender
@@ -1501,6 +1505,10 @@ PrefabInstance:
       propertyPath: dialogueText
       value: 
       objectReference: {fileID: 1903688267}
+    - target: {fileID: 4059699815235199484, guid: 36e03f4f73e1aa742981f8760d671d1f, type: 3}
+      propertyPath: interactLayer.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4059699815235199484, guid: 36e03f4f73e1aa742981f8760d671d1f, type: 3}
       propertyPath: choiceButtons.Array.data[0]
       value: 

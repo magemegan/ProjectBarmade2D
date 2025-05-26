@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 610597f1bde4e0d45b2bf7752f43a474, type: 3}
   m_Name: NPCWords
   m_EditorClassIdentifier: 
-  npcName: Bartolomew II
+  npcName: 'Bartolomew '
   dialogueNodes:
   - npcName: katy
     npcText: Hello!
