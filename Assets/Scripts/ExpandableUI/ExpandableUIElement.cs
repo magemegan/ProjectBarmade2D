@@ -8,9 +8,6 @@ public class ExpandableUIElement : MonoBehaviour
     [Header("Movement Settings")]
     [SerializeField] private float movementSpeed = 10f;
     [SerializeField] private float movementThreshold = 0.1f;
-    
-    [Header("Debug")]
-    [SerializeField] private bool showDebugLogs = false;
 
     private BoxCollider2D myCollider;
     private Vector2 originalPosition;
@@ -29,25 +26,19 @@ public class ExpandableUIElement : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (showDebugLogs)
-            Debug.Log($"{gameObject.name}: {other.gameObject.name} entered my collider");
-        
+    {      
         // Get the bottom edge of the other collider
-        float otherBottom = other.bounds.min.y;
+        float otherTop = other.bounds.max.y;
         // Get the top edge of my collider
-        float myTop = myCollider.bounds.max.y;
+        float myBottom = myCollider.bounds.min.y;
         
         // Calculate how much we need to shift down
-        float overlapAmount = myTop - otherBottom;
-        
+        float overlapAmount = otherTop - myBottom;
+        Debug.Log(overlapAmount);
         if (overlapAmount > 0)
         {
             // Add a little extra space
-            yOffsetAmount = overlapAmount + 5f;
-            
-            if (showDebugLogs)
-                Debug.Log($"Need to shift down by {yOffsetAmount}");
+            yOffsetAmount = overlapAmount;
             
             // Start shifting down
             StopAllCoroutines();
@@ -57,9 +48,6 @@ public class ExpandableUIElement : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (showDebugLogs)
-            Debug.Log($"{gameObject.name}: {other.gameObject.name} exited my collider");
-        
         // Check if there are any remaining colliders overlapping
         Collider2D[] overlappingColliders = new Collider2D[5];
         int count = myCollider.OverlapCollider(new ContactFilter2D().NoFilter(), overlappingColliders);
@@ -79,11 +67,13 @@ public class ExpandableUIElement : MonoBehaviour
         
         if (shiftDown)
         {
+            Debug.Log("Moving down");
             // Move down
             targetPosition = new Vector2(originalPosition.x, originalPosition.y - yOffsetAmount);
         }
         else
         {
+            Debug.Log("Moving up");
             // Move back up to original position
             targetPosition = originalPosition;
             yOffsetAmount = 0f;
