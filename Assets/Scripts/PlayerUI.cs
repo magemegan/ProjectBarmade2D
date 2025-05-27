@@ -61,6 +61,7 @@ public class PlayerUI : MonoBehaviour
     public void ShowDialogue(string npcName, string message)
     {
         DialogueUI.SetActive(true);
+        gameObject.GetComponent<PlayerMovement>().movementEnabled = false;
         npcNameText.text = npcName;
         dialogueText.text = message;
         choicesPanel.SetActive(false);

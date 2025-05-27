@@ -69,17 +69,17 @@ public class NPCDialogue : MonoBehaviour
         playerUI.HideDialogue();
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
             playerInRange = true;
         }
     }
 
-    void OnTriggerExit2D(Collider2D other)
+    void OnCollisionExit2D(Collision2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
             playerInRange = false;
         }
