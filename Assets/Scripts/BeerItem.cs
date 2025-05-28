@@ -1,0 +1,24 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class BeerItem : DrinkController
+{
+    //public Sprite displayImage; Might bring this back later :/
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    public void SayName()
+    {
+        Debug.Log(gameObject.name);
+    }
+}
