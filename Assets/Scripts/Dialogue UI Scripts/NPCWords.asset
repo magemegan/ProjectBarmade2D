@@ -14,15 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npcName: 'Bartolomew '
   dialogueNodes:
-  - npcName: katy
-    npcText: Hello!
+  - npcText: Hello!
     playerChoices:
     - Hi!
     - Bye
     nextNodeLeads: 01000000ffffffff
-  - npcName: Anya
-    npcText: Nice to Meet U
+  - npcText: Nice to Meet U
     playerChoices:
     - Likewise
     - Goodbye
     nextNodeLeads: 02000000ffffffff
+  - npcText: Can i Please have....
+    playerChoices:
+    - Yeah Sure!
+    - Are you sure? how about we restart?
+    - no, sorry we ran out....
+    nextNodeLeads: 0300000001000000ffffffff
