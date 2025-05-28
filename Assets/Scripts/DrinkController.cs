@@ -30,7 +30,7 @@ public class DrinkController : MonoBehaviour
         playerMovement = Player.GetComponent<PlayerMovement>();
         holdSpot = Player.transform.Find("boxHolder");
     }
-
+/*
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
@@ -141,7 +141,6 @@ public class DrinkController : MonoBehaviour
 
 
     }
-
+*/
 
 }
-
