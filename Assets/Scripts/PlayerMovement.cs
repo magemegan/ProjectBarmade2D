@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 movement;
     public bool movementEnabled;
     public bool collidingWithDishwasher = false;
+    public bool touchingSink = false;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +43,10 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("touching dishwasher");
             collidingWithDishwasher = true;
         }
+        else if (collision.gameObject.CompareTag("Sink"))
+        {
+            touchingSink = true;
+        }
     }
 
     void OnCollisionExit2D(Collision2D collision)
@@ -50,6 +55,10 @@ public class PlayerMovement : MonoBehaviour
         {
             collidingWithDishwasher = false;
 
+        }
+        else if (collision.gameObject.CompareTag("Sink"))
+        {
+            touchingSink = false;
         }
     }
 

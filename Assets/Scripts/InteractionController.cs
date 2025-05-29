@@ -52,17 +52,20 @@ public class ItemInteraction : MonoBehaviour
     {
         if (isColliding && Input.GetKeyDown(KEYBIND))
         {
-            isInteracting = !isInteracting;
+            Interact();
+        }
+    }
 
-            if (isInteracting) 
-            {
-                OnItemInteraction.Invoke();
-            }
-            else
-            {
-                OnItemDisable.Invoke();
-            }
-           
+    public void Interact()
+    {
+        isInteracting = !isInteracting;
+        if (isInteracting)
+        {
+            OnItemInteraction.Invoke();
+        }
+        else
+        {
+            OnItemDisable.Invoke();
         }
     }
 }

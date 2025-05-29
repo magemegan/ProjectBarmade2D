@@ -9,30 +9,31 @@ public class DrinkController : MonoBehaviour
     public float percentage;
     public GameObject drink;
 
-    public Transform holdSpot;
-    public LayerMask pickUpMask;
-    public LayerMask npcMask;
+    private Transform holdSpot;
+    private LayerMask pickUpMask;
+    private LayerMask npcMask;
     public Vector3 Direction { get; set; }
     private GameObject itemHolding;
     public bool touchingDrink = false;
     private GameObject Player;
     private PlayerMovement playerMovement;
-    int toxicMeter = 0;
 
-    private void Start()
+    void Start()
     {
+        Debug.Log("Start was hit!");
+        Player = GameObject.FindWithTag("Player");
+        playerMovement = Player.GetComponent<PlayerMovement>();
+        holdSpot = Player.transform.Find("boxHolder");
+
         if (percentage > 1)
         {
             Debug.Log(name + " alcohol percentage exceeds 100%. Scripts may not work as intended.");
         }
-
-        Player = GameObject.FindWithTag("Player");
-        playerMovement = Player.GetComponent<PlayerMovement>();
-        holdSpot = Player.transform.Find("boxHolder");
     }
-/*
+
     void Update()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.E))
         {
             if (itemHolding)
@@ -56,7 +57,7 @@ public class DrinkController : MonoBehaviour
                 itemHolding = gameObject;
                 itemHolding.transform.position = holdSpot.position;
                 itemHolding.transform.parent = holdSpot;
-                Rigidbody2D rb = itemHolding.GetComponent<Rigidbody2D>();
+                Rigidbody2D rb = itemHolding.GetComponent<Rigidbody2D>(); // makes it so that it follows player wherever it goes
                 if (rb != null)
                 {
                     rb.isKinematic = true;
@@ -66,22 +67,25 @@ public class DrinkController : MonoBehaviour
             }
 
         }
+        */
     }
 
-    void SpawnDrink()
+    public void SpawnDrink()
     {
-        drink.transform.position = holdSpot.position;
-        drink.tr
-        itemHolding.transform.parent = holdSpot;
-        Rigidbody2D rb = itemHolding.GetComponent<Rigidbody2D>();
+        GameObject clone = GameObject.Instantiate(drink);
+        clone.transform.position = holdSpot.position;
+        clone.transform.parent = holdSpot;
+        Rigidbody2D rb = clone.GetComponent<Rigidbody2D>();
         if (rb != null)
         {
             rb.isKinematic = true;
             rb.velocity = Vector2.zero;
             rb.angularVelocity = 0f;
         }
+        clone.SetActive(true);
+        DestroySelf destroySelf = clone.GetComponent<DestroySelf>();
+        destroySelf.isClone = true;
     }
-}
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -90,6 +94,10 @@ public class DrinkController : MonoBehaviour
         {
             Debug.Log("touching drink");
             touchingDrink = true;
+        }
+        else if (collision.gameObject.CompareTag("Sink"))
+        {
+
         }
     }
 
@@ -126,7 +134,7 @@ public class DrinkController : MonoBehaviour
         }
     }
 
-    void GiveItemToNpc(Collider2D npc)
+    void GiveItemToNpc(Collider2D npc) // Needs to evolve to handle individual NPCs and their specific drink needs`
     {
         //toxicBar.AddDrink(10);
         Debug.Log("Giving item to NPC.");
@@ -138,9 +146,5 @@ public class DrinkController : MonoBehaviour
         itemHolding = null;
 
         npc.GetComponent<NPCIteract>().AddDrink(10);
-
-
     }
-*/
-
 }
