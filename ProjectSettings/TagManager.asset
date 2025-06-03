@@ -13,6 +13,8 @@ TagManager:
   - Dishwasher
   - Seat
   - LeavePt
+  - Sink
+  - BoxHolder
   layers:
   - Default
   - TransparentFX
