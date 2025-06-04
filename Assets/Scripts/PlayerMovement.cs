@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
     public bool collidingWithDishwasher = false;
     public bool touchingSink = false;
 
+    private Animator mAnimator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
         pickUp = gameObject.GetComponent<PickUp>();
         //pickUp.Direction = new Vector2(0, -1);
         rb = GetComponent<Rigidbody2D>();
+        // Get animator
+        mAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -34,6 +38,36 @@ public class PlayerMovement : MonoBehaviour
         }
 
         movement = movement.normalized;// Normalize movement to prevent faster diagonal movement
+
+        // Handle animations
+        if (mAnimator)
+        {
+            mAnimator.SetBool("isBack", Input.GetKey(KeyCode.W));
+            mAnimator.SetBool("isRight", Input.GetKey(KeyCode.D));
+            mAnimator.SetBool("isForward", Input.GetKey(KeyCode.S));
+            mAnimator.SetBool("isLeft", Input.GetKey(KeyCode.A));
+            //mAnimator.SetBool("isIdle", !(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A)));
+            /*if (Input.GetKey(KeyCode.W))
+            {
+                mAnimator.SetTrigger("GoBack");
+            }
+            else if (Input.GetKey(KeyCode.D))
+            {
+                mAnimator.SetTrigger("GoRight");
+            }
+            else if (Input.GetKey(KeyCode.S))
+            {
+                mAnimator.SetTrigger("GoForward");
+            }
+            else if (Input.GetKey(KeyCode.A))
+            {
+                mAnimator.SetTrigger("GoLeft");
+            }
+            else
+            {
+                mAnimator.SetTrigger("Idle");
+            }*/
+        }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
