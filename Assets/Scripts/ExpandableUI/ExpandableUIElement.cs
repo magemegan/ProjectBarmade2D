@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class ExpandableUIElement : MonoBehaviour
@@ -10,28 +12,59 @@ public class ExpandableUIElement : MonoBehaviour
     [SerializeField] private float movementThreshold = 0.1f;
 
     private BoxCollider2D myCollider;
-    private Vector2 originalPosition;
+    [SerializeField] private Vector2 originalPosition;
     private float yOffsetAmount = 0f;
     private bool isMoving = false;
+
+    //testing
+    public GraphicRaycaster raycaster;
+    public EventSystem eventSystem;
+    public RectTransform rectTransform;
+
 
     private void Awake()
     {
         myCollider = GetComponent<BoxCollider2D>();
-        
+
         // Make sure this is set up as a trigger
         myCollider.isTrigger = true;
-        
+
         // Store original position
         originalPosition = transform.position;
+
+        rectTransform = GetComponent<RectTransform>();
+
+        raycaster = GetComponent<GraphicRaycaster>();
+    }
+
+    private void Update()
+    {
+        // Get the world position of the top center of the source panel
+        float offsetY = 15f; // You can adjust this value as needed (in world units)
+        Vector3 topCenter = rectTransform.position + new Vector3(0, rectTransform.rect.height * rectTransform.lossyScale.y / 2f + offsetY, 0);
+
+        // Create PointerEventData at that screen position
+        PointerEventData pointerData = new PointerEventData(eventSystem);
+        pointerData.position = RectTransformUtility.WorldToScreenPoint(Camera.main, topCenter);
+
+        // Raycast
+        List<RaycastResult> results = new List<RaycastResult>();
+        raycaster.Raycast(pointerData, results);
+
+        // Debug output
+        foreach (RaycastResult result in results)
+        {
+            Debug.Log("Hit UI element: " + result.gameObject.name);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
-    {      
+    {
         // Get the bottom edge of the other collider
         float otherTop = other.bounds.max.y;
         // Get the top edge of my collider
         float myBottom = myCollider.bounds.min.y;
-        
+
         // Calculate how much we need to shift down
         float overlapAmount = otherTop - myBottom;
         Debug.Log(overlapAmount);
@@ -39,9 +72,9 @@ public class ExpandableUIElement : MonoBehaviour
         {
             // Add a little extra space
             yOffsetAmount = overlapAmount;
-            
+
             // Start shifting down
-            StopAllCoroutines();
+            //StopAllCoroutines();
             StartCoroutine(ShiftPosition(true));
         }
     }
@@ -51,11 +84,12 @@ public class ExpandableUIElement : MonoBehaviour
         // Check if there are any remaining colliders overlapping
         Collider2D[] overlappingColliders = new Collider2D[5];
         int count = myCollider.OverlapCollider(new ContactFilter2D().NoFilter(), overlappingColliders);
-        
+
         if (count <= 0)
         {
+            Debug.Log("Shift up");
             // Start shifting back up
-            StopAllCoroutines();
+            //StopAllCoroutines();
             StartCoroutine(ShiftPosition(false));
         }
     }
@@ -67,13 +101,13 @@ public class ExpandableUIElement : MonoBehaviour
         
         if (shiftDown)
         {
-            Debug.Log("Moving down");
+            //Debug.Log("Moving down");
             // Move down
-            targetPosition = new Vector2(originalPosition.x, originalPosition.y - yOffsetAmount);
+            targetPosition = new Vector2(originalPosition.x, originalPosition.y - yOffsetAmount/2);
         }
         else
         {
-            Debug.Log("Moving up");
+            //Debug.Log("Moving up");
             // Move back up to original position
             targetPosition = originalPosition;
             yOffsetAmount = 0f;
