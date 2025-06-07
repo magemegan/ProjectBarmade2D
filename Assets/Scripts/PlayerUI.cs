@@ -13,6 +13,7 @@ public class PlayerUI : MonoBehaviour
     public TextMeshProUGUI dialogueText;
     public GameObject choicesPanel;
     public Button[] choiceButtons;
+    public GameObject pressEText;//event handler for dialogue
 
     private bool CanOpenDialogue = false;
     private bool CanAccessDrinkStation = false;
@@ -42,19 +43,6 @@ public class PlayerUI : MonoBehaviour
             DrinkStationOn = false;
             accessStationText.SetActive(true);
         }
-
-        //Open NPC Dialogue
-        //if (Input.GetKeyDown(KeyCode.E) && CanOpenDialogue)
-        //{
-        //    DialogueUI.SetActive(true);
-        //    gameObject.GetComponent<PlayerMovement>().movementEnabled = false;
-        //    CanOpenDialogue = false;
-        //}
-        //else if (Input.GetKeyDown(KeyCode.E) && !CanOpenDialogue)
-        //{
-        //    DialogueUI.SetActive(false);
-        //    gameObject.GetComponent<PlayerMovement>().movementEnabled = true;
-        //}
     }
 
     //This function is called to show the dialogue text without choices
@@ -95,6 +83,16 @@ public class PlayerUI : MonoBehaviour
                 choiceButtons[i].gameObject.SetActive(false);
             }
         }
+    }
+
+    public void ShowPressE()
+    {
+        pressEText.SetActive(true);
+    }
+
+    public void HidePressE()
+    {
+        pressEText.SetActive(false);
     }
 
     //This function is called when the player selects a choice from the dialogue options

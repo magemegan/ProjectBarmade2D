@@ -21,6 +21,7 @@ public class NPCDialogue : MonoBehaviour
 
     public void StartConversation()
     {
+        playerUI.HidePressE();
         currentNode = 0;
         ShowCurrentNode();
     }
@@ -74,6 +75,7 @@ public class NPCDialogue : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             playerInRange = true;
+            playerUI.ShowPressE();
         }
     }
 
@@ -82,6 +84,7 @@ public class NPCDialogue : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             playerInRange = false;
+            playerUI.HidePressE();
         }
     }
 }
