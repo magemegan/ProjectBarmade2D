@@ -262,6 +262,14 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+  DialogueUI: {fileID: 0}
+  npcNameText: {fileID: 0}
+  dialogueText: {fileID: 0}
+  choicesPanel: {fileID: 0}
+  choiceButtons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &3653890737841893963
 GameObject:
   m_ObjectHideFlags: 0
