@@ -22,3 +22,12 @@ public class NPCObjects : MonoBehaviour
         
     }
 }
+
+
+/*
+ * TODO:
+ *  delete unused functions
+ *  write update variable function
+ *  seat manager + npc manager 
+ *  put all seat objects under parent object (so that i can loop through) 
+*/

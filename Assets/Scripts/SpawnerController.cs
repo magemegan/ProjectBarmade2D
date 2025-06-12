@@ -38,3 +38,11 @@ public class SpawnerController : MonoBehaviour
         // Leaving this here in case you want to see time on debug log. Reasoning above.
     }
 }
+
+/* 
+ * ***** TODO ***** 
+ * change interval variable name
+ * use world time instead of counter
+ * set seat occupied to true
+ * create function to despawn npc
+*/

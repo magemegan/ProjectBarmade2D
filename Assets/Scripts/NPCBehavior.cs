@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NPCBehavior : MonoBehaviour
 {
-    bool xHigher;
+    bool xHigher; // determines movement to avoid diagonal movement
     bool yHigher;
     GameObject[] chairs;
     int index = 0;
@@ -23,15 +23,15 @@ public class NPCBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        chairs = GameObject.FindGameObjectsWithTag("Seat");
-        index = Random.Range(0, chairs.Length);
-        leavePoint = GameObject.Find("LeavePoint");
+        chairs = GameObject.FindGameObjectsWithTag("Seat"); // good
+        index = Random.Range(0, chairs.Length); // maybe have occupied and unoccupied seats - danae
+        leavePoint = GameObject.Find("LeavePoint"); // good
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
     
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "LeavePt")
+        if (collision.gameObject.tag == "LeavePt") // change tag - danae
         {
             Destroy(gameObject);
         }
@@ -64,6 +64,8 @@ public class NPCBehavior : MonoBehaviour
             else if (Mathf.Round(position.y) == Mathf.Round(pointPos.y)){
                 yHigher = false;
             }
+
+            Debug.Log("X is higher: " + xHigher + " Y is higher: " + yHigher);
 
             if (xHigher == true){
                 animator.SetBool("isDown", false);
@@ -108,7 +110,7 @@ public class NPCBehavior : MonoBehaviour
                 chairs[index].GetComponent<NPCObjects>().occupied = false;
         }//Prototype for leaving a space open after the NPC leaves. NPCS go a little crazy if occupied during their trip to a space.
 
-        if (Input.GetKeyDown(KeyCode.Space)){
+        if (Input.GetKeyDown(KeyCode.Space)){ // fix this - danae
             finished = true;
             chairs[index].GetComponent<NPCObjects>().occupied = false;
             chairChoose = leavePoint;
@@ -119,3 +121,11 @@ public class NPCBehavior : MonoBehaviour
     }
     
 }
+
+/* 
+ * Create public destroy function that can be execute
+ * End animation when NPC reaches seat
+ * Set sprite to visible and teleport to point
+ * Fix keybind to get NPC to leave
+ * Change LeavePt tag
+*/
