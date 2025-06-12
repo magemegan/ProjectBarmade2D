@@ -15,6 +15,7 @@ TagManager:
   - LeavePt
   - Sink
   - BoxHolder
+  - NPC
   layers:
   - Default
   - TransparentFX
@@ -57,4 +58,7 @@ TagManager:
     locked: 0
   - name: Object
     uniqueID: 1484465501
+    locked: 0
+  - name: NPC
+    uniqueID: 3096702705
     locked: 0
