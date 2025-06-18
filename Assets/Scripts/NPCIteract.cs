@@ -4,16 +4,33 @@ using UnityEngine;
 
 public class NPCIteract : MonoBehaviour
 {
+    [SerializeField]private float sobering = 1f;
+
     public float maxDrunk = 100;
     public float currentDrunkness = 0;
     public bool addedDrink = false;
     public ToxicBar toxicBar;
-    public float NPCtolerance;
-    // value from 0 - 1
-    
+    [SerializeField]private float NPCtolerance;
+    private float soberTimer = 0f;
+    [SerializeField] private float soberSeconds;
 
 
-    private void Start()
+private void Update()
+{
+    soberTimer += Time.deltaTime;
+    if (currentDrunkness > 0)
+    {
+        if (soberTimer >= soberSeconds)
+        {
+            currentDrunkness -= sobering;
+            toxicBar.SetDrunkness(currentDrunkness);
+            soberTimer = 0f;
+        }
+        
+    }
+
+}
+private void Start()
     {
         toxicBar.SetDrunkness(currentDrunkness);
 
@@ -21,16 +38,11 @@ public class NPCIteract : MonoBehaviour
     }
 
 
-    private void Update()
-    {
-       
 
-    }
 
     public void AddDrink(int drunk)
     {
-        //addedDrink = true;
-        //currentDrunkness += drunk;
+       
         float initialToxic = Random.Range(5, drunk);
         float reduceIntoxication = initialToxic * NPCtolerance;
         float finalIntoxication = initialToxic - reduceIntoxication;
