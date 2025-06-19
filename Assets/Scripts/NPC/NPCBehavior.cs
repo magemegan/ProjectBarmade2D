@@ -8,9 +8,9 @@ public class NPCBehavior : MonoBehaviour
     bool yHigher;
     GameObject[] chairs;
     int index = 0;
-    bool foundChair;
+    bool foundChair = false;
     public GameObject leavePoint;
-    bool finished;
+    bool finished = false;
 
     [SerializeField] private Animator animator;
     private SpriteRenderer spriteRenderer;
@@ -128,4 +128,6 @@ public class NPCBehavior : MonoBehaviour
  * Set sprite to visible and teleport to point
  * Fix keybind to get NPC to leave
  * Change LeavePt tag
+ * Chair choose should be first unoccupied chair set on awake. immedietley set to unoccupied
+ * Use foreach loop from NPCController to find first unoccupied chair
 */
