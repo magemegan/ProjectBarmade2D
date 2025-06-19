@@ -20,6 +20,7 @@ public class ExpandableUIElement : MonoBehaviour
     public GraphicRaycaster raycaster;
     public EventSystem eventSystem;
     public RectTransform rectTransform;
+    bool collidingWithRecipe = false;
 
 
     private void Awake()
@@ -39,26 +40,10 @@ public class ExpandableUIElement : MonoBehaviour
 
     private void Update()
     {
-        // Get the world position of the top center of the source panel
-        float offsetY = 15f; // You can adjust this value as needed (in world units)
-        Vector3 topCenter = rectTransform.position + new Vector3(0, rectTransform.rect.height * rectTransform.lossyScale.y / 2f + offsetY, 0);
-
-        // Create PointerEventData at that screen position
-        PointerEventData pointerData = new PointerEventData(eventSystem);
-        pointerData.position = RectTransformUtility.WorldToScreenPoint(Camera.main, topCenter);
-
-        // Raycast
-        List<RaycastResult> results = new List<RaycastResult>();
-        raycaster.Raycast(pointerData, results);
-
-        // Debug output
-        foreach (RaycastResult result in results)
-        {
-            Debug.Log("Hit UI element: " + result.gameObject.name);
-        }
+        
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
         // Get the bottom edge of the other collider
         float otherTop = other.bounds.max.y;
@@ -67,16 +52,18 @@ public class ExpandableUIElement : MonoBehaviour
 
         // Calculate how much we need to shift down
         float overlapAmount = otherTop - myBottom;
-        Debug.Log(overlapAmount);
+        Debug.Log(originalPosition);
         if (overlapAmount > 0)
         {
             // Add a little extra space
-            yOffsetAmount = overlapAmount;
+            yOffsetAmount = overlapAmount * 1.2f;
 
             // Start shifting down
             //StopAllCoroutines();
             StartCoroutine(ShiftPosition(true));
         }
+
+        collidingWithRecipe = true;
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -87,14 +74,15 @@ public class ExpandableUIElement : MonoBehaviour
 
         if (count <= 0)
         {
-            Debug.Log("Shift up");
             // Start shifting back up
             //StopAllCoroutines();
             StartCoroutine(ShiftPosition(false));
         }
+
+        collidingWithRecipe = false;
     }
 
-    private IEnumerator ShiftPosition(bool shiftDown)
+    public IEnumerator ShiftPosition(bool shiftDown)
     {
         isMoving = true;
         Vector2 targetPosition;

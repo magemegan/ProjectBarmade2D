@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class ExpandableUIManager : MonoBehaviour
 {
     [Tooltip("List of all UI elements that can be expanded/collapsed")]
-    [SerializeField] private List<GameObject> expandableElements = new List<GameObject>();
+    [SerializeField] public List<GameObject> expandableElements = new List<GameObject>();
 
     [Tooltip("Distance between UI elements when not expanded")]
     [SerializeField] private float defaultSpacing = 10f;

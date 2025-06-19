@@ -19,14 +19,16 @@ public class ExpandableElement : MonoBehaviour, IPointerClickHandler
     private RectTransform rectTransform;
     private bool isExpanded = false;
     private Coroutine animationCoroutine;
+
+    public GameObject recipeContainer;
     
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
-        
+
         // Initialize with collapsed height
         rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, collapsedHeight);
-        
+
         // If uiManager isn't set in the inspector, try to find it
         if (uiManager == null)
         {
@@ -38,21 +40,27 @@ public class ExpandableElement : MonoBehaviour, IPointerClickHandler
     {
         ToggleExpansion();
     }
-    
+
     public void ToggleExpansion()
     {
         isExpanded = !isExpanded;
-        
+
         // Stop any ongoing animation
         if (animationCoroutine != null)
         {
             StopCoroutine(animationCoroutine);
         }
-        
+
         // Start new animation
         animationCoroutine = StartCoroutine(AnimateHeight(
             isExpanded ? expandedHeight : collapsedHeight
         ));
+
+        foreach (GameObject recipe in recipeContainer.GetComponent<ExpandableUIManager>().expandableElements)
+        {
+            StartCoroutine(recipe.GetComponent<ExpandableUIElement>().ShiftPosition(false)); 
+        }
+        
     }
     
     private IEnumerator AnimateHeight(float targetHeight)
