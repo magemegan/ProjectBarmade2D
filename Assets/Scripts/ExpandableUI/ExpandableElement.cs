@@ -26,10 +26,8 @@ public class ExpandableElement : MonoBehaviour, IPointerClickHandler
     {
         rectTransform = GetComponent<RectTransform>();
 
-        // Initialize with collapsed height
         rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, collapsedHeight);
 
-        // If uiManager isn't set in the inspector, try to find it
         if (uiManager == null)
         {
             uiManager = FindObjectOfType<ExpandableUIManager>();
@@ -45,22 +43,14 @@ public class ExpandableElement : MonoBehaviour, IPointerClickHandler
     {
         isExpanded = !isExpanded;
 
-        // Stop any ongoing animation
         if (animationCoroutine != null)
         {
             StopCoroutine(animationCoroutine);
         }
 
-        // Start new animation
         animationCoroutine = StartCoroutine(AnimateHeight(
             isExpanded ? expandedHeight : collapsedHeight
         ));
-
-        foreach (GameObject recipe in recipeContainer.GetComponent<ExpandableUIManager>().expandableElements)
-        {
-            StartCoroutine(recipe.GetComponent<ExpandableUIElement>().ShiftPosition(false)); 
-        }
-        
     }
     
     private IEnumerator AnimateHeight(float targetHeight)
@@ -77,7 +67,6 @@ public class ExpandableElement : MonoBehaviour, IPointerClickHandler
             float newHeight = Mathf.Lerp(startHeight, targetHeight, evaluatedTime);
             rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, newHeight);
             
-            // Update the collider size
             if (TryGetComponent<BoxCollider2D>(out var collider))
             {
                 collider.size = new Vector2(rectTransform.rect.width, newHeight);
@@ -92,10 +81,9 @@ public class ExpandableElement : MonoBehaviour, IPointerClickHandler
             yield return null;
         }
         
-        // Ensure we end at exactly the target height
+        // Make sure element stops end at exactly the target height
         rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, targetHeight);
         
-        // Final collider update
         if (TryGetComponent<BoxCollider2D>(out var finalCollider))
         {
             finalCollider.size = new Vector2(rectTransform.rect.width, targetHeight);
