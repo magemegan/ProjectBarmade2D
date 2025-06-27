@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections;
+using TMPro;
 
 [RequireComponent(typeof(RectTransform))]
 [RequireComponent(typeof(BoxCollider2D))]
@@ -20,7 +21,10 @@ public class ExpandableElement : MonoBehaviour, IPointerClickHandler
     private bool isExpanded = false;
     private Coroutine animationCoroutine;
 
-    public GameObject recipeContainer;
+    [SerializeField] private GameObject recipeContainer;
+
+    [SerializeField] private GameObject drinkTitle;
+    [SerializeField] private GameObject drinkDescription;
     
     private void Awake()
     {
@@ -33,7 +37,7 @@ public class ExpandableElement : MonoBehaviour, IPointerClickHandler
             uiManager = FindObjectOfType<ExpandableUIManager>();
         }
     }
-    
+
     public void OnPointerClick(PointerEventData eventData)
     {
         ToggleExpansion();
@@ -51,44 +55,62 @@ public class ExpandableElement : MonoBehaviour, IPointerClickHandler
         animationCoroutine = StartCoroutine(AnimateHeight(
             isExpanded ? expandedHeight : collapsedHeight
         ));
+
+        StartCoroutine(switchText());
+    }
+
+    IEnumerator switchText()
+    {
+        yield return new WaitForSeconds(0.1f); 
+        // Disable the drink title
+        if (isExpanded)
+        {
+            drinkTitle.SetActive(false);
+            drinkDescription.SetActive(true);
+        }
+        else
+        {
+            drinkTitle.SetActive(true);
+            drinkDescription.SetActive(false);
+        }
     }
     
     private IEnumerator AnimateHeight(float targetHeight)
     {
         float startHeight = rectTransform.rect.height;
         float time = 0;
-        
+
         while (time < animationDuration)
         {
             time += Time.deltaTime;
             float normalizedTime = time / animationDuration;
             float evaluatedTime = animationCurve.Evaluate(normalizedTime);
-            
+
             float newHeight = Mathf.Lerp(startHeight, targetHeight, evaluatedTime);
             rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, newHeight);
-            
+
             if (TryGetComponent<BoxCollider2D>(out var collider))
             {
                 collider.size = new Vector2(rectTransform.rect.width, newHeight);
             }
-            
+
             // Notify the manager that our size changed
             if (uiManager != null)
             {
                 uiManager.ElementSizeChanged(gameObject);
             }
-            
+
             yield return null;
         }
-        
+
         // Make sure element stops end at exactly the target height
         rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, targetHeight);
-        
+
         if (TryGetComponent<BoxCollider2D>(out var finalCollider))
         {
             finalCollider.size = new Vector2(rectTransform.rect.width, targetHeight);
         }
-        
+
         animationCoroutine = null;
     }
     
