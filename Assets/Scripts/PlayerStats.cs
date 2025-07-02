@@ -2,20 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class NPCObjects : MonoBehaviour
+public class PlayerStats : MonoBehaviour
 {
-    public bool occupied = false;
+    public bool isPickingUp;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public bool getPickingUp(){
+        return isPickingUp;
+    }
+
+    public void changePickUp(){
+        isPickingUp = !isPickingUp;
     }
 }
