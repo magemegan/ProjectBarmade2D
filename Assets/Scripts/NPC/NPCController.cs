@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SpawnerController : MonoBehaviour
@@ -9,7 +10,8 @@ public class SpawnerController : MonoBehaviour
     public int minSpawnWait;
     public int maxSpawnWait;
     public GameObject NPCObject;
-    
+    public GameObject spawnPoint;
+
     void Start()
     {
         // Set inital start spawn time
@@ -26,8 +28,11 @@ public class SpawnerController : MonoBehaviour
                 // Check if the seat is occupied
                 if (!seat.GetComponent<NPCObjects>().GetOccupied())
                 {
-                    Vector2 spawnPosition = new Vector2(0, 3);
-                    Instantiate(NPCObject, spawnPosition, Quaternion.identity);
+                    Vector2 spawnPosition = spawnPoint.transform.position; // Get the spawn position from the spawn point
+                    GameObject NPC = Instantiate(NPCObject, spawnPosition, Quaternion.identity);
+                    NPC.GetComponent<NPCBehavior>().SetSeat(seat); // Give NPC seat property
+                    NPC.SetActive(true); // Show NPC
+                    seat.GetComponent<NPCObjects>().SetOccupied(true); // Set seat as occupied
                     break;
                 }
             }
@@ -40,6 +45,6 @@ public class SpawnerController : MonoBehaviour
  * ***** TODO ***** 
  * change interval variable name (DONE)
  * use world time instead of counter (DONE)
- * set seat occupied to true
- * create function to despawn npc
+ * set seat occupied to true (DONE)
+ * create function to despawn npc (DONE)
 */

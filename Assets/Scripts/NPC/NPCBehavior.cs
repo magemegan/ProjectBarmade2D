@@ -4,130 +4,123 @@ using UnityEngine;
 
 public class NPCBehavior : MonoBehaviour
 {
-    bool xHigher; // determines movement to avoid diagonal movement
-    bool yHigher;
+    bool moveHorizontally, moveVertically;
     GameObject[] chairs;
-    int index = 0;
-    bool foundChair = false;
-    public GameObject leavePoint;
-    bool finished = false;
+    GameObject leavePoint;
+    Vector2 destination, position;
+
+    private GameObject seat;
 
     [SerializeField] private Animator animator;
     private SpriteRenderer spriteRenderer;
 
-    void Awake(){
-        foundChair = false;
-        finished = false;
+    void Awake() {
+        //gameObject.SetActive(true); // Show NPC
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        chairs = GameObject.FindGameObjectsWithTag("Seat"); // good
-        index = Random.Range(0, chairs.Length); // maybe have occupied and unoccupied seats - danae
         leavePoint = GameObject.Find("LeavePoint"); // good
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
     
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "LeavePt") // change tag - danae
+        if (collision.gameObject.tag == "LeavePoint")
         {
             Destroy(gameObject);
         }
     }
 
-    //chairs[index].GetComponent<NPCObjects>().occupied = true; <- Code for future me to use to set a position as occupied
+
     // Update is called once per frame
     void Update()
     {
-        GameObject chairChoose = chairs[index];
-        Vector2 pointPos = chairChoose.transform.position; //Finds a designated GameObject
-        Vector2 position = transform.position; // NPC's position
+        if (!seat) { return; }
 
-        if (finished == true){
-            chairChoose = leavePoint;
-            pointPos = chairChoose.transform.position;
+        if (!moveVertically && Mathf.Round(position.x) != Mathf.Round(destination.x))
+        {
+            moveHorizontally = true;
+            moveVertically = false;
         }
-        
-
-        if ((chairs[index].GetComponent<NPCObjects>().occupied == false && foundChair == false) || finished == true){
-            if (Mathf.Round(position.x) != Mathf.Round(pointPos.x) && yHigher == false){
-                xHigher = true;
-            }
-            else if (Mathf.Round(position.y) != Mathf.Round(pointPos.y) && xHigher == false){
-                yHigher = true;
-            }
-            else if (Mathf.Round(position.x) == Mathf.Round(pointPos.x)){
-                xHigher = false;
-            }
-            else if (Mathf.Round(position.y) == Mathf.Round(pointPos.y)){
-                yHigher = false;
-            }
-
-            Debug.Log("X is higher: " + xHigher + " Y is higher: " + yHigher);
-
-            if (xHigher == true){
-                animator.SetBool("isDown", false);
-                animator.SetBool("isUp", false);
-                if (position.x > pointPos.x){
-                    position.x = position.x - 0.01f;
-                    spriteRenderer.flipX = false;
-                    animator.SetBool("isHorizontal", true);
-                }
-                else{
-                    position.x = position.x + 0.01f;
-                    spriteRenderer.flipX = true;
-                    animator.SetBool("isHorizontal", true);
-                }
-            }
-            if (yHigher == true){
-                animator.SetBool("isHorizontal", false);
-                if (position.y > pointPos.y){
-                    position.y = position.y - 0.01f;
-                    animator.SetBool("isDown", true);
-                }
-                else{
-                    position.y = position.y + 0.01f;
-                    animator.SetBool("isUp", true);
-                }      
-            }
-        }
-        else{
-            index = Random.Range(0, chairs.Length);
-            chairChoose = chairs[index];
-            pointPos = chairChoose.transform.position;
+        else if (!moveHorizontally && Mathf.Round(position.y) != Mathf.Round(destination.y))
+        {
+            moveVertically = true;
+            moveHorizontally = false;
         }
 
-        if (chairs[index].GetComponent<NPCObjects>().occupied == false && Mathf.Round(position.x) == Mathf.Round(pointPos.x) && Mathf.Round(pointPos.y) == Mathf.Round(position.y)){
-                chairs[index].GetComponent<NPCObjects>().occupied = true;
-                foundChair = true;
+        if (Mathf.Round(position.x) == Mathf.Round(destination.x)) moveHorizontally = false;
+        if (Mathf.Round(position.y) == Mathf.Round(destination.y)) moveVertically = false;
+
+
+        if (moveHorizontally){
+            animator.SetBool("isDown", false);
+            animator.SetBool("isUp", false);
+            if (position.x > destination.x){
+                position.x = position.x - 0.01f;
+                spriteRenderer.flipX = false;
+                animator.SetBool("isHorizontal", true);
+            }
+            else{
+                position.x = position.x + 0.01f;
+                spriteRenderer.flipX = true;
+                animator.SetBool("isHorizontal", true);
+            }
+        }
+        else if (moveVertically){
+            animator.SetBool("isHorizontal", false);
+            if (position.y > destination.y){
+                position.y = position.y - 0.01f;
+                animator.SetBool("isDown", true);
+            }
+            else{
+                position.y = position.y + 0.01f;
+                animator.SetBool("isUp", true);
+            }      
+        }
+
+        if (Mathf.Round(position.x) == Mathf.Round(destination.x) && Mathf.Round(destination.y) == Mathf.Round(position.y))
+        {
                 animator.SetBool("isHorizontal", false);
                 animator.SetBool("isDown", false);
                 animator.SetBool("isUp", false);
-            }
-        else{
-                chairs[index].GetComponent<NPCObjects>().occupied = false;
-        }//Prototype for leaving a space open after the NPC leaves. NPCS go a little crazy if occupied during their trip to a space.
-
-        if (Input.GetKeyDown(KeyCode.Space)){ // fix this - danae
-            finished = true;
-            chairs[index].GetComponent<NPCObjects>().occupied = false;
-            chairChoose = leavePoint;
-            pointPos = chairChoose.transform.position;
-        } //Works, but affects all NPCs, which may just be something that we'll have to wait to fix.
+        }
 
         transform.position = position;
     }
     
+    public void SetSeat(GameObject seat)
+    {
+        this.seat = seat;
+        destination = seat.transform.position; //Finds a designated GameObject
+        position = transform.position; // NPC's position
+    }
+
+    public void Leave()
+    {
+        if (seat != null)
+        {
+            seat.GetComponent<NPCObjects>().SetOccupied(false); // Set the seat as unoccupied when NPC is destroyed
+            seat = leavePoint;
+            destination = seat.transform.position;
+        }
+    }
+
+    private void OnMouseDown()
+    {
+        if (Input.GetMouseButton(0)) {
+            Leave();
+        }
+    }
 }
 
 /* 
- * Create public destroy function that can be execute
- * End animation when NPC reaches seat
- * Set sprite to visible and teleport to point
- * Fix keybind to get NPC to leave
- * Change LeavePt tag
- * Chair choose should be first unoccupied chair set on awake. immedietley set to unoccupied
- * Use foreach loop from NPCController to find first unoccupied chair
+ * Create public destroy function that can be execute (DONE)
+ * End animation when NPC reaches seat (IDLE ANIMATTION)
+ * Set sprite to visible and teleport to point (DONE)
+ * Fix keybind to get NPC to leave (DONE)
+ * Change LeavePt tag (DONE)
+ * Chair choose should be first unoccupied chair set on awake. immedietley set to unoccupied (DONE)
+ * Use foreach loop from NPCController to find first unoccupied chair (DONE)
 */
