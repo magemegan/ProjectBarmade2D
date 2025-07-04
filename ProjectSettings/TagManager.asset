@@ -12,10 +12,10 @@ TagManager:
   - Glass
   - Dishwasher
   - Seat
-  - LeavePt
   - Sink
   - BoxHolder
   - NPC
+  - LeavePoint
   layers:
   - Default
   - TransparentFX
