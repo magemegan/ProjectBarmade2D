@@ -40,11 +40,3 @@ public class SpawnerController : MonoBehaviour
         }
     }
 }
-
-/* 
- * ***** TODO ***** 
- * change interval variable name (DONE)
- * use world time instead of counter (DONE)
- * set seat occupied to true (DONE)
- * create function to despawn npc (DONE)
-*/

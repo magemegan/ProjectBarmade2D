@@ -14,10 +14,6 @@ public class NPCBehavior : MonoBehaviour
     [SerializeField] private Animator animator;
     private SpriteRenderer spriteRenderer;
 
-    void Awake() {
-        //gameObject.SetActive(true); // Show NPC
-    }
-
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +28,6 @@ public class NPCBehavior : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
 
     // Update is called once per frame
     void Update()
@@ -114,13 +109,3 @@ public class NPCBehavior : MonoBehaviour
         }
     }
 }
-
-/* 
- * Create public destroy function that can be execute (DONE)
- * End animation when NPC reaches seat (IDLE ANIMATTION)
- * Set sprite to visible and teleport to point (DONE)
- * Fix keybind to get NPC to leave (DONE)
- * Change LeavePt tag (DONE)
- * Chair choose should be first unoccupied chair set on awake. immedietley set to unoccupied (DONE)
- * Use foreach loop from NPCController to find first unoccupied chair (DONE)
-*/
