@@ -11,11 +11,12 @@ public class SpawnerController : MonoBehaviour
     public int maxSpawnWait;
     public GameObject NPCObject;
     public GameObject spawnPoint;
+    public GameObject drunkMeter;
 
     void Start()
     {
         // Set inital start spawn time
-        executeTime = Mathf.RoundToInt(Time.time) + Random.Range(minSpawnWait, maxSpawnWait); 
+        executeTime = Mathf.RoundToInt(Time.time) + Random.Range(minSpawnWait, maxSpawnWait);
     }
 
     // Update is called once per frame
@@ -30,9 +31,15 @@ public class SpawnerController : MonoBehaviour
                 {
                     Vector2 spawnPosition = spawnPoint.transform.position; // Get the spawn position from the spawn point
                     GameObject NPC = Instantiate(NPCObject, spawnPosition, Quaternion.identity);
-                    NPC.GetComponent<NPCBehavior>().SetSeat(seat); // Give NPC seat property
+                    NPCBehavior behavior = NPC.GetComponent<NPCBehavior>();
+                    
+                    behavior.SetSeat(seat); // Give NPC seat property
                     NPC.SetActive(true); // Show NPC
                     seat.GetComponent<NPCObjects>().SetOccupied(true); // Set seat as occupied
+
+                    // Initalize the drunk meter for the NPC
+                    GameObject meter = Instantiate(drunkMeter); 
+                    behavior.SetDrunkMeter(meter); // Set the drunk meter for the NPC
                     break;
                 }
             }
