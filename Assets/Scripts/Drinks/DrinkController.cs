@@ -20,7 +20,6 @@ public class DrinkController : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("Start was hit!");
         Player = GameObject.FindWithTag("Player");
         playerMovement = Player.GetComponent<PlayerMovement>();
         holdSpot = Player.transform.Find("boxHolder");
@@ -111,7 +110,6 @@ public class DrinkController : MonoBehaviour
 
     void DropItem()
     {
-        Debug.Log("Dropping item.");
         itemHolding.transform.position = transform.position + Direction;
         itemHolding.transform.parent = null;
         Rigidbody2D rb = itemHolding.GetComponent<Rigidbody2D>();

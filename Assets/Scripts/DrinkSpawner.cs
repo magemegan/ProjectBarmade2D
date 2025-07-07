@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class spawnDrink : MonoBehaviour
+public class DrinkSpawner : MonoBehaviour
 {
     public GameObject Drink;
     public Vector2 spawnPosition;
