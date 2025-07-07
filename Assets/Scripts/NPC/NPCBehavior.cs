@@ -32,6 +32,8 @@ public class NPCBehavior : MonoBehaviour
     {
         leavePoint = GameObject.Find("LeavePoint"); // good
         spriteRenderer = GetComponent<SpriteRenderer>();
+        drunkMeter = gameObject.transform.Find("DrunkMeter").gameObject; // Find the drunk meter in the NPC's hierarchy  
+        toxicBar = drunkMeter.transform.Find("ToxicBar").GetComponent<ToxicBar>();
     }
     
     void OnCollisionEnter2D(Collision2D collision)

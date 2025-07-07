@@ -15,8 +15,8 @@ public class spawnDrink : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Player"))
         {
-            Drink.SetActive(true);
-            Instantiate(Drink, spawnPosition, Quaternion.identity);
+            GameObject drinkClone = Instantiate(Drink, spawnPosition, Quaternion.identity);
+            drinkClone.SetActive(true); // Show the drink
         }
     }
 }

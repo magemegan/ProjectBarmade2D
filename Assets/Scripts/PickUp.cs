@@ -117,7 +117,7 @@ public class PickUp : MonoBehaviour
         //itemHolding.SetActive(false);
         itemHolding = null;
 
-        npc.GetComponent<NPCIteract>().AddDrink(10);
+        npc.GetComponent<NPCBehavior>().AddDrink(10);
 
 
     }

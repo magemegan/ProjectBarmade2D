@@ -11,7 +11,6 @@ public class SpawnerController : MonoBehaviour
     public int maxSpawnWait;
     public GameObject NPCObject;
     public GameObject spawnPoint;
-    public GameObject drunkMeter;
 
     void Start()
     {
@@ -37,9 +36,6 @@ public class SpawnerController : MonoBehaviour
                     NPC.SetActive(true); // Show NPC
                     seat.GetComponent<NPCObjects>().SetOccupied(true); // Set seat as occupied
 
-                    // Initalize the drunk meter for the NPC
-                    GameObject meter = Instantiate(drunkMeter); 
-                    behavior.SetDrunkMeter(meter); // Set the drunk meter for the NPC
                     break;
                 }
             }

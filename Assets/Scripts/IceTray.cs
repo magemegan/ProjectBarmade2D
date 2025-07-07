@@ -16,6 +16,10 @@ public class IceTray : MonoBehaviour
 
     void Update()
     {
+        if (!animator)
+        {
+            return;
+        }
         if (iceTrayVolume <= 100f && iceTrayVolume > 50f)
         {
             animator.SetBool("isHalfEmpty", false);
