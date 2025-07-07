@@ -16,13 +16,12 @@ public class NPCBehavior : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     // Interaction variables
-    [SerializeField] private float sobering = 1f;
-    [SerializeField] private float NPCTolerance = 0f;
-    [SerializeField] private float soberSeconds = 10f; // Time in seconds to sober up
-
+    private float sobering = 1f;
+    private float NPCTolerance = 0f;
+    private float soberSeconds = 10f; // Time in seconds to sober up
     private float soberTimer = 0f;
     private float currentDrunkness = 0;
-    public float maxDrunk = 100;
+    private float maxDrunk = 100;
     private GameObject drunkMeter;
     private ToxicBar toxicBar;
 
