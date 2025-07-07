@@ -23,8 +23,6 @@ public class BrokenGlass : MonoBehaviour
         playerMovement = Player.GetComponent<PlayerMovement>();
         holdSpot = Player.transform.Find("boxHolder");
         playerStats = Player.GetComponent<PlayerStats>();
-    //public NPCIteract toxicBar;
-    //public GameObject NPC;
     }
 
     void Update()
@@ -41,7 +39,6 @@ public class BrokenGlass : MonoBehaviour
                 }
                 else if(playerMovement.collidingWithDishwasher == false)
                 {
-                    //needs to be commented out for the glass to be a child of the dishwasher gameobject.
                     playerStats.changePickUp();
                     DropItem();
                 }
@@ -104,7 +101,7 @@ public class BrokenGlass : MonoBehaviour
     {
         Debug.Log("Handling collision with NPC.");
         Collider2D npcCollider = Physics2D.OverlapCircle(transform.position + Direction, 1f, npcMask);
-        if (npcCollider != null)
+        if (npcCollider != null && npcCollider.GetComponent<TrashCan>().fullness < 100f)
         {
             GiveItemToNpc(npcCollider);
         }

@@ -20,7 +20,6 @@ public class NPCBehavior : MonoBehaviour
         finished = false;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         chairs = GameObject.FindGameObjectsWithTag("Seat");
@@ -37,13 +36,11 @@ public class NPCBehavior : MonoBehaviour
         }
     }
 
-    //chairs[index].GetComponent<NPCObjects>().occupied = true; <- Code for future me to use to set a position as occupied
-    // Update is called once per frame
     void Update()
     {
         GameObject chairChoose = chairs[index];
-        Vector2 pointPos = chairChoose.transform.position; //Finds a designated GameObject
-        Vector2 position = transform.position; // NPC's position
+        Vector2 pointPos = chairChoose.transform.position;
+        Vector2 position = transform.position;
 
         if (finished == true){
             chairChoose = leavePoint;
@@ -106,14 +103,14 @@ public class NPCBehavior : MonoBehaviour
             }
         else{
                 chairs[index].GetComponent<NPCObjects>().occupied = false;
-        }//Prototype for leaving a space open after the NPC leaves. NPCS go a little crazy if occupied during their trip to a space.
+        }
 
         if (Input.GetKeyDown(KeyCode.Space)){
             finished = true;
             chairs[index].GetComponent<NPCObjects>().occupied = false;
             chairChoose = leavePoint;
             pointPos = chairChoose.transform.position;
-        } //Works, but affects all NPCs, which may just be something that we'll have to wait to fix.
+        } //Note: Will make all NPCS leave.
 
         transform.position = position;
     }

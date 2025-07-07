@@ -9,16 +9,14 @@ public class SpawnerController : MonoBehaviour
     public int changeInterval1;
     public int changeInterval2;
     public GameObject NPC;
-    public float time; //Reads time accurately without spamming the debug log. Will try to find a way to make it to debug, but for now this will work.
-    //You can view time by inspecting the Spawner GameObject.
-    // Start is called before the first frame update
+    
     void Start()
     {
         spawnNPC = true;
         startTime = startTime + Random.Range(changeInterval1, changeInterval2);
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         if (Mathf.Round(Time.time) == startTime && spawnNPC == true){
@@ -31,10 +29,5 @@ public class SpawnerController : MonoBehaviour
 
         startTime = startTime + Random.Range(changeInterval1, changeInterval2);
         }
-
-        time = Mathf.Round(Time.time);
-
-        // Debug.Log("Time Passed: " + Mathf.Round(Time.time));
-        // Leaving this here in case you want to see time on debug log. Reasoning above.
     }
 }

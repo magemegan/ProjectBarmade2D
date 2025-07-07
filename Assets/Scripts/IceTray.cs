@@ -8,7 +8,7 @@ public class IceTray : MonoBehaviour
     public float iceMachineVolume = 100f;
     [SerializeField] private Animator animator;
 
-    // Start is called before the first frame update
+    
     void Start()
     {
         
