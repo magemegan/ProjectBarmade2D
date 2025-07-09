@@ -442,6 +442,10 @@ PrefabInstance:
       propertyPath: currentDrunkness
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3376568374504104767, guid: 0c9aee871d8785241a0e771516711869, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1918082333
+      objectReference: {fileID: 0}
     - target: {fileID: 6736275309486422813, guid: 0c9aee871d8785241a0e771516711869, type: 3}
       propertyPath: m_Name
       value: originalNPC
@@ -450,7 +454,8 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1317083492290613372, guid: 0c9aee871d8785241a0e771516711869, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
