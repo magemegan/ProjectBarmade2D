@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Glass : MonoBehaviour
+public class Glass : MonoBehaviour // TODO: Rename to EmptyGlass
 {
     //determine if glass is clean or dirty
     public bool dirtyGlass = true; // TODO: This should be private and needs a getter/setter
