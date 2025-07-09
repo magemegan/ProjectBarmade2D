@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class NPCBehavior : MonoBehaviour
 {
+    // Movement variables
     bool moveHorizontally, moveVertically;
     GameObject[] chairs;
     GameObject leavePoint;
@@ -14,11 +15,24 @@ public class NPCBehavior : MonoBehaviour
     [SerializeField] private Animator animator;
     private SpriteRenderer spriteRenderer;
 
+    // Interaction variables
+    private float sobering = 1f;
+    private float NPCTolerance = 0f;
+    private float soberSeconds = 10f; // Time in seconds to sober up
+    private float soberTimer = 0f;
+    private float currentDrunkness = 0;
+    private float maxDrunk = 100;
+    private GameObject drunkMeter;
+    private ToxicBar toxicBar;
+
+
     // Start is called before the first frame update
     void Start()
     {
         leavePoint = GameObject.Find("LeavePoint"); // good
         spriteRenderer = GetComponent<SpriteRenderer>();
+        drunkMeter = gameObject.transform.Find("DrunkMeter").gameObject; // Find the drunk meter in the NPC's hierarchy  
+        toxicBar = drunkMeter.transform.Find("ToxicBar").GetComponent<ToxicBar>();
     }
     
     void OnCollisionEnter2D(Collision2D collision)
@@ -83,6 +97,25 @@ public class NPCBehavior : MonoBehaviour
         }
 
         transform.position = position;
+
+        // Handle intoxication
+        if (!moveVertically && !moveVertically) // Do not sober up while moving
+        {
+            drunkMeter.SetActive(true);
+            if (currentDrunkness > 0 && toxicBar)
+            {
+                if (soberTimer >= soberSeconds)
+                {
+                    currentDrunkness -= sobering;
+                    soberTimer = 0f;
+                }
+                else
+                {
+                    soberTimer += Time.deltaTime;
+                }
+                toxicBar.SetDrunkness(currentDrunkness);
+            }
+        }
     }
     
     public void SetSeat(GameObject seat)
@@ -107,5 +140,22 @@ public class NPCBehavior : MonoBehaviour
         if (Input.GetMouseButton(0)) {
             Leave();
         }
+    }
+
+    public void AddDrink(int drunk)
+    {
+        float initialToxic = Random.Range(5, drunk);
+        float reduceIntoxication = initialToxic * NPCTolerance;
+        float finalIntoxication = initialToxic - reduceIntoxication;
+
+        currentDrunkness = Mathf.Clamp(currentDrunkness + finalIntoxication, 0, maxDrunk);
+        toxicBar.SetDrunkness(currentDrunkness);
+    }
+
+    public void SetDrunkMeter(GameObject meter)
+    {
+        drunkMeter = meter;
+        meter.transform.parent = gameObject.transform; // Set the meter as a child of the NPC
+        toxicBar = drunkMeter.GetComponent<ToxicBar>();
     }
 }
