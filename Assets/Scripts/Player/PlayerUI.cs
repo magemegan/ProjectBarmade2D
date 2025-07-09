@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class PlayerUI : MonoBehaviour
 {
-    public GameObject accessStationText;
+    public GameObject accessStationText; // TODO: Simplify variables
     public GameObject DrinkStationUI;
     public GameObject DialogueUI;
     public TextMeshProUGUI npcNameText;
@@ -20,19 +20,13 @@ public class PlayerUI : MonoBehaviour
     private bool DrinkStationOn = false;
 
     //It’s a placeholder for “what to do when a player clicks a choice button."
-    private System.Action<int> currentChoiceCallback;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private System.Action<int> currentChoiceCallback; // TODO: This should be handled in dialogue script, not here
 
     // Update is called once per frame
     void Update()
     {
         //Access Drink Mixing Station
-        if(Input.GetKeyDown(KeyCode.E) && CanAccessDrinkStation && !DrinkStationOn) {
+        if(Input.GetKeyDown(KeyCode.E) && CanAccessDrinkStation && !DrinkStationOn) { // TODO: Remove Game functionality from UI code
             DrinkStationUI.SetActive(true);
             gameObject.GetComponent<PlayerMovement>().movementEnabled = false;
             DrinkStationOn = true;
@@ -46,7 +40,7 @@ public class PlayerUI : MonoBehaviour
     }
 
     //This function is called to show the dialogue text without choices
-    public void ShowDialogue(string npcName, string message)
+    public void ShowDialogue(string npcName, string message) // TODO: We should not be handling this here
     {
         DialogueUI.SetActive(true);
         gameObject.GetComponent<PlayerMovement>().movementEnabled = false;
@@ -55,7 +49,7 @@ public class PlayerUI : MonoBehaviour
         choicesPanel.SetActive(false);
     }
 
-    public void HideDialogue()
+    public void HideDialogue() // TODO: We should not be handling this here
     {
         DialogueUI.SetActive(false);  // Hides the whole dialogue panel
         choicesPanel.SetActive(false);   // Hides the choices if they’re visible
@@ -63,7 +57,7 @@ public class PlayerUI : MonoBehaviour
     }
 
     //This function is called when the player chooses a dialogue option with choices
-    public void ShowChoices(string[] choices, System.Action<int> onChoiceSelected)
+    public void ShowChoices(string[] choices, System.Action<int> onChoiceSelected) // TODO: We should not be handling this here
     {
         choicesPanel.SetActive(true);
         currentChoiceCallback = onChoiceSelected;
@@ -96,13 +90,13 @@ public class PlayerUI : MonoBehaviour
     }
 
     //This function is called when the player selects a choice from the dialogue options
-    private void OnChoiceSelected(int index)
+    private void OnChoiceSelected(int index) // TODO: Again, there should be a seperate DialogueUI script handling this
     {
         choicesPanel.SetActive(false);
         currentChoiceCallback?.Invoke(index);
     }
 
-    void OnCollisionEnter2D(Collision2D other) {
+    void OnCollisionEnter2D(Collision2D other) { // TODO: Why is a UI script handling collisions??
         if (other.gameObject.CompareTag("DrinkStation")) {
             accessStationText.SetActive(true);
             CanAccessDrinkStation = true;

@@ -1,13 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+// MAJOR TODO: This script needs to be renamed to DraftBeerMachine
 public class DraftBeerMachine : MonoBehaviour
 {
     public GameObject beerSelectionUI; // Assign the UI Panel in the Inspector
-    public Text logText; // Assign a Text UI element to display selected beer
+    public Text logText; // Assign a Text UI element to display selected beer 
 
-    private bool isPlayerNear = false;
-    private string[] beers = { "Lager", "IPA", "Stout", "Pilsner", "Porter", "Wheat Beer", "Amber Ale", "Pale Ale" };
+    private bool isPlayerNear = false; // TODO: this should be removed. We should have a central way of detecting player
+    private string[] beers = { "Lager", "IPA", "Stout", "Pilsner", "Porter", "Wheat Beer", "Amber Ale", "Pale Ale" }; // TODO: We should not be storing beer information in the script. 
 
     void Update()
     {
@@ -33,6 +34,7 @@ public class DraftBeerMachine : MonoBehaviour
         beerSelectionUI.SetActive(true);
     }
 
+    // TODO: Code below should be replaced with connection to InteractionController
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Player"))

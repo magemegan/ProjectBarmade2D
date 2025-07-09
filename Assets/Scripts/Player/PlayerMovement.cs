@@ -5,23 +5,22 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private PickUp pickUp;
-    public float moveSpeed;
-    Rigidbody2D rb;
+    public float moveSpeed; // TODO: Serialzie
+    Rigidbody2D rb; // TODO: Needs to be renamed 
     private Vector2 movement;
+    // TODO: Either make private or serialize variables below
     public bool movementEnabled;
-    public bool collidingWithDishwasher = false;
-    public bool touchingSink = false;
+    public bool collidingWithDishwasher = false; // TODO: We should not be handling this here
+    public bool touchingSink = false; // TODO: We should not be handling this here
 
-    private Animator mAnimator;
+    private Animator mAnimator; // TODO: rename
 
     // Start is called before the first frame update
     void Start()
     {
         // Interactable setup
         pickUp = gameObject.GetComponent<PickUp>();
-        //pickUp.Direction = new Vector2(0, -1);
         rb = GetComponent<Rigidbody2D>();
-        // Get animator
         mAnimator = GetComponent<Animator>();
     }
 
@@ -29,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         // Get keyboard input
-        movement.x = Input.GetAxisRaw("Horizontal");
+        movement.x = Input.GetAxisRaw("Horizontal"); // TODO: These should be put in a function
         movement.y = Input.GetAxisRaw("Vertical");
         // Discover what the player is looking at
         if (movement.sqrMagnitude > .1f)
@@ -39,38 +38,17 @@ public class PlayerMovement : MonoBehaviour
 
         movement = movement.normalized;// Normalize movement to prevent faster diagonal movement
 
-        // Handle animations
-        if (mAnimator)
+        // Handle animations 
+        if (mAnimator) // TODO: Handle animations should be in a function
         {
             mAnimator.SetBool("isBack", Input.GetKey(KeyCode.W));
             mAnimator.SetBool("isRight", Input.GetKey(KeyCode.D));
             mAnimator.SetBool("isForward", Input.GetKey(KeyCode.S));
             mAnimator.SetBool("isLeft", Input.GetKey(KeyCode.A));
-            //mAnimator.SetBool("isIdle", !(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A)));
-            /*if (Input.GetKey(KeyCode.W))
-            {
-                mAnimator.SetTrigger("GoBack");
-            }
-            else if (Input.GetKey(KeyCode.D))
-            {
-                mAnimator.SetTrigger("GoRight");
-            }
-            else if (Input.GetKey(KeyCode.S))
-            {
-                mAnimator.SetTrigger("GoForward");
-            }
-            else if (Input.GetKey(KeyCode.A))
-            {
-                mAnimator.SetTrigger("GoLeft");
-            }
-            else
-            {
-                mAnimator.SetTrigger("Idle");
-            }*/
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision) // TODO: Just delete these
     {
         if (collision.gameObject.CompareTag("Dishwasher"))
         {
@@ -97,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    void FixedUpdate()
+    void FixedUpdate() // TODO: what is this???? Clarify
     {
         if(movementEnabled) {
             rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);

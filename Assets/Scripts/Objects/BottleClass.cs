@@ -4,9 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class BottleClass : MonoBehaviour, IPointerClickHandler
+
+// TODO: How is this being used
+public class BottleClass : MonoBehaviour, IPointerClickHandler // TODO: Rename 
 {
-    public enum DrinkType { Soda, Alcohol }
+    public enum DrinkType { Soda, Alcohol } // TODO: This seems like a weird way to store information. We should think about maybe making a DrinkType class? 
     public DrinkType drinkType;
 
     public enum SodaType {Cola, Sprite, Gingerale }
@@ -20,7 +22,7 @@ public class BottleClass : MonoBehaviour, IPointerClickHandler
 
     private bool holdingDrink;
 
-    Camera camera;
+    Camera camera; // TODO: Nees to be renamed
 
     private void OnValidate()
     {

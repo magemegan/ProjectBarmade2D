@@ -44,7 +44,7 @@ public class NPCBehavior : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void Update() // TODO: We should remove behavior from Update and put into functions
     {
         if (!seat) { return; }
 
@@ -144,8 +144,8 @@ public class NPCBehavior : MonoBehaviour
 
     public void AddDrink(int drunk)
     {
-        float initialToxic = Random.Range(5, drunk);
-        float reduceIntoxication = initialToxic * NPCTolerance;
+        float initialToxic = Random.Range(5, drunk); // TODO: rename variable to be more clear
+        float reduceIntoxication = initialToxic * NPCTolerance; // TODO: rename variable
         float finalIntoxication = initialToxic - reduceIntoxication;
 
         currentDrunkness = Mathf.Clamp(currentDrunkness + finalIntoxication, 0, maxDrunk);

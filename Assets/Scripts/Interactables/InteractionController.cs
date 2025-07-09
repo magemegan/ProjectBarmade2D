@@ -8,7 +8,7 @@ using UnityEngine.Events;
 
 public class ItemInteraction : MonoBehaviour
 {
-    public UnityEvent OnBoxCollide;
+    public UnityEvent OnBoxCollide; // TODO: Perhaps these should be serialized? 
     public UnityEvent OnBoxExit;
     public UnityEvent OnItemInteraction;
     public UnityEvent OnItemDisable;
@@ -69,3 +69,6 @@ public class ItemInteraction : MonoBehaviour
         }
     }
 }
+
+
+// TODO: Maybe hae public or serialized bool to display UI that says "Show {keybind} to Interact"

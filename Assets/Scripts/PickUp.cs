@@ -4,7 +4,8 @@ using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PickUp : MonoBehaviour
+// TODO: Pick up functionality should be moved into DrinkController and HoldableObject then deprecated
+public class PickUp : MonoBehaviour // TODO: PickUp is a misleading class name
 {
     public Transform holdSpot;
     public LayerMask pickUpMask;
@@ -21,8 +22,6 @@ public class PickUp : MonoBehaviour
         Player = GameObject.FindWithTag("Player");
         playerMovement = Player.GetComponent<PlayerMovement>();
         holdSpot = Player.transform.Find("boxHolder");
-    //public NPCIteract toxicBar;
-    //public GameObject NPC;
     }
 
     void Update()

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SpawnerController : MonoBehaviour
 {
-    private int executeTime;
+    private int executeTime; // TODO: Unclear variable name
     
     public int minSpawnWait;
     public int maxSpawnWait;
@@ -23,11 +23,12 @@ public class SpawnerController : MonoBehaviour
     {
         if (Mathf.RoundToInt(Time.time) == executeTime){
             // Check for open seat
-            foreach (GameObject seat in GameObject.FindGameObjectsWithTag("Seat"))
+            foreach (GameObject seat in GameObject.FindGameObjectsWithTag("Seat")) // TODO: This could be a function bool isSeatAvaliable()
             {
                 // Check if the seat is occupied
                 if (!seat.GetComponent<NPCObjects>().GetOccupied())
                 {
+                    // TODO: This should be a function
                     Vector2 spawnPosition = spawnPoint.transform.position; // Get the spawn position from the spawn point
                     GameObject NPC = Instantiate(NPCObject, spawnPosition, Quaternion.identity);
                     NPCBehavior behavior = NPC.GetComponent<NPCBehavior>();
