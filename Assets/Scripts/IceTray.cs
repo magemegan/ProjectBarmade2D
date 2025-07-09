@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class IceTray : MonoBehaviour
 {
-    public float iceTrayVolume = 0f;
+    public float iceTrayVolume = 0f; // TODO: Instead of being public we should have a getter/setter. 
     public float iceMachineVolume = 100f;
     [SerializeField] private Animator animator;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     void Update()
     {
@@ -22,7 +17,7 @@ public class IceTray : MonoBehaviour
         }
         if (iceTrayVolume <= 100f && iceTrayVolume > 50f)
         {
-            animator.SetBool("isHalfEmpty", false);
+            animator.SetBool("isHalfEmpty", false); // TODO: This can definetley be optimized. Also this should be in a function not in the update function
             animator.SetBool("isFull", true);
         }
         else if (iceTrayVolume <= 50f && iceTrayVolume > 0f)
@@ -36,6 +31,7 @@ public class IceTray : MonoBehaviour
             animator.SetBool("isFull", false);
         }
 
+        // TODO: IceTray should inherit from interaction controller. Therefore we will also need private void increaseTrayVolume(amount) and decreaseTrayVolume(amount)
         if (Input.GetKeyDown(KeyCode.E)){ //temp way to increase value
             if (iceTrayVolume < 100f)
             {

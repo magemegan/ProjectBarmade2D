@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // THIS SCRIPT IS DEPRECATED AFTER MERGE WITH NPCBehavior.cs
+// TODO: Prepare to delete script and remove dependencies from project
 public class NPCIteract : MonoBehaviour
 {
     [SerializeField]private float sobering = 1f;

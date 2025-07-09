@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerIce : MonoBehaviour
+// TODO: Make clear the difference between ice tray and ice machine 
+public class PlayerIce : MonoBehaviour // TODO: What is the purpose of this script? Should it be renamed IceMachineController?
 {
     public bool withIce = false;
     public GameObject Icetray;
     public GameObject IceMachine;
 
-    private bool CollidingWithIceTray = false;
+    private bool CollidingWithIceTray = false; // TODO: We should not be handling collisions here
     private bool CollidingWithIceMachine = false;
 
     // Start is called before the first frame update
@@ -41,6 +42,7 @@ public class PlayerIce : MonoBehaviour
         }
     }
 
+    // TODO: Should be using InteractionController
     void OnCollisionEnter2D(Collision2D other)
     {
 
@@ -61,7 +63,7 @@ public class PlayerIce : MonoBehaviour
         {
             CollidingWithIceTray = false;
         }
-        if (other.gameObject.CompareTag("Ice Machine"))
+        if (other.gameObject.CompareTag("Ice Machine")) // TODO: Make difference between ice machine and ice tray clear
         {
             CollidingWithIceMachine = false;
         }

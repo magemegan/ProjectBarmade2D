@@ -35,10 +35,4 @@ public class ToxicBar : MonoBehaviour
         fill.color = gradient.Evaluate(slider.normalizedValue);
         faceAnimator.SetFloat("drunkness", toxic);
     }
-
-    //private void CheckGradientAmount()
-    //{
-    //    fillColor.color = gradient.Evaluate(target);
-    //}
-
 }

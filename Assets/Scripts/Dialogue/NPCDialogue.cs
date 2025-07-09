@@ -5,15 +5,16 @@ using UnityEngine.UI;
 
 public class NPCDialogue : MonoBehaviour
 {
-    public DialogueData dialogueData; // Reference to the DialogueData scriptable object
-    public PlayerUI playerUI; // Reference to the PlayerUI script
+    // TODO: We should have this be serialized
+    public DialogueData dialogueData; // Reference to the DialogueData scriptable object 
+    public PlayerUI playerUI; // Reference to the PlayerUI script // TODO: Is there a better way to do this? 
     public string npcName; // Name of the NPC
-    private bool playerInRange = false;
+    private bool playerInRange = false; // TODO: We should NOT be handling collisions in this script
     private int currentNode = 0; // Current node in the dialogue tree
 
     void Update()
     {
-        if (playerInRange && Input.GetKeyDown(KeyCode.E))
+        if (playerInRange && Input.GetKeyDown(KeyCode.E)) // TODO: Use InteractionController
         {
             StartConversation();
         }
@@ -21,7 +22,7 @@ public class NPCDialogue : MonoBehaviour
 
     public void StartConversation()
     {
-        playerUI.HidePressE();
+        playerUI.HidePressE(); // TODO: This functionality should be hidden. Maybe disableOtherUI
         currentNode = 0;
         ShowCurrentNode();
     }
@@ -70,7 +71,7 @@ public class NPCDialogue : MonoBehaviour
         playerUI.HideDialogue();
     }
 
-    void OnCollisionEnter2D(Collision2D other)
+    void OnCollisionEnter2D(Collision2D other) // TODO: This will be unnecessary with use of InteractionController
     {
         if (other.gameObject.CompareTag("Player"))
         {

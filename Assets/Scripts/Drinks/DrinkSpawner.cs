@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class spawnDrink : MonoBehaviour
+public class DrinkSpawner : MonoBehaviour
 {
     public GameObject Drink;
     public Vector2 spawnPosition;
@@ -12,7 +12,6 @@ public class spawnDrink : MonoBehaviour
     // Update is called once per frame
     void OnCollisionEnter2D(Collision2D collision)
     {
-
         if (collision.gameObject.CompareTag("Player"))
         {
             GameObject drinkClone = Instantiate(Drink, spawnPosition, Quaternion.identity);
