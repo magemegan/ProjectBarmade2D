@@ -11,33 +11,25 @@ public class DrinkMixing : MonoBehaviour, IPointerClickHandler
     public GameObject[] SodaBottles;
 
     [Header("Ice Values")]
-    [SerializeField]
-    private GameObject iceTray;
-    private float iceVolume;
-    [SerializeField]
-    private GameObject iceSprite;
-    [SerializeField]
-    private Transform iceTrayUI;
-    [SerializeField]
-    private float objPositionOffset = 30f;
+    [SerializeField] private GameObject iceTray;
+    [SerializeField] private GameObject iceSprite;
+    [SerializeField] private Transform iceTrayUI;
+    [SerializeField] private float spriteOffset = 30f;//Margin between individual lime/ice sprites positions
 
     [Header("Ice Values")]
-    [SerializeField]
-    private int limesVolume;
-    [SerializeField]
-    private GameObject limeSprite;
-    [SerializeField]
-    private Transform limeTrayUI;
+    [SerializeField] private int limesVolume;
+    [SerializeField] private GameObject limeSprite;
+    [SerializeField] private Transform limeTrayUI;
 
 
     // Start is called before the first frame update
     void Start()
     {
         //Spawn ice cubes in the tray based on the ice tray volume
-        populateTray(iceTray.GetComponent<IceTray>().iceTrayVolume, iceTrayUI, iceSprite);
+        PopulateTray(iceTray.GetComponent<IceTray>().iceTrayVolume, iceTrayUI, iceSprite);
 
         //Spawn limes in the tray based on the lime tray volume
-        populateTray(limesVolume, limeTrayUI, limeSprite);
+        PopulateTray(limesVolume, limeTrayUI, limeSprite);
     }
 
     // Update is called once per frame
@@ -51,7 +43,7 @@ public class DrinkMixing : MonoBehaviour, IPointerClickHandler
         Debug.Log("UI Image clicked: " + gameObject.name);
     }
 
-    private void populateTray(float volume, Transform UI, GameObject sprite) {
+    private void PopulateTray(float volume, Transform UI, GameObject sprite) {
         float containerWidth = UI.GetComponent<RectTransform>().rect.width;
         float containerHeight = UI.GetComponent<RectTransform>().rect.height;
         float xCounter = 0f;
@@ -63,12 +55,12 @@ public class DrinkMixing : MonoBehaviour, IPointerClickHandler
             if(xCounter < containerWidth) {//Fill line with ice
                 float randomRotation = Random.Range(0f, 360f);
                 GameObject obj = Instantiate(sprite, position, Quaternion.Euler(0,0,randomRotation), UI);
-                position.x += objPositionOffset;
+                position.x += spriteOffset;
                 obj.SetActive(true);
-                xCounter += objPositionOffset;
+                xCounter += spriteOffset;
             } else if(yCounter < containerHeight) {//Start generating ice on a new line
-                yCounter += objPositionOffset;
-                position.y += objPositionOffset;
+                yCounter += spriteOffset;
+                position.y += spriteOffset;
                 position.x = ogPosition.x;
                 xCounter = 0f;
             }

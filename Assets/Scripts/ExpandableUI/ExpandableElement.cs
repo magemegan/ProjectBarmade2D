@@ -13,21 +13,18 @@ public class ExpandableElement : MonoBehaviour, IPointerClickHandler
     [SerializeField] private float expandedHeight = 200f;
     [SerializeField] private float animationDuration = 0.3f;
     [SerializeField] private AnimationCurve animationCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
-    
     [Header("References")]
     [SerializeField] private ExpandableUIManager uiManager;
-    
     private RectTransform rectTransform;
     private bool isExpanded = false;
     private Coroutine animationCoroutine;
-
     [SerializeField] private GameObject recipeContainer;
-
     [SerializeField] private GameObject drinkTitle;
     [SerializeField] private GameObject drinkDescription;
     
     private void Awake()
     {
+        //Get collider size of recipe box
         rectTransform = GetComponent<RectTransform>();
 
         rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, collapsedHeight);
@@ -56,10 +53,10 @@ public class ExpandableElement : MonoBehaviour, IPointerClickHandler
             isExpanded ? expandedHeight : collapsedHeight
         ));
 
-        StartCoroutine(switchText());
+        StartCoroutine(SwitchText());
     }
 
-    IEnumerator switchText()
+    IEnumerator SwitchText()
     {
         yield return new WaitForSeconds(0.1f); 
         // Disable the drink title
@@ -94,7 +91,7 @@ public class ExpandableElement : MonoBehaviour, IPointerClickHandler
                 collider.size = new Vector2(rectTransform.rect.width, newHeight);
             }
 
-            // Notify the manager that our size changed
+            // Notify the manager that element size changed
             if (uiManager != null)
             {
                 uiManager.ElementSizeChanged(gameObject);
@@ -103,7 +100,7 @@ public class ExpandableElement : MonoBehaviour, IPointerClickHandler
             yield return null;
         }
 
-        // Make sure element stops end at exactly the target height
+        // Make sure element stops expanding at exactly the target height
         rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, targetHeight);
 
         if (TryGetComponent<BoxCollider2D>(out var finalCollider))
