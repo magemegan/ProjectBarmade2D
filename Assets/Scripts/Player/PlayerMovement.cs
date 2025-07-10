@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private PickUp pickUp;
     public float moveSpeed; // TODO: Serialzie
     Rigidbody2D rb; // TODO: Needs to be renamed 
     private Vector2 movement;
@@ -19,7 +18,6 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         // Interactable setup
-        pickUp = gameObject.GetComponent<PickUp>();
         rb = GetComponent<Rigidbody2D>();
         mAnimator = GetComponent<Animator>();
     }

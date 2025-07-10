@@ -29,9 +29,9 @@ public class NPCBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        leavePoint = GameObject.Find("LeavePoint"); // good
+        leavePoint = GameObject.Find("LeavePoint"); 
         spriteRenderer = GetComponent<SpriteRenderer>();
-        drunkMeter = gameObject.transform.Find("DrunkMeter").gameObject; // Find the drunk meter in the NPC's hierarchy  
+        drunkMeter = gameObject.transform.Find("DrunkMeter").gameObject; 
         toxicBar = drunkMeter.transform.Find("ToxicBar").GetComponent<ToxicBar>();
     }
     
@@ -43,11 +43,17 @@ public class NPCBehavior : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update() // TODO: We should remove behavior from Update and put into functions
+    void Update() 
     {
         if (!seat) { return; }
 
+        DetermineDirection();
+        MoveNPC();
+        HandleIntoxication();   
+    }
+    
+    private void DetermineDirection()
+    {
         if (!moveVertically && Mathf.Round(position.x) != Mathf.Round(destination.x))
         {
             moveHorizontally = true;
@@ -61,44 +67,52 @@ public class NPCBehavior : MonoBehaviour
 
         if (Mathf.Round(position.x) == Mathf.Round(destination.x)) moveHorizontally = false;
         if (Mathf.Round(position.y) == Mathf.Round(destination.y)) moveVertically = false;
-
-
-        if (moveHorizontally){
+    }
+    private void MoveNPC()
+    {
+        if (moveHorizontally)
+        {
             animator.SetBool("isDown", false);
             animator.SetBool("isUp", false);
-            if (position.x > destination.x){
+            if (position.x > destination.x)
+            {
                 position.x = position.x - 0.01f;
                 spriteRenderer.flipX = false;
                 animator.SetBool("isHorizontal", true);
             }
-            else{
+            else
+            {
                 position.x = position.x + 0.01f;
                 spriteRenderer.flipX = true;
                 animator.SetBool("isHorizontal", true);
             }
         }
-        else if (moveVertically){
+        else if (moveVertically)
+        {
             animator.SetBool("isHorizontal", false);
-            if (position.y > destination.y){
+            if (position.y > destination.y)
+            {
                 position.y = position.y - 0.01f;
                 animator.SetBool("isDown", true);
             }
-            else{
+            else
+            {
                 position.y = position.y + 0.01f;
                 animator.SetBool("isUp", true);
-            }      
+            }
         }
 
         if (Mathf.Round(position.x) == Mathf.Round(destination.x) && Mathf.Round(destination.y) == Mathf.Round(position.y))
         {
-                animator.SetBool("isHorizontal", false);
-                animator.SetBool("isDown", false);
-                animator.SetBool("isUp", false);
+            animator.SetBool("isHorizontal", false);
+            animator.SetBool("isDown", false);
+            animator.SetBool("isUp", false);
         }
 
         transform.position = position;
-
-        // Handle intoxication
+    }
+    private void HandleIntoxication()
+    {
         if (!moveVertically && !moveVertically) // Do not sober up while moving
         {
             drunkMeter.SetActive(true);
@@ -117,7 +131,6 @@ public class NPCBehavior : MonoBehaviour
             }
         }
     }
-    
     public void SetSeat(GameObject seat)
     {
         this.seat = seat;
@@ -142,14 +155,32 @@ public class NPCBehavior : MonoBehaviour
         }
     }
 
-    public void AddDrink(int drunk)
+    public void GiveDrink()
     {
-        float initialToxic = Random.Range(5, drunk); // TODO: rename variable to be more clear
-        float reduceIntoxication = initialToxic * NPCTolerance; // TODO: rename variable
-        float finalIntoxication = initialToxic - reduceIntoxication;
+        ItemHolder holder = GameObject.FindWithTag("Player").GetComponentInChildren<ItemHolder>();
+        if (holder.IsEmpty())
+        {
+            Debug.Log("Player is not holding a drink.");
+            return;
+        }
+        GameObject drink = holder.TakeObject(); // Take the drink from the player
+        DrinkController drinkController = drink.GetComponent<DrinkController>();
 
-        currentDrunkness = Mathf.Clamp(currentDrunkness + finalIntoxication, 0, maxDrunk);
-        toxicBar.SetDrunkness(currentDrunkness);
+        if (drinkController)
+        {
+            float alcoholPercentage = drinkController.GetAlcoholPercentage();
+            float initalIntoxication = Random.Range(5, alcoholPercentage);
+            float reducedIntoxication = initalIntoxication * NPCTolerance; 
+            float finalIntoxication = initalIntoxication - reducedIntoxication;
+
+            currentDrunkness = Mathf.Clamp(currentDrunkness + finalIntoxication, 0, maxDrunk);
+            toxicBar.SetDrunkness(currentDrunkness);
+            Destroy(drink);
+        }
+        else
+        {
+            holder.GiveObject(drink);
+        }
     }
 
     public void SetDrunkMeter(GameObject meter)
