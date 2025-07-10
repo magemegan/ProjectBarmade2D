@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class EmptyGlass : MonoBehaviour // TODO: Rename to EmptyGlass
 {
-    //determine if glass is clean or dirty
-    public bool dirtyGlass = true; // TODO: This should be private and needs a getter/setter
+    private bool isDirty = true; 
+
+    bool IsDirty
+    {
+        get { return isDirty; }
+        set { isDirty = value; }
+    }
 }
 
 // TODO: This should inherit from a HoldableObject class and have behavior allowing it to interact with player holder
