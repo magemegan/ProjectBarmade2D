@@ -2,14 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EmptyGlass : MonoBehaviour // TODO: Rename to EmptyGlass
+public class EmptyGlass : MonoBehaviour 
 {
     private bool isDirty = true; 
 
-    bool IsDirty
+    public bool IsDirty()
     {
-        get { return isDirty; }
-        set { isDirty = value; }
+        return isDirty;
+    }
+    public void SetDirty(bool dirty)
+    {
+        isDirty = dirty;
     }
 }
 
