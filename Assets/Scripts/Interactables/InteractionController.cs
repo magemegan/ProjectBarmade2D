@@ -6,15 +6,15 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
-public class ItemInteraction : MonoBehaviour
+public class InteractionController : MonoBehaviour
 {
-    public UnityEvent OnBoxCollide; // TODO: Perhaps these should be serialized? 
-    public UnityEvent OnBoxExit;
-    public UnityEvent OnItemInteraction;
-    public UnityEvent OnItemDisable;
-    public UnityEvent ItemInteractionChecks;
+    [SerializeField] UnityEvent OnBoxCollide;
+    [SerializeField] UnityEvent OnBoxExit;
+    [SerializeField] UnityEvent OnItemInteraction;
+    [SerializeField] UnityEvent OnItemDisable;
 
-    public KeyCode KEYBIND = KeyCode.E;
+    [SerializeField] KeyCode KEYBIND = KeyCode.E;
+
     private bool isColliding = false;
     private bool isInteracting = false;
 
@@ -69,6 +69,3 @@ public class ItemInteraction : MonoBehaviour
         }
     }
 }
-
-
-// TODO: Maybe hae public or serialized bool to display UI that says "Show {keybind} to Interact"

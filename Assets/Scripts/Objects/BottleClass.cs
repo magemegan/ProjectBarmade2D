@@ -22,7 +22,7 @@ public class BottleClass : MonoBehaviour, IPointerClickHandler // TODO: Rename
 
     private bool holdingDrink;
 
-    Camera camera; // TODO: Nees to be renamed
+    Camera currCamera; // TODO: Nees to be renamed
 
     private void OnValidate()
     {
@@ -46,14 +46,14 @@ public class BottleClass : MonoBehaviour, IPointerClickHandler // TODO: Rename
     {
         Debug.Log(sodaType);
         Debug.Log(alcoholType);
-        camera = Camera.main;
+        currCamera = Camera.main;
     }
 
     void Update()
     {
         if(holdingDrink) 
         {
-            Vector3 cameraPos = camera.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 cameraPos = currCamera.ScreenToWorldPoint(Input.mousePosition);
         }
     }
 

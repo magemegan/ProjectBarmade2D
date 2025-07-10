@@ -57,8 +57,6 @@ GameObject:
   - component: {fileID: 3451729276040701891}
   - component: {fileID: 1999667677574172935}
   - component: {fileID: 7050554847071207232}
-  - component: {fileID: 4059699815235199484}
-  - component: {fileID: -4688643857245281732}
   - component: {fileID: 4038636709789616615}
   - component: {fileID: 5651147102646050334}
   m_Layer: 3
@@ -222,28 +220,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   movementEnabled: 1
-  collidingWithDishwasher: 0
-  touchingSink: 0
---- !u!114 &4059699815235199484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2517165572418356126}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ae410f9c9eb97442becb1fcda768af2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  accessStationText: {fileID: 0}
-  DrinkStationUI: {fileID: 0}
-  DialogueUI: {fileID: 0}
-  npcNameText: {fileID: 0}
-  dialogueText: {fileID: 0}
-  choicesPanel: {fileID: 0}
-  choiceButtons: []
-  pressEText: {fileID: 0}
 --- !u!114 &4038636709789616615
 MonoBehaviour:
   m_ObjectHideFlags: 0
