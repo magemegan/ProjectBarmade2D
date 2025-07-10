@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class ClockTimer : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI timerText;
-    float elapsedTime;
+    float elapsedTime; // TODO: This is not being intialized??????
     public float timeMultiplier = 60f; // This will make time pass 60x faster than real time
 
     void Update()
@@ -27,3 +27,5 @@ public class ClockTimer : MonoBehaviour
         timerText.text = string.Format("{0:00}:{1:00} {2}", displayHour, minutes, period);
     }
 }
+
+// TODO: there should be a seperate function(s) that does time conversions and returns a string. 
