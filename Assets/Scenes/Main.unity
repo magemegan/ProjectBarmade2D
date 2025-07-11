@@ -3983,8 +3983,7 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0.43
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4059699815235199484, guid: e04199e1ed205d543bf64400145e8536, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -18696,7 +18695,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5974582604059920504, guid: 9f09d979829b69b4fb1e2b4f9691b194, type: 3}
       propertyPath: m_SortingLayer
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5974582604059920504, guid: 9f09d979829b69b4fb1e2b4f9691b194, type: 3}
       propertyPath: m_SortingOrder
@@ -18713,7 +18712,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6850894631726771810, guid: 9f09d979829b69b4fb1e2b4f9691b194, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1305756493}
+    - targetCorrespondingSourceObject: {fileID: 6850894631726771810, guid: 9f09d979829b69b4fb1e2b4f9691b194, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1305756492}
   m_SourcePrefab: {fileID: 100100000, guid: 9f09d979829b69b4fb1e2b4f9691b194, type: 3}
 --- !u!1 &1131240902
 GameObject:
@@ -22531,6 +22536,60 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1305756488 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6850894631726771810, guid: 9f09d979829b69b4fb1e2b4f9691b194, type: 3}
+  m_PrefabInstance: {fileID: 1113550708}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1305756492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305756488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a960b71bb8272e843a2dee352137fd39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnBoxCollide:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBoxExit:
+    m_PersistentCalls:
+      m_Calls: []
+  OnItemInteraction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1305756493}
+        m_TargetAssemblyTypeName: Freezer, Assembly-CSharp
+        m_MethodName: GetIce
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnItemDisable:
+    m_PersistentCalls:
+      m_Calls: []
+  KEYBIND: 101
+--- !u!114 &1305756493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305756488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0827bf1457b203b47b8b2393f445ad24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1310867703
 GameObject:
   m_ObjectHideFlags: 0
@@ -25779,13 +25838,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3988388173933247666, guid: 3f9378a72bff95d4190f07d7d928e8eb, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1674904303}
     - target: {fileID: 5886516896920566922, guid: 3f9378a72bff95d4190f07d7d928e8eb, type: 3}
       propertyPath: m_Name
       value: Ice Tray
       objectReference: {fileID: 0}
     - target: {fileID: 6212929377427966136, guid: 3f9378a72bff95d4190f07d7d928e8eb, type: 3}
       propertyPath: m_SortingLayer
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6212929377427966136, guid: 3f9378a72bff95d4190f07d7d928e8eb, type: 3}
       propertyPath: m_SortingOrder
@@ -25838,7 +25901,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5886516896920566922, guid: 3f9378a72bff95d4190f07d7d928e8eb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1674904309}
+    - targetCorrespondingSourceObject: {fileID: 5886516896920566922, guid: 3f9378a72bff95d4190f07d7d928e8eb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1674904308}
   m_SourcePrefab: {fileID: 100100000, guid: 3f9378a72bff95d4190f07d7d928e8eb, type: 3}
 --- !u!1 &1562689491
 GameObject:
@@ -28947,6 +29016,101 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1674904302 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5886516896920566922, guid: 3f9378a72bff95d4190f07d7d928e8eb, type: 3}
+  m_PrefabInstance: {fileID: 1555972654}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1674904303 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3543777900486321705, guid: 3f9378a72bff95d4190f07d7d928e8eb, type: 3}
+  m_PrefabInstance: {fileID: 1555972654}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1674904304 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3988388173933247666, guid: 3f9378a72bff95d4190f07d7d928e8eb, type: 3}
+  m_PrefabInstance: {fileID: 1555972654}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1674904302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b852a842c0a4d9b4c9c0a28242c3486f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1674904308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1674904302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a960b71bb8272e843a2dee352137fd39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnBoxCollide:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBoxExit:
+    m_PersistentCalls:
+      m_Calls: []
+  OnItemInteraction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1674904304}
+        m_TargetAssemblyTypeName: IceTray, Assembly-CSharp
+        m_MethodName: EmptyTray
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 100
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnItemDisable:
+    m_PersistentCalls:
+      m_Calls: []
+  KEYBIND: 113
+--- !u!114 &1674904309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1674904302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a960b71bb8272e843a2dee352137fd39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnBoxCollide:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBoxExit:
+    m_PersistentCalls:
+      m_Calls: []
+  OnItemInteraction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1674904304}
+        m_TargetAssemblyTypeName: IceTray, Assembly-CSharp
+        m_MethodName: CheckForIce
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnItemDisable:
+    m_PersistentCalls:
+      m_Calls: []
+  KEYBIND: 101
 --- !u!1 &1690517281
 GameObject:
   m_ObjectHideFlags: 0
@@ -31079,7 +31243,6 @@ GameObject:
   - component: {fileID: 1865863318}
   - component: {fileID: 1865863317}
   - component: {fileID: 1865863316}
-  - component: {fileID: 1865863315}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -31087,20 +31250,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &1865863315
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1865863314}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91a012ea4e057d249a14c2d02221b0bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timerText: {fileID: 0}
-  timeMultiplier: 30
 --- !u!114 &1865863316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36055,7 +36204,7 @@ MonoBehaviour:
   SodaBottles:
   - {fileID: 0}
   - {fileID: 0}
-  iceTray: {fileID: 0}
+  iceTray: {fileID: 1674904302}
   iceSprite: {fileID: 0}
   iceTrayUI: {fileID: 0}
   spriteOffset: 30
