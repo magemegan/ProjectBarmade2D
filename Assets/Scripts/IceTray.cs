@@ -45,7 +45,7 @@ public class IceTray : MonoBehaviour
     {
         ItemHolder holder = GameObject.FindWithTag("Player").GetComponentInChildren<ItemHolder>();
         GameObject ice = holder.TakeObject();
-        if (ice.name == "Ice" )
+        if (ice && ice.name == "Ice" )
         {
             Destroy(ice);
             RefillTray();
