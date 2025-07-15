@@ -45,6 +45,12 @@ public class ItemHolder : MonoBehaviour
         return obj;
     }
 
+    public void DestroyObject()
+    {
+        Destroy(heldObject); 
+        heldObject = null;
+    }
+
     public bool IsEmpty()
     {
         return heldObject == null;

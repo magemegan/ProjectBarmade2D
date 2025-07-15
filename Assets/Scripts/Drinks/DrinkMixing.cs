@@ -26,7 +26,7 @@ public class DrinkMixing : MonoBehaviour, IPointerClickHandler
     void Start()
     {
         //Spawn ice cubes in the tray based on the ice tray volume
-        PopulateTray(iceTray.GetComponent<IceTray>().iceTrayVolume, iceTrayUI, iceSprite);
+        PopulateTray(iceTray.GetComponent<IceTray>().GetVolume(), iceTrayUI, iceSprite);
 
         //Spawn limes in the tray based on the lime tray volume
         PopulateTray(limesVolume, limeTrayUI, limeSprite);

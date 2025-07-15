@@ -24,6 +24,7 @@ public class NPCController : MonoBehaviour
     private float maxDrunk = 100;
     private GameObject drunkMeter;
     private ToxicBar toxicBar;
+    private NPCDialogue dialogue;
 
 
     // Start is called before the first frame update
@@ -33,6 +34,7 @@ public class NPCController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         drunkMeter = gameObject.transform.Find("DrunkMeter").gameObject; 
         toxicBar = drunkMeter.transform.Find("ToxicBar").GetComponent<ToxicBar>();
+        dialogue = gameObject.GetComponent<NPCDialogue>(); 
     }
     
     void OnCollisionEnter2D(Collision2D collision)
@@ -155,16 +157,22 @@ public class NPCController : MonoBehaviour
         }
     }
 
-    public void GiveDrink()
+    public void Interact()
     {
         ItemHolder holder = GameObject.FindWithTag("Player").GetComponentInChildren<ItemHolder>();
         if (holder.IsEmpty())
         {
-            return;
+            dialogue.StartConversation();
         }
-        GameObject drink = holder.TakeObject(); 
-        DrinkController drinkController = drink.GetComponent<DrinkController>();
+        else
+        {
+            GiveDrink(holder.TakeObject());
+        }
+    }
 
+    public void GiveDrink(GameObject drink)
+    {
+        DrinkController drinkController = drink.GetComponent<DrinkController>();
         if (drinkController)
         {
             float alcoholPercentage = drinkController.GetAlcoholPercentage();
@@ -178,6 +186,7 @@ public class NPCController : MonoBehaviour
         }
         else
         {
+            ItemHolder holder = GameObject.FindWithTag("Player").GetComponentInChildren<ItemHolder>();
             holder.GiveObject(drink);
         }
     }
