@@ -6,9 +6,13 @@ using UnityEngine;
 
 public class DrinkController : MonoBehaviour
 {
-    public float percentage;
     public GameObject drink;
     private ItemHolder itemHolder;
+
+    // Drink creation
+    private List<Ingredient> ingredients = new List<Ingredient>();
+    private float percentage = 0f; // max: 1
+    private bool containsIce = false;
 
     void Start()
     {
@@ -36,4 +40,5 @@ public class DrinkController : MonoBehaviour
         return percentage;
     }
 
+    // TODO: Add a method to add ingredients to the drink
 }
