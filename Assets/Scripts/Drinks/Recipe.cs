@@ -12,11 +12,15 @@ public class DrinkComponent
 [CreateAssetMenu(fileName = "NewDrinkRecipe", menuName = "Bar/DrinkRecipe")]
 public class Recipe : ScriptableObject
 {
+    [Header("Drink Info")]
     [SerializeField] string drinkName;
     [SerializeField] DrinkComponent baseSpirit;
     [SerializeField] DrinkComponent[] mixers; // TODO: Is 2 the actual mixer cap? 
     [SerializeField] Ingredient[] garnishes;
+    [SerializeField] GLASS glass;
     [SerializeField] bool hasIce;
     [SerializeField] bool isBlended;
+    [Header("Sale Info")]
     [SerializeField] float price;
+    [SerializeField] bool isUnlocked;
 }

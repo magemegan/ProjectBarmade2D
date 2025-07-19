@@ -9,6 +9,19 @@ public enum TYPE
     GARNISH
 }
 
+public enum GLASS
+{
+    MARTINI,
+    SHOT,
+    ROCKS,
+    MARGARITA,
+    CHAMPANGE,
+    WINE,
+    BEER,
+    COCKTAIL,
+    HIGHBALL
+}
+
 [CreateAssetMenu(fileName = "NewIngredient", menuName = "Bar/Ingredient")]
 
 [System.Serializable]
