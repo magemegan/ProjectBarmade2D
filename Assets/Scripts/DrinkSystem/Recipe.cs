@@ -23,4 +23,7 @@ public class Recipe : ScriptableObject
     [Header("Sale Info")]
     [SerializeField] float price;
     [SerializeField] bool isUnlocked;
+
+    public bool getUnlocked()
+    { return isUnlocked; }
 }
