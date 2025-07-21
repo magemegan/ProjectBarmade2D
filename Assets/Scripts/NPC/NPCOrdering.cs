@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class NPCOrdering : MonoBehaviour
 {
+    private Dictionary<GameObject, Recipe> orders;
     public Recipe GetRandomRecipe()
     {
         // Get unlocked recipes
@@ -20,6 +21,8 @@ public class NPCOrdering : MonoBehaviour
             }
         }
 
-        return unlockedRecipes[0];
+        // Get random recipe
+        int index = Random.Range(0, unlockedRecipes.Count);
+        return unlockedRecipes[index];
     }
 }

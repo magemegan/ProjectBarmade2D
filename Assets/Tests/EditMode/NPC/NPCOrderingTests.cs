@@ -16,7 +16,7 @@ public class NPCOrderingTests
         Assert.IsNotNull(recipe);
     }
 
-   /* [Test]
+    [Test]
     public void GetRandomRecipe_RecipeIsUnlocked()
     {
         NPCOrdering ordering = new NPCOrdering();
@@ -24,5 +24,5 @@ public class NPCOrderingTests
         bool isUnlocked = randomRecipe.getUnlocked();
 
         Assert.True(isUnlocked);
-    }*/
+    }
 }
