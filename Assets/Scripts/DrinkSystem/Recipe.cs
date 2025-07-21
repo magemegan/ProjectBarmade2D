@@ -14,8 +14,8 @@ public class Recipe : ScriptableObject
 {
     [Header("Drink Info")]
     [SerializeField] string drinkName;
-    [SerializeField] DrinkComponent baseSpirit;
-    [SerializeField] DrinkComponent[] mixers; // TODO: Is 2 the actual mixer cap? 
+    [SerializeField] DrinkComponent[] spirits;
+    [SerializeField] DrinkComponent[] mixers;
     [SerializeField] Ingredient[] garnishes;
     [SerializeField] GLASS glass;
     [SerializeField] bool hasIce;
