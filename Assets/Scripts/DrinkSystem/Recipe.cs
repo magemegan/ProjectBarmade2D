@@ -1,14 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-
-[System.Serializable]
-public class DrinkComponent
-{
-    [SerializeField] Ingredient ingredient;
-    [SerializeField] int milliliters = 0; // Amount of this ingredient in the drink
-}
-
 [CreateAssetMenu(fileName = "NewDrinkRecipe", menuName = "Bar/DrinkRecipe")]
 public class Recipe : ScriptableObject
 {
@@ -17,7 +9,7 @@ public class Recipe : ScriptableObject
     [SerializeField] DrinkComponent[] spirits;
     [SerializeField] DrinkComponent[] mixers;
     [SerializeField] Ingredient[] garnishes;
-    [SerializeField] GLASS glass;
+    [SerializeField] Glass glass;
     [SerializeField] bool hasIce;
     [SerializeField] bool isBlended;
     [Header("Sale Info")]

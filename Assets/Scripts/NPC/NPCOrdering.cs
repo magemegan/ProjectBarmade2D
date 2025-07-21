@@ -25,4 +25,9 @@ public class NPCOrdering : MonoBehaviour
         int index = Random.Range(0, unlockedRecipes.Count);
         return unlockedRecipes[index];
     }
+
+    public void CreateOrder(GameObject npc)
+    {
+        orders.Add(npc, GetRandomRecipe());
+    }
 }

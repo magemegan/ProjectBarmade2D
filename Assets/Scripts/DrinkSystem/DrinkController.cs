@@ -10,7 +10,8 @@ public class DrinkController : MonoBehaviour
     private ItemHolder itemHolder;
 
     // Drink creation
-    private List<Ingredient> ingredients = new List<Ingredient>();
+    private List<DrinkComponent> liquids = new List<DrinkComponent>();
+    private List<Ingredient> garnishes = new List<Ingredient>();
     private float percentage = 0f; // max: 1
     private bool containsIce = false;
 
@@ -40,5 +41,35 @@ public class DrinkController : MonoBehaviour
         return percentage;
     }
 
-    // TODO: Add a method to add ingredients to the drink
+    public void AddIngredient(Ingredient ingredient, int milliliters)
+    {
+        Ingredient newIngredient = Instantiate(ingredient);
+        IngredientType type = newIngredient.GetIngredientType();
+        if (type == IngredientType.SPIRIT || type == IngredientType.MIXER)
+        {
+            DrinkComponent drink = new DrinkComponent();
+            drink.AddIngredient(newIngredient);
+            drink.AddMilliliters(milliliters);
+            liquids.Add(drink);
+
+            // Calculate percentage
+            int totalVolume = 0;
+            List<float> volumes = new List<float>();
+            foreach (DrinkComponent liquid in liquids)
+            {
+                totalVolume += liquid.GetMilliliters();
+                volumes.Add(liquid.GetAlcoholAmount());
+            }
+            percentage = 0;
+            foreach (float volume in volumes)
+            {
+                percentage += volume / totalVolume;
+            }
+        }
+        else
+        {
+            garnishes.Add(newIngredient);
+        }
+        
+    }
 }
