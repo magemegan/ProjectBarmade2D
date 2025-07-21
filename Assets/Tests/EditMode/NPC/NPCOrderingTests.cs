@@ -48,7 +48,7 @@ public class NPCOrderingTests
     }
 
     [Test]
-    public void GetRecipeAccuracy_ReturnsZero()
+    public void GetRecipeAccuracy_EmptyDrink_ReturnsZero()
     {
         Recipe randomRecipe = npcOrdering.GetRandomRecipe();
 
