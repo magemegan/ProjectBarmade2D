@@ -30,4 +30,11 @@ public class NPCOrdering : MonoBehaviour
     {
         orders.Add(npc, GetRandomRecipe());
     }
+
+    public float GetRecipeAccuracy(Recipe recipe, DrinkController drink)
+    {
+        float accuracy = 0f;
+
+        return accuracy;
+    }
 }
