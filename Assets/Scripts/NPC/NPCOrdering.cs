@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class NPCOrdering : MonoBehaviour
 {
-    private Dictionary<GameObject, Recipe> orders;
+    Recipe order;
     public Recipe GetRandomRecipe()
     {
         // Get unlocked recipes
@@ -26,9 +26,9 @@ public class NPCOrdering : MonoBehaviour
         return unlockedRecipes[index];
     }
 
-    public void CreateOrder(GameObject npc)
+    public void CreateOrder()
     {
-        orders.Add(npc, GetRandomRecipe());
+        order = GetRandomRecipe();
     }
 
     public float GetRecipeAccuracy(Recipe recipe, DrinkController drink)
