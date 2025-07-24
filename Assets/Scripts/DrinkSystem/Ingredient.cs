@@ -31,13 +31,13 @@ public class Ingredient : ScriptableObject
     [SerializeField] string ingredientName;
     [SerializeField] IngredientType type;
     [Range(0f, 1f)] [SerializeField] float alcoholPercentage = 0f;
-
-    public Ingredient() { }
-    public Ingredient(string name, IngredientType type, float percentage)
+    public static Ingredient Create(string name, IngredientType type, float percentage)
     {
-        this.ingredientName = name;
-        this.type = type;
-        this.alcoholPercentage = percentage;
+        Ingredient ingredient = new Ingredient();
+        ingredient.ingredientName = name;
+        ingredient.type = type;
+        ingredient.alcoholPercentage = percentage;
+        return ingredient;
     }
 
     public float GetAlcoholPercentage()
@@ -63,11 +63,12 @@ public class DrinkComponent
     [SerializeField] Ingredient ingredient;
     [SerializeField] int milliliters = 0; // Amount of this ingredient in the drink
 
-    public DrinkComponent() { }
-    public DrinkComponent(Ingredient ingredient, int milliliters)
+    public static DrinkComponent Create(Ingredient ingredient, int milliliters)
     {
-        this.ingredient = ingredient;
-        this.milliliters = milliliters;
+        DrinkComponent drink = new DrinkComponent();
+        drink.ingredient = ingredient;
+        drink.milliliters = milliliters;
+        return drink;
     }
 
     public void AddIngredient(Ingredient newIngredient)

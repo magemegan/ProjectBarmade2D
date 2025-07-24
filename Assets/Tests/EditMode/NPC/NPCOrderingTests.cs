@@ -34,9 +34,9 @@ public class NPCOrderingTests
     private List<Ingredient> CreateTestIngredients()
     {
         var ingredients = new List<Ingredient>();
-        ingredients.Add(new Ingredient("Rum", IngredientType.SPIRIT, 0.4f));
-        ingredients.Add(new Ingredient("Coke", IngredientType.MIXER, 0));
-        ingredients.Add(new Ingredient("Lime", IngredientType.GARNISH, 0));
+        ingredients.Add(Ingredient.Create("Rum", IngredientType.SPIRIT, 0.4f));
+        ingredients.Add(Ingredient.Create("Coke", IngredientType.MIXER, 0));
+        ingredients.Add(Ingredient.Create("Lime", IngredientType.GARNISH, 0));
         return ingredients;
     }
 
@@ -47,11 +47,11 @@ public class NPCOrderingTests
         var coke = ingredients[1];
         var lime = ingredients[2];
 
-        DrinkComponent[] spirits = { new DrinkComponent(rum, 10) };
-        DrinkComponent[] mixers = { new DrinkComponent(coke, 10) };
+        DrinkComponent[] spirits = { DrinkComponent.Create(rum, 10) };
+        DrinkComponent[] mixers = { DrinkComponent.Create(coke, 10) };
         Ingredient[] garnishes = { lime };
 
-        return new Recipe("Vodka and Coke", spirits, mixers, garnishes,
+        return Recipe.Create("Vodka and Coke", spirits, mixers, garnishes,
             Glass.ROCKS, true, false);
     }
 
@@ -162,9 +162,15 @@ public class NPCOrderingTests
         Assert.AreEqual(0, accuracy);
     }
 
-    /*public void GetRecipeAccuracy_MissingOneIngredient_ReturnsDeduction()
+ /*   [Test]
+    public void GetRecipeAccuracy_MissingOneIngredient_ReturnsDeduction()
     {
-        Drink
+        Recipe testRecipe = CreateTestRecipe();
+        DrinkController drink = CreatePartialDrink(testRecipe, skipSpirits: false);
+
+        float accuracy = npcOrdering.GetRecipeAccuracy(testRecipe, drink);
+
+        Assert.AreEqual(0.75, accuracy);
     }*/
     // public void GetRecipeAccuracy_MissingAllIngredients_ReturnsFiftyPercent() {}
     // public void GetRecipeAccuracy_WrongIngredients_ReturnsDeduction() {}

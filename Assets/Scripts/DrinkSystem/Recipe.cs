@@ -18,18 +18,18 @@ public class Recipe : ScriptableObject
 
     public bool getUnlocked()
     { return isUnlocked; }
-
-    public Recipe() { }
-    public Recipe(string name, DrinkComponent[] spirits, DrinkComponent[] mixers, 
+    public static Recipe Create(string name, DrinkComponent[] spirits, DrinkComponent[] mixers, 
         Ingredient[] garnishes, Glass glass, bool hasIce, bool isBlended)
     {
-        drinkName = name;
-        this.spirits = spirits;
-        this.mixers = mixers;  
-        this.garnishes = garnishes;
-        this.glass = glass;
-        this.hasIce = hasIce;
-        this.isBlended = isBlended;
+        Recipe recipe = new Recipe();
+        recipe.drinkName = name;
+        recipe.spirits = spirits;
+        recipe.mixers = mixers;  
+        recipe.garnishes = garnishes;
+        recipe.glass = glass;
+        recipe.hasIce = hasIce;
+        recipe.isBlended = isBlended;
+        return recipe;
     }
 
     public float GetAmountEarned(float multiplier)

@@ -47,7 +47,7 @@ public class DrinkController : MonoBehaviour
         IngredientType type = newIngredient.GetIngredientType();
         if (type == IngredientType.SPIRIT || type == IngredientType.MIXER)
         {
-            DrinkComponent drink = new DrinkComponent(newIngredient, milliliters);
+            DrinkComponent drink = DrinkComponent.Create(newIngredient, milliliters);
             if (type == IngredientType.SPIRIT) { spirits.Add(drink); }
             else { mixers.Add(drink); }
 
