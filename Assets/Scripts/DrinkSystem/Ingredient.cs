@@ -32,6 +32,14 @@ public class Ingredient : ScriptableObject
     [SerializeField] IngredientType type;
     [Range(0f, 1f)] [SerializeField] float alcoholPercentage = 0f;
 
+    public Ingredient() { }
+    public Ingredient(string name, IngredientType type, float percentage)
+    {
+        this.ingredientName = name;
+        this.type = type;
+        this.alcoholPercentage = percentage;
+    }
+
     public float GetAlcoholPercentage()
     { return alcoholPercentage; }
 
@@ -54,6 +62,13 @@ public class DrinkComponent
 {
     [SerializeField] Ingredient ingredient;
     [SerializeField] int milliliters = 0; // Amount of this ingredient in the drink
+
+    public DrinkComponent() { }
+    public DrinkComponent(Ingredient ingredient, int milliliters)
+    {
+        this.ingredient = ingredient;
+        this.milliliters = milliliters;
+    }
 
     public void AddIngredient(Ingredient newIngredient)
     {

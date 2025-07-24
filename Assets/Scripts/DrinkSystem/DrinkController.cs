@@ -27,7 +27,6 @@ public class DrinkController : MonoBehaviour
 
     public void GiveDrink()
     {
-        Debug.Log("give drink");
         itemHolder.GiveObject(gameObject);
     }
     public void SpawnDrink()
@@ -48,9 +47,7 @@ public class DrinkController : MonoBehaviour
         IngredientType type = newIngredient.GetIngredientType();
         if (type == IngredientType.SPIRIT || type == IngredientType.MIXER)
         {
-            DrinkComponent drink = new DrinkComponent();
-            drink.AddIngredient(newIngredient);
-            drink.AddMilliliters(milliliters);
+            DrinkComponent drink = new DrinkComponent(newIngredient, milliliters);
             if (type == IngredientType.SPIRIT) { spirits.Add(drink); }
             else { mixers.Add(drink); }
 
