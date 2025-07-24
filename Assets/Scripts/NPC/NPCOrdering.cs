@@ -34,6 +34,37 @@ public class NPCOrdering : MonoBehaviour
     public float GetRecipeAccuracy(Recipe recipe, DrinkController drink)
     {
         float accuracy = 0f;
+        List<DrinkComponent> recipeSpirits = recipe.GetSpirits();
+        List<DrinkComponent> recipeMixers = recipe.GetMixers();
+        List<DrinkComponent> drinkSpirits = drink.GetSpirits();
+        List<DrinkComponent> drinkMixers = drink.GetMixers();
+
+        int totalLiquidsExpected = recipeSpirits.Count + recipeMixers.Count;
+        foreach (DrinkComponent spirit in recipeSpirits) // This O^N^2 solution needs to be refactored :(
+        {
+            foreach(DrinkComponent spirit2 in drinkSpirits) 
+            {
+                if (spirit.GetIngredientName() == spirit2.GetIngredientName())
+                {
+                    accuracy += 0.5f / totalLiquidsExpected;
+                    if (spirit.GetMilliliters() == spirit2.GetMilliliters()) { accuracy += 0.3f / totalLiquidsExpected; }
+                    continue;
+                } 
+            }
+        }
+        foreach (DrinkComponent mixer in recipeMixers) // This O^N^2 solution needs to be refactored :(
+        {
+            foreach (DrinkComponent mixer2 in drinkMixers)
+            {
+                if (mixer.GetIngredientName() == mixer2.GetIngredientName())
+                {
+                    accuracy += 0.5f / totalLiquidsExpected;
+                    if (mixer.GetMilliliters() == mixer2.GetMilliliters()) { accuracy += 0.3f / totalLiquidsExpected; }
+                }
+            }
+        }
+        if (drink.GetGarnishes().Count > 0) { accuracy += 0.1f; }
+        if (drink.GetIce()) { accuracy += 0.1f; }
 
         return accuracy;
     }

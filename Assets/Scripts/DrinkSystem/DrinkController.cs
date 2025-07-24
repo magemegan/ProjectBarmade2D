@@ -13,6 +13,7 @@ public class DrinkController : MonoBehaviour
     private List<DrinkComponent> spirits = new List<DrinkComponent>();
     private List<DrinkComponent> mixers = new List<DrinkComponent>();
     private List<Ingredient> garnishes = new List<Ingredient>();
+    private Glass glass;
     private float percentage = 0f; // max: 1
     private bool containsIce = false;
 
@@ -76,6 +77,10 @@ public class DrinkController : MonoBehaviour
         }
     }
 
+    public void SelectGlass(Glass glass)
+    {
+        this.glass = glass; 
+    }
     public void AddGarnish(Ingredient ingredient)
     {
         AddIngredient(ingredient, 0);
@@ -85,4 +90,10 @@ public class DrinkController : MonoBehaviour
     {
         containsIce = true;
     }
+
+    public List<DrinkComponent> GetSpirits() { return spirits; }
+    public List<DrinkComponent> GetMixers() { return mixers; }
+    public List<Ingredient> GetGarnishes() { return garnishes; }
+    public Glass GetGlass() { return glass; }
+    public bool GetIce() { return containsIce; }
 }

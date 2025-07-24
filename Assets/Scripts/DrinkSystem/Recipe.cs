@@ -6,9 +6,9 @@ public class Recipe : ScriptableObject
 {
     [Header("Drink Info")]
     [SerializeField] string drinkName;
-    [SerializeField] DrinkComponent[] spirits;
-    [SerializeField] DrinkComponent[] mixers;
-    [SerializeField] Ingredient[] garnishes;
+    [SerializeField] List<DrinkComponent> spirits;
+    [SerializeField] List<DrinkComponent> mixers;
+    [SerializeField] List<Ingredient> garnishes;
     [SerializeField] Glass glass;
     [SerializeField] bool hasIce;
     [SerializeField] bool isBlended;
@@ -18,10 +18,10 @@ public class Recipe : ScriptableObject
 
     public bool getUnlocked()
     { return isUnlocked; }
-    public static Recipe Create(string name, DrinkComponent[] spirits, DrinkComponent[] mixers, 
-        Ingredient[] garnishes, Glass glass, bool hasIce, bool isBlended)
+    public static Recipe Create(string name, List<DrinkComponent> spirits, List<DrinkComponent> mixers, 
+        List<Ingredient> garnishes, Glass glass, bool hasIce, bool isBlended)
     {
-        Recipe recipe = new Recipe();
+        Recipe recipe = ScriptableObject.CreateInstance<Recipe>();
         recipe.drinkName = name;
         recipe.spirits = spirits;
         recipe.mixers = mixers;  
@@ -37,9 +37,9 @@ public class Recipe : ScriptableObject
         return price * multiplier;
     }
 
-    public DrinkComponent[] GetSpirits() { return spirits; }
-    public DrinkComponent[] GetMixers() {  return mixers; }
-    public Ingredient[] GetGarnishes() { return garnishes; }
+    public List<DrinkComponent> GetSpirits() { return spirits; }
+    public List<DrinkComponent> GetMixers() {  return mixers; }
+    public List<Ingredient> GetGarnishes() { return garnishes; }
     public Glass GetGlass() {  return glass; }
     public bool GetIce() { return hasIce; }
 }

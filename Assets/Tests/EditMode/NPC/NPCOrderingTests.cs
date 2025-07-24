@@ -47,9 +47,9 @@ public class NPCOrderingTests
         var coke = ingredients[1];
         var lime = ingredients[2];
 
-        DrinkComponent[] spirits = { DrinkComponent.Create(rum, 10) };
-        DrinkComponent[] mixers = { DrinkComponent.Create(coke, 10) };
-        Ingredient[] garnishes = { lime };
+        List<DrinkComponent> spirits = new List<DrinkComponent> { DrinkComponent.Create(rum, 10) };
+        List<DrinkComponent> mixers = new List<DrinkComponent> { DrinkComponent.Create(coke, 10) };
+        List<Ingredient> garnishes = new List<Ingredient> {lime };
 
         return Recipe.Create("Vodka and Coke", spirits, mixers, garnishes,
             Glass.ROCKS, true, false);
@@ -152,26 +152,23 @@ public class NPCOrderingTests
     public void GetRecipeAccuracy_EmptyDrink_ReturnsZero()
     {
         Recipe randomRecipe = npcOrdering.GetRandomRecipe();
-
-        GameObject drinkObject = new GameObject("TestDrink");
-        testObjects.Add(drinkObject);
-        DrinkController emptyDrink = drinkObject.AddComponent<DrinkController>();
+        DrinkController emptyDrink = CreateEmptyDrink();
 
         float accuracy = npcOrdering.GetRecipeAccuracy(randomRecipe, emptyDrink);
 
         Assert.AreEqual(0, accuracy);
     }
 
- /*   [Test]
+    [Test]
     public void GetRecipeAccuracy_MissingOneIngredient_ReturnsDeduction()
     {
         Recipe testRecipe = CreateTestRecipe();
-        DrinkController drink = CreatePartialDrink(testRecipe, skipSpirits: false);
+        DrinkController drink = CreatePartialDrink(testRecipe, skipSpirits: true);
 
         float accuracy = npcOrdering.GetRecipeAccuracy(testRecipe, drink);
 
-        Assert.AreEqual(0.75, accuracy);
-    }*/
+        Assert.AreEqual(0.6f, accuracy);
+    }
     // public void GetRecipeAccuracy_MissingAllIngredients_ReturnsFiftyPercent() {}
     // public void GetRecipeAccuracy_WrongIngredients_ReturnsDeduction() {}
     // public void GetRecipeAccuracy_WrongAmounts_ReturnsSeventyPercent() {}
@@ -182,4 +179,5 @@ public class NPCOrderingTests
     // public void GetRecipeAccuracy_PerfectDrink_ReturnsOne() {}
 
     // TODO: Implement tests for glass types
+    //TODO: Implement tests to check for duplicate ingredients
 }

@@ -33,7 +33,7 @@ public class Ingredient : ScriptableObject
     [Range(0f, 1f)] [SerializeField] float alcoholPercentage = 0f;
     public static Ingredient Create(string name, IngredientType type, float percentage)
     {
-        Ingredient ingredient = new Ingredient();
+        Ingredient ingredient = ScriptableObject.CreateInstance<Ingredient>();
         ingredient.ingredientName = name;
         ingredient.type = type;
         ingredient.alcoholPercentage = percentage;
@@ -55,6 +55,8 @@ public class Ingredient : ScriptableObject
 
     public IngredientType GetIngredientType()
     { return type; }
+
+    public string GetName() { return ingredientName; }
 }
 
 [System.Serializable]
@@ -85,4 +87,5 @@ public class DrinkComponent
     public Ingredient GetIngredient() { return ingredient; }
     public int GetMilliliters() { return milliliters; }
     public float GetAlcoholAmount() { return ingredient.GetAlcoholPercentage() * milliliters; }
+    public string GetIngredientName() { return ingredient.GetName(); }
 }
