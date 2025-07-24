@@ -38,3 +38,4 @@ public class NPCOrdering : MonoBehaviour
         return accuracy;
     }
 }
+/// TODO: I feel like this should not be attatched to NPC :/ 
