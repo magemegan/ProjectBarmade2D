@@ -160,7 +160,7 @@ public class NPCOrderingTests
     }
 
     [Test]
-    public void GetRecipeAccuracy_MissingOneIngredient_ReturnsDeduction()
+    public void GetRecipeAccuracy_MissingIngredient()
     {
         Recipe testRecipe = CreateTestRecipe();
         DrinkController drink = CreatePartialDrink(testRecipe, skipSpirits: true);
@@ -169,8 +169,19 @@ public class NPCOrderingTests
 
         Assert.AreEqual(0.6f, accuracy);
     }
-    // public void GetRecipeAccuracy_MissingAllIngredients_ReturnsFiftyPercent() {}
-    // public void GetRecipeAccuracy_WrongIngredients_ReturnsDeduction() {}
+
+    [Test]
+    public void GetRecipeAccuracy_WrongIngredient() 
+    {
+        Recipe testRecipe = CreateTestRecipe();
+        DrinkController drink = CreateDrinkFromRecipe(testRecipe);
+        Ingredient vodka = Ingredient.Create("Vodka", IngredientType.SPIRIT, 0.4f);
+        drink.AddIngredient(vodka);
+
+        float accuracy = npcOrdering.GetRecipeAccuracy(testRecipe, drink);
+
+        Assert.AreEqual(0.85f, accuracy);
+    }
     // public void GetRecipeAccuracy_WrongAmounts_ReturnsSeventyPercent() {}
     // public void GetRecipeAccuracy_MissingGarnish_ReturnsNinetyFivePercent() {}
     // public void GetRecipeAccuracy_IncorrectGarnish_ReturnsNinetyFivePercent() {}

@@ -40,6 +40,9 @@ public class NPCOrdering : MonoBehaviour
         List<DrinkComponent> drinkMixers = drink.GetMixers();
 
         int totalLiquidsExpected = recipeSpirits.Count + recipeMixers.Count;
+        int ingredientsFound = 0;
+        
+        // Check spirits and mixers
         foreach (DrinkComponent spirit in recipeSpirits) // This O^N^2 solution needs to be refactored :(
         {
             foreach(DrinkComponent spirit2 in drinkSpirits) 
@@ -48,6 +51,7 @@ public class NPCOrdering : MonoBehaviour
                 {
                     accuracy += 0.5f / totalLiquidsExpected;
                     if (spirit.GetMilliliters() == spirit2.GetMilliliters()) { accuracy += 0.3f / totalLiquidsExpected; }
+                    ingredientsFound++;
                     continue;
                 } 
             }
@@ -60,9 +64,13 @@ public class NPCOrdering : MonoBehaviour
                 {
                     accuracy += 0.5f / totalLiquidsExpected;
                     if (mixer.GetMilliliters() == mixer2.GetMilliliters()) { accuracy += 0.3f / totalLiquidsExpected; }
+                    ingredientsFound++;
+                    continue;
                 }
             }
         }
+        // Account for wrong ingredients
+        accuracy -= (drinkSpirits.Count + drinkMixers.Count - ingredientsFound) * 0.15f;
         if (drink.GetGarnishes().Count > 0) { accuracy += 0.1f; }
         if (drink.GetIce()) { accuracy += 0.1f; }
 
