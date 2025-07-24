@@ -62,20 +62,20 @@ public class NPCOrderingTests
         return drinkObject.AddComponent<DrinkController>();
     }
 
-    private DrinkController CreateDrinkFromRecipe(Recipe recipe)
+    private DrinkController CreateDrinkFromRecipe(Recipe recipe, int multiplier = 1)
     {
         DrinkController drink = CreateEmptyDrink();
 
         // Add spirits
         foreach (DrinkComponent spirit in recipe.GetSpirits())
         {
-            drink.AddIngredient(spirit.GetIngredient(), spirit.GetMilliliters());
+            drink.AddIngredient(spirit.GetIngredient(), spirit.GetMilliliters() * multiplier);
         }
 
         // Add mixers
         foreach (DrinkComponent mixer in recipe.GetMixers())
         {
-            drink.AddIngredient(mixer.GetIngredient(), mixer.GetMilliliters());
+            drink.AddIngredient(mixer.GetIngredient(), mixer.GetMilliliters() * multiplier);
         }
 
         // Add garnishes
@@ -182,7 +182,17 @@ public class NPCOrderingTests
 
         Assert.AreEqual(0.85f, accuracy);
     }
-    // public void GetRecipeAccuracy_WrongAmounts_ReturnsSeventyPercent() {}
+
+    [Test]
+    public void GetRecipeAccuracy_WrongAmount() 
+    {
+        Recipe testRecipe = CreateTestRecipe();
+        DrinkController drink = CreateDrinkFromRecipe(testRecipe, 2);
+
+        float accuracy = npcOrdering.GetRecipeAccuracy(testRecipe, drink);
+
+        Assert.AreEqual(0.7f, accuracy, 0.01f);
+    }
     // public void GetRecipeAccuracy_MissingGarnish_ReturnsNinetyFivePercent() {}
     // public void GetRecipeAccuracy_IncorrectGarnish_ReturnsNinetyFivePercent() {}
     // public void GetRecipeAccuracy_MissingIce_ReturnsNinetyPercent() {}
