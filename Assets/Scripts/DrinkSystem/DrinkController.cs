@@ -41,7 +41,7 @@ public class DrinkController : MonoBehaviour
         return percentage;
     }
 
-    public void AddIngredient(Ingredient ingredient, int milliliters)
+    public void AddIngredient(Ingredient ingredient, int milliliters = 0)
     {
         Ingredient newIngredient = Instantiate(ingredient);
         IngredientType type = newIngredient.GetIngredientType();
@@ -74,5 +74,15 @@ public class DrinkController : MonoBehaviour
         {
             garnishes.Add(newIngredient);
         }
+    }
+
+    public void AddGarnish(Ingredient ingredient)
+    {
+        AddIngredient(ingredient, 0);
+    }
+
+    public void AddIce()
+    {
+        containsIce = true;
     }
 }

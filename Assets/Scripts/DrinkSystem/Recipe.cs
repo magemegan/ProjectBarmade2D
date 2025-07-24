@@ -36,4 +36,10 @@ public class Recipe : ScriptableObject
     {
         return price * multiplier;
     }
+
+    public DrinkComponent[] GetSpirits() { return spirits; }
+    public DrinkComponent[] GetMixers() {  return mixers; }
+    public Ingredient[] GetGarnishes() { return garnishes; }
+    public Glass GetGlass() {  return glass; }
+    public bool GetIce() { return hasIce; }
 }
