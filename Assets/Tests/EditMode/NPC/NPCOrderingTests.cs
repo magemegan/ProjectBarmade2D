@@ -246,7 +246,15 @@ public class NPCOrderingTests
 
         Assert.AreEqual(0.9f, accuracy);
     }
-    public void GetRecipeAccuracy_PerfectDrink_ReturnsOne() {}
+    public void GetRecipeAccuracy_PerfectDrink_ReturnsOne() 
+    {
+        Recipe testRecipe = CreateTestRecipe();
+        DrinkController drink = CreateDrinkFromRecipe(testRecipe);
+
+        float accuracy = npcOrdering.GetRecipeAccuracy(testRecipe, drink);
+
+        Assert.AreEqual(1f, accuracy);
+    }
 
     // TODO: Implement tests for glass types
     //TODO: Implement tests to check for duplicate ingredients
