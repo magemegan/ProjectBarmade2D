@@ -71,7 +71,25 @@ public class NPCOrdering : MonoBehaviour
         }
         // Account for wrong ingredients
         accuracy -= (drinkSpirits.Count + drinkMixers.Count - ingredientsFound) * 0.15f;
-        if (drink.GetGarnishes().Count > 0) { accuracy += 0.1f; }
+
+        // Garnishes
+        List < Ingredient > recipeGarnishes = recipe.GetGarnishes();
+        List<Ingredient> drinkGarnishes = drink.GetGarnishes();
+        int expectedGarnishes = recipeGarnishes.Count;
+        int garnishesFound = 0;
+        foreach (Ingredient garnish in recipeGarnishes) 
+        {
+            foreach (Ingredient garnish2 in drinkGarnishes)
+            {
+                if (garnish.GetName() == garnish2.GetName())
+                {
+                    accuracy += 0.1f / expectedGarnishes;
+                    garnishesFound++;
+                    continue;
+                }
+            }
+        }
+        accuracy -= (drinkGarnishes.Count - garnishesFound) * 0.05f;
         if (drink.GetIce()) { accuracy += 0.1f; }
 
         return accuracy;

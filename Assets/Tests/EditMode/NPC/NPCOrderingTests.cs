@@ -37,6 +37,7 @@ public class NPCOrderingTests
         ingredients.Add(Ingredient.Create("Rum", IngredientType.SPIRIT, 0.4f));
         ingredients.Add(Ingredient.Create("Coke", IngredientType.MIXER, 0));
         ingredients.Add(Ingredient.Create("Lime", IngredientType.GARNISH, 0));
+        ingredients.Add(Ingredient.Create("Cherry", IngredientType.GARNISH, 0));
         return ingredients;
     }
 
@@ -46,10 +47,11 @@ public class NPCOrderingTests
         var rum = ingredients[0];
         var coke = ingredients[1];
         var lime = ingredients[2];
+        var cherry = ingredients[3];
 
         List<DrinkComponent> spirits = new List<DrinkComponent> { DrinkComponent.Create(rum, 10) };
         List<DrinkComponent> mixers = new List<DrinkComponent> { DrinkComponent.Create(coke, 10) };
-        List<Ingredient> garnishes = new List<Ingredient> {lime };
+        List<Ingredient> garnishes = new List<Ingredient> {lime, cherry };
 
         return Recipe.Create("Vodka and Coke", spirits, mixers, garnishes,
             Glass.ROCKS, true, false);
@@ -120,6 +122,10 @@ public class NPCOrderingTests
             {
                 drink.AddGarnish(garnish);
             }
+        }
+        else
+        {
+            drink.AddGarnish(recipe.GetGarnishes()[0]);
         }
 
         if (!skipIce)
@@ -193,8 +199,30 @@ public class NPCOrderingTests
 
         Assert.AreEqual(0.7f, accuracy, 0.01f);
     }
-    // public void GetRecipeAccuracy_MissingGarnish_ReturnsNinetyFivePercent() {}
-    // public void GetRecipeAccuracy_IncorrectGarnish_ReturnsNinetyFivePercent() {}
+
+    [Test]
+    public void GetRecipeAccuracy_MissingGarnish() 
+    {
+        Recipe testRecipe = CreateTestRecipe();
+        DrinkController drink = CreatePartialDrink(testRecipe, skipGarnishes: true);
+
+        float accuracy = npcOrdering.GetRecipeAccuracy(testRecipe, drink);
+
+        Assert.AreEqual(0.95f, accuracy);
+    }
+
+    [Test]
+    public void GetRecipeAccuracy_IncorrectGarnish() 
+    {
+        Recipe testRecipe = CreateTestRecipe();
+        DrinkController drink = CreateDrinkFromRecipe(testRecipe);
+        Ingredient gumdrop = Ingredient.Create("Gumdrop", IngredientType.GARNISH, 0);
+        drink.AddIngredient(gumdrop);
+
+        float accuracy = npcOrdering.GetRecipeAccuracy(testRecipe, drink);
+
+        Assert.AreEqual(0.95f, accuracy);
+    }
     // public void GetRecipeAccuracy_MissingIce_ReturnsNinetyPercent() {}
     // public void GetRecipeAccuracy_EmptyRecipe_ReturnsOne() {}
     // public void GetRecipeAccuracy_PerfectDrink_ReturnsOne() {}
