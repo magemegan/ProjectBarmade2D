@@ -92,7 +92,7 @@ public class NPCOrdering : MonoBehaviour
             }
         }
         accuracy -= (drinkGarnishes.Count - garnishesFound) * 0.05f;
-        if (recipe.HasIce() == drink.GetIce()) { accuracy += 0.1f; }
+        if (recipe.HasIce() == drink.HasIce()) { accuracy += 0.1f; }
 
         return accuracy;
     }
