@@ -41,7 +41,7 @@ public class NPCOrderingTests
         return ingredients;
     }
 
-    private Recipe CreateTestRecipe()
+    private Recipe CreateTestRecipe(bool hasIce = true)
     {
         var ingredients = CreateTestIngredients();
         var rum = ingredients[0];
@@ -54,7 +54,7 @@ public class NPCOrderingTests
         List<Ingredient> garnishes = new List<Ingredient> {lime, cherry };
 
         return Recipe.Create("Vodka and Coke", spirits, mixers, garnishes,
-            Glass.ROCKS, true, false);
+            Glass.ROCKS, hasIce, false);
     }
 
     private DrinkController CreateEmptyDrink()
@@ -87,7 +87,7 @@ public class NPCOrderingTests
         }
 
         // Add ice if recipe requires it
-        if (recipe.GetIce())
+        if (recipe.HasIce())
         {
             drink.AddIce();
         }
@@ -130,7 +130,7 @@ public class NPCOrderingTests
 
         if (!skipIce)
         {
-            if (recipe.GetIce())
+            if (recipe.HasIce())
             {
                 drink.AddIce();
             }
@@ -223,9 +223,30 @@ public class NPCOrderingTests
 
         Assert.AreEqual(0.95f, accuracy);
     }
-    // public void GetRecipeAccuracy_MissingIce_ReturnsNinetyPercent() {}
-    // public void GetRecipeAccuracy_EmptyRecipe_ReturnsOne() {}
-    // public void GetRecipeAccuracy_PerfectDrink_ReturnsOne() {}
+
+    [Test]
+    public void GetRecipeAccuracy_MissingIce() 
+    {
+        Recipe testRecipe = CreateTestRecipe();
+        DrinkController drink = CreatePartialDrink(testRecipe, skipIce: true);
+
+        float accuracy = npcOrdering.GetRecipeAccuracy(testRecipe, drink);
+
+        Assert.AreEqual(0.9f, accuracy);
+    }
+
+    [Test]
+    public void GetRecipeAccuracy_ExtraIce()
+    {
+        Recipe testRecipe = CreateTestRecipe(hasIce: false);
+        DrinkController drink = CreatePartialDrink(testRecipe);
+        drink.AddIce();
+
+        float accuracy = npcOrdering.GetRecipeAccuracy(testRecipe, drink);
+
+        Assert.AreEqual(0.9f, accuracy);
+    }
+    public void GetRecipeAccuracy_PerfectDrink_ReturnsOne() {}
 
     // TODO: Implement tests for glass types
     //TODO: Implement tests to check for duplicate ingredients

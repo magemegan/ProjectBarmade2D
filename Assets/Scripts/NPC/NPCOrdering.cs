@@ -39,6 +39,8 @@ public class NPCOrdering : MonoBehaviour
         List<DrinkComponent> drinkSpirits = drink.GetSpirits();
         List<DrinkComponent> drinkMixers = drink.GetMixers();
 
+        if (drinkSpirits.Count == 0 && drinkMixers.Count == 0) { return 0; }
+
         int totalLiquidsExpected = recipeSpirits.Count + recipeMixers.Count;
         int ingredientsFound = 0;
         
@@ -90,7 +92,7 @@ public class NPCOrdering : MonoBehaviour
             }
         }
         accuracy -= (drinkGarnishes.Count - garnishesFound) * 0.05f;
-        if (drink.GetIce()) { accuracy += 0.1f; }
+        if (recipe.HasIce() == drink.GetIce()) { accuracy += 0.1f; }
 
         return accuracy;
     }

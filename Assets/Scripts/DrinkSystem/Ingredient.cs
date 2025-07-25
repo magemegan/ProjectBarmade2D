@@ -89,3 +89,5 @@ public class DrinkComponent
     public float GetAlcoholAmount() { return ingredient.GetAlcoholPercentage() * milliliters; }
     public string GetIngredientName() { return ingredient.GetName(); }
 }
+
+// TODO: Consider refactoring so DrinkComponent extends ingredient. 

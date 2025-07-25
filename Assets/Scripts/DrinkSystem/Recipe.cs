@@ -41,5 +41,5 @@ public class Recipe : ScriptableObject
     public List<DrinkComponent> GetMixers() {  return mixers; }
     public List<Ingredient> GetGarnishes() { return garnishes; }
     public Glass GetGlass() {  return glass; }
-    public bool GetIce() { return hasIce; }
+    public bool HasIce() { return hasIce; }
 }
