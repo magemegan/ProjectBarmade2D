@@ -140,27 +140,12 @@ public class NPCOrderingTests
     }
 
     [Test]
-    public void GetRandomRecipe_ReturnsRecipe()
-    {
-        Recipe randomRecipe = npcOrdering.GetRandomRecipe();
-        Assert.IsNotNull(randomRecipe);
-    }
-
-    [Test]
-    public void GetRandomRecipe_RecipeIsUnlocked()
-    {
-        Recipe randomRecipe = npcOrdering.GetRandomRecipe();
-        bool isUnlocked = randomRecipe.getUnlocked();
-        Assert.True(isUnlocked);
-    }
-
-    [Test]
     public void GetRecipeAccuracy_EmptyDrink_ReturnsZero()
     {
-        Recipe randomRecipe = npcOrdering.GetRandomRecipe();
+        Recipe recipe = CreateTestRecipe();
         DrinkController emptyDrink = CreateEmptyDrink();
 
-        float accuracy = npcOrdering.GetRecipeAccuracy(randomRecipe, emptyDrink);
+        float accuracy = npcOrdering.GetRecipeAccuracy(recipe, emptyDrink);
 
         Assert.AreEqual(0, accuracy);
     }

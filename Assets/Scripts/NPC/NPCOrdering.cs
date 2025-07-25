@@ -6,7 +6,8 @@ using UnityEngine;
 public class NPCOrdering : MonoBehaviour
 {
     Recipe order;
-    public Recipe GetRandomRecipe()
+    bool orderActive = false;
+    private Recipe GetRandomRecipe()
     {
         // Get unlocked recipes
         List<Recipe> unlockedRecipes = new List<Recipe>();
@@ -29,7 +30,10 @@ public class NPCOrdering : MonoBehaviour
     public void CreateOrder()
     {
         order = GetRandomRecipe();
+        orderActive = true;
     }
+
+    public Recipe GetOrder() { return order; }
 
     public float GetRecipeAccuracy(Recipe recipe, DrinkController drink)
     {
@@ -96,5 +100,7 @@ public class NPCOrdering : MonoBehaviour
 
         return accuracy;
     }
+
+    public bool OrderActive() { return orderActive; }
 }
 /// TODO: I feel like this should not be attatched to NPC :/ 

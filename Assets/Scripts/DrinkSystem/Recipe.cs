@@ -37,6 +37,7 @@ public class Recipe : ScriptableObject
         return price * multiplier;
     }
 
+    public string GetDrinkName() { return drinkName; }
     public List<DrinkComponent> GetSpirits() { return spirits; }
     public List<DrinkComponent> GetMixers() {  return mixers; }
     public List<Ingredient> GetGarnishes() { return garnishes; }
