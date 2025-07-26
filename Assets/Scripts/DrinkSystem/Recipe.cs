@@ -13,7 +13,7 @@ public class Recipe : ScriptableObject
     [SerializeField] bool hasIce;
     [SerializeField] bool isBlended;
     [Header("Sale Info")]
-    [SerializeField] float price;
+    [SerializeField] float price = 0f;
     [SerializeField] bool isUnlocked;
 
     public bool getUnlocked()

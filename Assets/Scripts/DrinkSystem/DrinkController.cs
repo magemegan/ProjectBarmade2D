@@ -14,13 +14,13 @@ public class DrinkController : MonoBehaviour
     private List<DrinkComponent> mixers = new List<DrinkComponent>();
     private List<Ingredient> garnishes = new List<Ingredient>();
     private Glass glass;
-    private float percentage = 0f; // max: 1
+    private float alcoholPercentage = 0f; // max: 1
     private bool hasIce = false;
 
     void Start()
     {
         itemHolder = GameObject.FindWithTag("Player").GetComponentInChildren<ItemHolder>();
-        if (percentage > 1)
+        if (alcoholPercentage > 1)
         {
             Debug.Log(name + " alcohol percentage exceeds 100%. Scripts may not work as intended.");
         }
@@ -39,7 +39,7 @@ public class DrinkController : MonoBehaviour
 
     public float GetAlcoholPercentage()
     {
-        return percentage;
+        return alcoholPercentage;
     }
 
     public void AddIngredient(Ingredient ingredient, int milliliters = 0)
@@ -65,10 +65,10 @@ public class DrinkController : MonoBehaviour
                 totalVolume += mixer.GetMilliliters();
                 volumes.Add(mixer.GetAlcoholAmount());
             }
-            percentage = 0;
+            alcoholPercentage = 0;
             foreach (float volume in volumes)
             {
-                percentage += volume / totalVolume;
+                alcoholPercentage += volume / totalVolume;
             }
         }
         else

@@ -103,4 +103,3 @@ public class NPCOrdering : MonoBehaviour
 
     public bool OrderActive() { return orderActive; }
 }
-/// TODO: I feel like this should not be attatched to NPC :/ 
