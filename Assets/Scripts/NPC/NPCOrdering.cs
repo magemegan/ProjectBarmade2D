@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Mail;
 using UnityEditor;
 using UnityEngine;
 
@@ -55,7 +56,7 @@ public class NPCOrdering : MonoBehaviour
             {
                 if (spirit.GetIngredientName() == spirit2.GetIngredientName())
                 {
-                    accuracy += 0.5f / totalLiquidsExpected;
+                    accuracy += 0.4f / totalLiquidsExpected;
                     if (spirit.GetMilliliters() == spirit2.GetMilliliters()) { accuracy += 0.3f / totalLiquidsExpected; }
                     ingredientsFound++;
                     continue;
@@ -68,7 +69,7 @@ public class NPCOrdering : MonoBehaviour
             {
                 if (mixer.GetIngredientName() == mixer2.GetIngredientName())
                 {
-                    accuracy += 0.5f / totalLiquidsExpected;
+                    accuracy += 0.4f / totalLiquidsExpected;
                     if (mixer.GetMilliliters() == mixer2.GetMilliliters()) { accuracy += 0.3f / totalLiquidsExpected; }
                     ingredientsFound++;
                     continue;
@@ -97,7 +98,7 @@ public class NPCOrdering : MonoBehaviour
         }
         accuracy -= (drinkGarnishes.Count - garnishesFound) * 0.05f;
         if (recipe.HasIce() == drink.HasIce()) { accuracy += 0.1f; }
-
+        if (recipe.GetGlass() == drink.GetGlass()) { accuracy += 0.1f; }
         return accuracy;
     }
 

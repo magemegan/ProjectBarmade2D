@@ -96,4 +96,5 @@ public class DrinkController : MonoBehaviour
     public List<Ingredient> GetGarnishes() { return garnishes; }
     public Glass GetGlass() { return glass; }
     public bool HasIce() { return hasIce; }
+    public void SetGlass(Glass glass) { this.glass = glass; }
 }

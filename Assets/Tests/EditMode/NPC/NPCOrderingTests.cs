@@ -92,11 +92,13 @@ public class NPCOrderingTests
             drink.AddIce();
         }
 
+        drink.SetGlass(recipe.GetGlass());
+
         return drink;
     }
 
     private DrinkController CreatePartialDrink(Recipe recipe, bool skipSpirits = false,
-        bool skipMixers = false, bool skipGarnishes = false, bool skipIce = false)
+        bool skipMixers = false, bool skipGarnishes = false, bool skipIce = false, bool wrongGlass = false)
     {
         DrinkController drink = CreateEmptyDrink();
 
@@ -136,6 +138,10 @@ public class NPCOrderingTests
             }
         }
 
+        Glass recipeGlass = recipe.GetGlass();
+        Glass glass = wrongGlass ? recipeGlass + 1 : recipeGlass;
+        drink.SetGlass(glass);
+
         return drink;
     }
 
@@ -158,7 +164,7 @@ public class NPCOrderingTests
 
         float accuracy = npcOrdering.GetRecipeAccuracy(testRecipe, drink);
 
-        Assert.AreEqual(0.6f, accuracy);
+        Assert.AreEqual(0.65f, accuracy, 0.01f);
     }
 
     [Test]
@@ -171,7 +177,7 @@ public class NPCOrderingTests
 
         float accuracy = npcOrdering.GetRecipeAccuracy(testRecipe, drink);
 
-        Assert.AreEqual(0.85f, accuracy);
+        Assert.AreEqual(0.85f, accuracy, 0.01f);
     }
 
     [Test]
@@ -193,7 +199,7 @@ public class NPCOrderingTests
 
         float accuracy = npcOrdering.GetRecipeAccuracy(testRecipe, drink);
 
-        Assert.AreEqual(0.95f, accuracy);
+        Assert.AreEqual(0.95f, accuracy, 0.01f);
     }
 
     [Test]
@@ -206,7 +212,7 @@ public class NPCOrderingTests
 
         float accuracy = npcOrdering.GetRecipeAccuracy(testRecipe, drink);
 
-        Assert.AreEqual(0.95f, accuracy);
+        Assert.AreEqual(0.95f, accuracy, 0.01f);
     }
 
     [Test]
@@ -217,7 +223,7 @@ public class NPCOrderingTests
 
         float accuracy = npcOrdering.GetRecipeAccuracy(testRecipe, drink);
 
-        Assert.AreEqual(0.9f, accuracy);
+        Assert.AreEqual(0.9f, accuracy, 0.01f);
     }
 
     [Test]
@@ -229,8 +235,21 @@ public class NPCOrderingTests
 
         float accuracy = npcOrdering.GetRecipeAccuracy(testRecipe, drink);
 
-        Assert.AreEqual(0.9f, accuracy);
+        Assert.AreEqual(0.9f, accuracy, 0.01f);
     }
+
+    [Test]
+    public void GetRecipeAccuracy_WrongGlass()
+    {
+        Recipe testRecipe = CreateTestRecipe(hasIce: false);
+        DrinkController drink = CreatePartialDrink(testRecipe, wrongGlass: true);
+
+        float accuracy = npcOrdering.GetRecipeAccuracy(testRecipe, drink);
+
+        Assert.AreEqual(0.9f, accuracy, 0.01f);
+    }
+
+    [Test]
     public void GetRecipeAccuracy_PerfectDrink_ReturnsOne() 
     {
         Recipe testRecipe = CreateTestRecipe();
@@ -238,7 +257,7 @@ public class NPCOrderingTests
 
         float accuracy = npcOrdering.GetRecipeAccuracy(testRecipe, drink);
 
-        Assert.AreEqual(1f, accuracy);
+        Assert.AreEqual(1f, accuracy, 0.01f);
     }
 
     // TODO: Implement tests for glass types
